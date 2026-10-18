@@ -272,6 +272,47 @@ RTK 与 DGNSS 必须有差分改正数。P-Nav 支持通过 NTRIP 协议接入 C
 
 页面顶部显示已加载的广播星历文件数与已通过的观测数，用于确认解算所需的数据是否就绪。
 
+### 7.5 解算参数配置
+
+解算参数在「**设置 → 解算设置**」中调整，保存后对后续解算生效。下图左侧为页面上半部分，右侧为同页向下滚动后的下半部分。
+
+![解算参数配置](manual/solving-config.png)
+
+#### GNSS System
+
+选择参与解算的星座（G / C / R / E，即 GPS、北斗、GLONASS、Galileo）。全部勾选为默认；若某星座观测质量差（例如质量分析页显示其数据完整率很低），可取消勾选以排除干扰。
+
+#### Atmosphere & Model
+
+| 参数 | 可选值 | 含义与建议 |
+|---|---|---|
+| **Frequency** | Single Freq / Dual Freq | 使用的频点数。双频可组成消电离层组合，精度更高，但需要设备同时跟踪两个频点。默认 Single Freq。 |
+| **Cut-off Angle** | 0°–90°（5° 步进） | 高度角截止。低于该角度的卫星不参与解算。默认 15°；多路径严重的环境可提高到 20°–25°。 |
+| **C/N0 Threshold** | 0–45 dB-Hz（5 dB 一档） | 载噪比门限，低于该值的观测被剔除。默认 0（不筛选）；建议设为 25–30 以排除弱信号。 |
+| **Ionosphere Model** | OFF / Klobuchar / Iono-Free LC | 电离层改正方式。**OFF** 不做改正；**Klobuchar** 用广播模型，适用于单频；**Iono-Free LC** 用消电离层组合，需双频。 |
+| **Troposphere Model** | OFF / Saastamoinen | 对流层改正。单点定位建议开启 Saastamoinen；双差相对定位中该项大部分被差分消除。 |
+| **Stochastic Model** | Height-Angle / SNR | 观测随机模型。**Height-Angle** 按高度角定权（高角度卫星权重高，常规做法）；**SNR** 按载噪比定权，对城市环境更稳健。 |
+
+> **关于电离层/对流层的 OFF**：代码中的内置默认值为 Klobuchar + Saastamoinen。截图所示为当前保存的配置（两项均为 OFF），这类设置常见于**差分相对定位**——双差已消去大部分电离层与对流层误差。做**单点定位**时建议开启这两项，否则绝对精度会明显下降。
+
+#### Ambiguity Resolution
+
+| 参数 | 可选值 | 含义 |
+|---|---|---|
+| **AR** | OFF / Continuous / Instantaneous / Fix and Hold | 全系统整周模糊度固定策略。**Continuous**（默认）跨历元持续估计模糊度，最常用；**Instantaneous** 每历元独立固定，对周跳不敏感但更难固定；**Fix and Hold** 固定后强约束，收敛快但错误固定时影响更大。 |
+| **AR(R)** | OFF / On / Auto Cal | GLONASS 的独立模糊度固定开关（R 为 GLONASS 的 RINEX 系统字母）。GLONASS 采用频分多址，存在频间偏差，固定难度高于其他系统，通常保守设为 **OFF**。 |
+| **Min Ratio to Fix Ambiguity** | 数值 | 判定"固定成功"的 ratio 阈值。ratio 为最优与次优整数解的残差平方和之比，越大越可靠。RTKLIB 常用 **3.0**；要求更严可设 4.0–5.0（固定率下降但错误固定减少）。 |
+
+> 北斗的模糊度固定由程序内部默认开启，页面上不再单独提供开关。
+
+#### Output & Recording
+
+| 参数 | 可选值 | 含义 |
+|---|---|---|
+| **Solution Format** | XYZ / BLH | 解算结果的输出格式。**BLH** 为经纬高（默认，便于查看）；**XYZ** 为地心地固坐标（ECEF），适合后处理或与参考坐标比较。 |
+
+点击底部 **SAVE SETTINGS** 保存。参数保存在应用本地，重启后仍生效。
+
 ---
 
 ## 8. 星历下载
