@@ -15,10 +15,12 @@ local.properties
 *.keystore
 *.jks
 app/release/
-release/
 
 # --- Build artifacts ---
+# (release/*.apk is committed on purpose so the app can be installed
+#  without a local build; see README)
 *.apk
+!release/*.apk
 *.aab
 *.ap_
 *.dex

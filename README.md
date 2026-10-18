@@ -53,8 +53,24 @@ The Java and native layers are connected by 10 JNI functions: 5 for NTRIP/RTCM a
 
 ---
 
-## Requirements
+## Install
 
+A prebuilt APK is included so the app can be installed without building it:
+
+```
+release/P-Nav-v1.0.0-debug.apk
+```
+
+1. Transfer the APK to an Android device (Android 9 / API 28 or newer).
+2. Allow installation from unknown sources when prompted.
+3. Launch P-Nav and grant location permission.
+
+> This is a **debug-signed** build: it installs and runs normally, but Android
+> will label it as a debug build and it is not optimized for release. Builds
+> signed with your own key will not share the bundled Baidu map API key — see
+> [`app/libs/README.md`](app/libs/README.md).
+
+## Requirements
 - **Android Studio** Koala or newer (AGP 8.x)
 - **JDK 17**
 - **Android SDK** 34 (compileSdk/targetSdk), **minSdk 28**
