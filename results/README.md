@@ -1,7 +1,7 @@
 # Test datasets
 
-Raw observations, solutions and plotting scripts for the validation experiments
-reported in the accompanying paper. Recorded on **2026-09-23**.
+Raw observations and solutions for the validation experiments reported in the
+accompanying paper. Recorded on **2026-09-23**.
 
 ## Equipment and settings
 
@@ -30,20 +30,18 @@ results/
 │   └── brdc_2026266.rnx.gz            broadcast ephemeris, DOY 266 / 2026
 ├── static/
 │   ├── rover_pixel7_20260923.26o.gz   Pixel 7 static observation
-│   ├── solution/
-│   │   ├── rtk_fwd.pos                RTK forward (used for the static results)
-│   │   ├── rtk_static.pos             RTK (alternative run)
-│   │   ├── spp_static.pos             SPP
-│   │   └── rtk_fwd_events.pos         RTK event log
-│   └── scripts/                       MATLAB scripts that generate the figures
+│   └── solution/
+│       ├── rtk_fwd.pos                RTK forward (used for the static results)
+│       ├── rtk_static.pos             RTK (alternative run)
+│       ├── spp_static.pos             SPP
+│       └── rtk_fwd_events.pos         RTK event log
 └── kinematic/
     ├── rover_pixel7_20260923.26o.gz   Pixel 7 kinematic observation
     ├── rover_pnav_export.26o.gz       same session, exported by P-Nav itself
     ├── truth_ie_ppk.csv               reference trajectory (Inertial Explorer, PPK)
-    ├── solution/
-    │   ├── rtk_final.pos              RTK combined (used for the kinematic results)
-    │   └── spp_l1.pos                 SPP
-    └── scripts/                       MATLAB scripts that generate the figures
+    └── solution/
+        ├── rtk_final.pos              RTK combined (used for the kinematic results)
+        └── spp_l1.pos                 SPP
 ```
 
 `rover_pnav_export.26o.gz` is the RINEX 3.04 file written by the P-Nav app
@@ -66,47 +64,26 @@ Static reference position (from the IE solution, used as the local origin):
 lat = 28.722085553°   lon = 115.815642469°   h = 72.773 m
 ```
 
-## Scripts
+## Using these files
 
-Each session directory contains the MATLAB scripts that reproduce its figures.
-Entry points are the `fig*` scripts; the remaining files are shared helpers
-invoked by them.
+The `.pos` files are RTKLIB's text solution format. Column 6 is the solution
+quality flag:
 
-**Static** (`static/scripts/`)
-
-| Script | Output |
+| Q | Meaning |
 |---|---|
-| `fig_s1_enu.m` | E/N/U error time series |
-| `fig_s2_hcdf.m` | Horizontal error time series and CDF |
-| `fig_s4_convergence.m` | Convergence to 2.0 m / 1.0 m / 0.5 m |
-| `plot_SPP_paper.m` | Static SPP error series |
-| `stat_prep.m` | Data preparation: reads `.pos` files, computes ENU errors, prints RMS and percentiles |
-| `read_pos_llh.m`, `lla2enu.m`, `llh2xyz.m` | RTKLIB `.pos` reader and coordinate conversions |
-| `draw_enu_panels.m`, `newpaperfig.m`, `export_paper.m` | Figure and export helpers |
+| 1 | fixed (integer ambiguities resolved) |
+| 2 | float |
+| 4 | DGPS |
+| 5 | single point |
 
-**Kinematic** (`kinematic/scripts/`)
+Horizontal error is obtained by transforming the solution and the reference to
+a local ENU frame, then evaluating the per-epoch differences. All accuracy
+figures in the paper use only E and N; the vertical component is not assessed.
 
-| Script | Output |
-|---|---|
-| `fig1_traj.m` | Trajectory comparison: IE reference, RTK, SPP |
-| `fig2_enu.m`, `fig2b_enu_spp.m` | RTK / SPP E/N/U error series |
-| `fig3_hcdf.m`, `fig3b_cdf_spp.m` | RTK / SPP horizontal error and CDF |
-| `fig4_fixrate.m` | Fix-rate time series |
-| `kin_prep.m` | Data preparation: reads solutions and IE reference, computes ENU errors |
-| `lla2enu.m`, `llh2xyz.m` | Coordinate conversions |
-| `draw_enu_panels.m`, `newpaperfig.m`, `export_paper.m` | Figure and export helpers |
-
-Running `stat_prep` or `kin_prep` alone prints the error statistics reported in
-the paper (horizontal RMS and percentiles) without drawing anything.
-
-## Reproducing the solutions
-
-`.pos` files are RTKLIB's text solution format; the `Q` column is
-1 = fixed, 2 = float. The scripts read them together with the reference and
-reproduce the figures.
+The observations can be re-processed directly with RTKLIB:
 
 ```bash
-# RTK, kinematic session (example with rnx2rtkp)
+# RTK, kinematic session
 rnx2rtkp -x 3 -p 0 \
     -o rtk.pos \
     results/kinematic/rover_pixel7_20260923.26o.gz \
@@ -114,10 +91,8 @@ rnx2rtkp -x 3 -p 0 \
     results/common/brdc_2026266.rnx.gz
 ```
 
-To regenerate the figures, open MATLAB, `cd` into the relevant `scripts/`
-directory and run the entry script (for example `stat_prep.m` for the static
-statistics, or `fig3_hcdf.m` for the CDF plot). The scripts resolve data paths
-relative to their own location.
+A local `ENU` conversion using the static reference position above reproduces
+the error series and statistics reported in the paper.
 
 ## Notes on the RINEX observation codes
 
@@ -135,5 +110,4 @@ the code, which is why it was corrected in the writer.
 ## License
 
 The observation data are released under the same BSD 2-Clause license as the
-rest of this repository. The MATLAB scripts are likewise provided under that
-license.
+rest of this repository.

@@ -125,19 +125,19 @@ Recorded observations and solutions can be exported as RINEX 3.04 and CSV for po
 
 ## Test data
 
-The observations, RTKLIB solutions and plotting scripts behind the validation
-results are included under [`results/`](results/README.md):
+The observations and RTKLIB solutions behind the validation results are
+included under [`results/`](results/README.md):
 
 ```
 results/
 ├── common/      base-station observation + broadcast ephemeris
-├── static/      rover observation, solutions, figure scripts
-└── kinematic/   rover observation, IE PPK reference, solutions, figure scripts
+├── static/      rover observation and solutions
+└── kinematic/   rover observation, IE PPK reference, solutions
 ```
 
 Both sessions were recorded on 2026-09-23 with a Google Pixel 7 and a CHCNAV i87
 base station (≈130 m baseline, 1 Hz). See [`results/README.md`](results/README.md)
-for processing settings and reproduction steps.
+for processing settings and file formats.
 
 ## RINEX output notes
 P-Nav writes RINEX 3.04 observation files. Two points are worth noting when comparing against other tools:

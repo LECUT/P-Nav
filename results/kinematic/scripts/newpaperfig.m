@@ -1,9 +1,0 @@
-function f = newpaperfig(Wcm, Hcm)
-% NEWPAPERFIG  建图并把图框物理尺寸锁定为期刊版面尺寸 (厘米)
-%   关键: PaperPositionMode='manual', 否则 MATLAB 导出时会按屏幕比例重排
-    W = Wcm/2.54; H = Hcm/2.54;
-    f = figure('Color','w', 'Units','inches', 'Position',[1 1 W H], ...
-               'PaperUnits','inches', 'PaperSize',[W H], ...
-               'PaperPosition',[0 0 W H], 'PaperPositionMode','manual', ...
-               'InvertHardcopy','off');
-end
