@@ -15,16 +15,13 @@ keywords:
   - RINEX
   - smartphone positioning
 authors:
-  - family-names: "TODO"
-    given-names: "TODO"
+  - name: "L-TEAM"
+    affiliation: "East China University of Technology"
+contact:
+  - email: "lglu@ecut.edu.cn"
+  - name: "L-TEAM technical support"
 # TODO before release:
 #  - replace repository-code with the final GitHub URL
-#  - fill in the author list (family-names / given-names / affiliation / orcid)
-#  - bump version and set date-released on each release
+#  - optionally expand the author list with individual names / ORCIDs
 version: "1.0.0"
 date-released: "2026-10-18"
-# preferred-citation:
-#   type: article
-#   title: "P-Nav: A Multi-Mode Real-Time Positioning and Quality-Monitoring Platform for Android Smartphones"
-#   journal: "Journal of Surveying Engineering"
-#   year: 2026

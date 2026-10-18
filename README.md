@@ -145,7 +145,7 @@ If you use P-Nav in academic work, please cite the accompanying paper:
 ```bibtex
 @article{pnav2026,
   title   = {P-Nav: A Multi-Mode Real-Time Positioning and Quality-Monitoring Platform for Android Smartphones},
-  author  = {TODO},
+  author  = {{L-TEAM}},
   journal = {Journal of Surveying Engineering},
   year    = {2026},
   note    = {Manuscript in preparation}
@@ -153,6 +153,14 @@ If you use P-Nav in academic work, please cite the accompanying paper:
 ```
 
 Machine-readable metadata is provided in [`CITATION.cff`](CITATION.cff).
+
+---
+
+## Contact
+
+Developed and maintained by **L-TEAM**, East China University of Technology.
+
+Technical support: <lglu@ecut.edu.cn>
 
 ---
 

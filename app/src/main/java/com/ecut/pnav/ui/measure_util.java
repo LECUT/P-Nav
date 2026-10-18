@@ -1,3 +1,13 @@
+/*
+ * Derived from the open-source myGNSS application.
+ *
+ *     Copyright (c) 2024, z1Yang-1, All rights reserved.
+ *     Licensed under the BSD 2-Clause License.
+ *     https://github.com/z1Yang-1/myGNSS
+ *
+ * Substantially modified and extended for P-Nav.
+ * See THIRD-PARTY-NOTICES.md for details.
+ */
 package com.ecut.pnav.ui;
 
 import static android.location.GnssMeasurement.ADR_STATE_VALID;
