@@ -66,6 +66,39 @@ Static reference position (from the IE solution, used as the local origin):
 lat = 28.722085553°   lon = 115.815642469°   h = 72.773 m
 ```
 
+## Scripts
+
+Each session directory contains the MATLAB scripts that reproduce its figures.
+Entry points are the `fig*` scripts; the remaining files are shared helpers
+invoked by them.
+
+**Static** (`static/scripts/`)
+
+| Script | Output |
+|---|---|
+| `fig_s1_enu.m` | E/N/U error time series |
+| `fig_s2_hcdf.m` | Horizontal error time series and CDF |
+| `fig_s4_convergence.m` | Convergence to 2.0 m / 1.0 m / 0.5 m |
+| `plot_SPP_paper.m` | Static SPP error series |
+| `stat_prep.m` | Data preparation: reads `.pos` files, computes ENU errors, prints RMS and percentiles |
+| `read_pos_llh.m`, `lla2enu.m`, `llh2xyz.m` | RTKLIB `.pos` reader and coordinate conversions |
+| `draw_enu_panels.m`, `newpaperfig.m`, `export_paper.m` | Figure and export helpers |
+
+**Kinematic** (`kinematic/scripts/`)
+
+| Script | Output |
+|---|---|
+| `fig1_traj.m` | Trajectory comparison: IE reference, RTK, SPP |
+| `fig2_enu.m`, `fig2b_enu_spp.m` | RTK / SPP E/N/U error series |
+| `fig3_hcdf.m`, `fig3b_cdf_spp.m` | RTK / SPP horizontal error and CDF |
+| `fig4_fixrate.m` | Fix-rate time series |
+| `kin_prep.m` | Data preparation: reads solutions and IE reference, computes ENU errors |
+| `lla2enu.m`, `llh2xyz.m` | Coordinate conversions |
+| `draw_enu_panels.m`, `newpaperfig.m`, `export_paper.m` | Figure and export helpers |
+
+Running `stat_prep` or `kin_prep` alone prints the error statistics reported in
+the paper (horizontal RMS and percentiles) without drawing anything.
+
 ## Reproducing the solutions
 
 `.pos` files are RTKLIB's text solution format; the `Q` column is
