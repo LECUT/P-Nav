@@ -1,0 +1,693 @@
+<resources>
+    <string name="app_name">P-Nav</string>
+    <string name="navigation_drawer_open">打开导航抽屉</string>
+    <string name="navigation_drawer_close">关闭导航抽屉</string>
+    <string name="nav_header_title">P-Nav</string>
+    <string name="nav_header_subtitle">行人定位导航软件</string>
+    <string name="nav_header_desc">导航头部</string>
+    <string name="action_settings">设置</string>
+
+    <string name="menu_home">卫星状态</string>
+    <string name="menu_gallery">DGNSS</string>
+    <string name="menu_slideshow">SPP</string>
+    <string name="menu_Ntrip">Ntrip</string>
+    <string name="positioning_title">定位</string>
+
+    <string name="measurement_info">测量信息</string>
+    <string name="navi_info">导航信息</string>
+    <string name="Spp">实时伪距单点定位</string>
+    <string name="Ppp">实时精密单点定位</string>
+    <string name="Dgps">实时伪距差分定位</string>
+    <string name="post_compute">事后解算</string>
+    <string name="sat_state">卫星状态</string>
+    <string name="result">结果文件</string>
+    <string name="gnsssys">卫星系统选择</string>
+    <string name="exit">退出</string>
+    <string name="settings">CN0阈值设置</string>
+    <string name="clear_data">清空数据库</string>
+    <string name="check_data">查看数据库</string>
+    <string name="clear_files">清理星历文件</string>
+    <string name="update_eph">更新广播星历</string>
+    <string name="sppsatcount">有效卫星：</string>
+    <string name="hello_blank_fragment">空白片段</string>
+    <string name="latitude">纬度：</string>
+    <string name="longitude">经度：</string>
+    <string name="height">高程：</string>
+    <string name="rtcm">RTCM卫星：</string>
+    <string name="map">地图</string>
+    <string name="data_collection">数据采集</string>
+    <string name="data_recording">数据记录</string>
+    <string name="file_count">文件数</string>
+    <string name="recording_idle">就绪</string>
+    <string name="recorded_files">已记录文件</string>
+    <string name="no_files_recorded">暂无记录文件</string>
+    <string name="label_no_files">无文件</string>
+    <string name="no_files_hint">点击「记录数据」开始采集GNSS观测数据</string>
+    <string name="file_delete_confirm">确认删除此文件？</string>
+    <string name="file_deleted">文件已删除</string>
+    <string name="update_mixed">更新混合星历</string>
+    <string name="solution">设置</string>
+    <string name="sat_overview_title">卫星概览</string>
+    <string name="sky_plot_title">卫星轨迹</string>
+    <string name="cn0_ts_title">载噪比时序</string>
+    <string name="signal_box_title">信号强度分布</string>
+    <string name="signal_box_hint">箱体: Q1–Q3, 中线: 中位数, 须线: 最小–最大, 圆点: 异常值 · 虚线: 30 dB-Hz</string>
+    <string name="quality_overview_title">基础质量指标</string>
+    <string name="error_tab_title">误差与异常检测</string>
+    <string name="tab_ion_mp">电离层+多径</string>
+    <string name="tab_corr">相关性</string>
+    <string name="tab_fde">残差</string>
+    <string name="tap_to_expand">点击展开 ▼</string>
+    <string name="tap_to_collapse">点击收起 ▲</string>
+    <string name="cn0_avg_fmt" formatted="false">均值 %.0f/%.0f dB</string>
+    <string name="quality_title">质量</string>
+    <string name="ion_model">电离层模型</string>
+    <string name="checkposdata">查看位置数据</string>
+    <string name="tropo">对流层模型</string>
+    <string name="azel">截止仰角</string>
+    <string name="clean_posdata">清理位置数据</string>
+    <string name="check_file_records">查看输出文件</string>
+    <string name="clean_file_records">清空文件记录</string>
+    <string name="file_records_title">输出文件记录</string>
+    <string name="no_file_records">暂无文件记录</string>
+    <string name="clean_file_records_confirm">确认删除所有文件记录？此操作不会删除实际文件。</string>
+    <string name="file_records_cleared">文件记录已清空</string>
+    <string name="Integer_abiguity_Res">整周模糊度解算</string>
+    <string name="record_pos_format">解算格式</string>
+    <string name="record_settings">定位时记录原始数据(仅用于差分定位)</string>
+    <string name="ECEF_xyz">XYZ</string>
+    <string name="blh">BLH</string>
+    <string name="please_enter_a_value">请输入数值</string>
+    <string name="min_ratio_to_fix_ambiguity">最小比率固定模糊度</string>
+    <string name="integer_ambiguity_res_glo">整周模糊度解算(GLO)</string>
+    <string name="name_value">1111</string>
+
+    <!-- Language Selection -->
+    <string name="lang_en">English</string>
+    <string name="lang_zh">中文</string>
+    <string name="language">语言</string>
+    <string name="lang_choose_title">选择语言</string>
+
+    <!-- Activity Titles -->
+    <string name="spp_title">单点定位</string>
+    <string name="dgnss_title">实时DGNSS</string>
+    <string name="rtk_title">实时动态定位</string>
+    <string name="map_title">地图</string>
+
+    <!-- Settings page strings -->
+    <string name="cn0_threshold">C/N0阈值</string>
+    <string name="frequency">频率</string>
+    <string name="gnss_system">GNSS系统</string>
+    <string name="record_mode">记录模式</string>
+    <string name="record_automatic">自动</string>
+    <string name="record_manual">手动</string>
+    <string name="ambiguity_res_bds">整周模糊度解算(BDS)</string>
+    <string name="save_settings">保存设置</string>
+    <string name="solution_setting">解算设置</string>
+    <string name="output_setting">输出设置</string>
+    <string name="ar_strategy">模糊度固定策略</string>
+    <string name="card_sat_signal">卫星与信号</string>
+    <string name="card_atmos_model">大气与误差模型</string>
+    <string name="card_ar">模糊度固定</string>
+    <string name="card_output">输出与记录</string>
+
+    <!-- HomeFragment layout -->
+    <string name="satellites_in_view">可见卫星</string>
+    <string name="system_header">系统</string>
+    <string name="freq_header">频率</string>
+    <string name="count_header">数量</string>
+    <string name="sky_view">天空视图</string>
+    <string name="start_log">记录数据</string>
+    <string name="stop_log">停止</string>
+
+    <!-- Dialog strings -->
+    <string name="yes">是</string>
+    <string name="no">否</string>
+    <string name="confirm">确定</string>
+    <string name="cancel">取消</string>
+    <string name="ok">确定</string>
+    <string name="select_gnss_system">选择GNSS系统</string>
+    <string name="cors_status">CORS状态</string>
+    <string name="cors_not_enabled">CORS未启用</string>
+    <string name="unset">未设置</string>
+    <string name="please_set_up">请先进行设置</string>
+    <string name="select_option">选择一个选项</string>
+    <string name="enable_location">启用位置服务</string>
+    <string name="location_required">应用程序需要位置服务才能正常运行。是否现在前往设置开启？</string>
+    <string name="update_ephemeris">需要更新星历吗？</string>
+    <string name="updating_ephemeris">正在更新星历…</string>
+    <string name="update_successful">更新成功</string>
+    <string name="update_failed">更新失败</string>
+    <string name="clear_ephemeris">是否清除星历文件？</string>
+    <string name="cleanup_successful">清理成功</string>
+    <string name="cleanup_failed">清理失败</string>
+    <string name="recording">正在记录…</string>
+    <string name="record_successfully">记录成功</string>
+    <string name="saved">已保存</string>
+    <string name="failed_register_gnss">GNSS测量回调监听器注册失败</string>
+    <string name="select_file_manager">选择文件管理器</string>
+    <string name="file_manager_not_found">未找到文件管理器，请安装文件管理器应用。</string>
+    <string name="folder_not_exist">文件夹不存在</string>
+    <string name="delete_all_data">确认删除所有数据库数据？</string>
+    <string name="countdown_title">倒计时</string>
+    <string name="countdown_sec">倒计时：%d秒</string>
+    <string name="record">记录</string>
+    <string name="connected_cors">成功连接到CORS</string>
+    <string name="cors_connection_failed">密码错误，连接CORS失败</string>
+    <string name="no_data_found">未找到数据</string>
+    <string name="action_open_files">打开文件</string>
+    <!-- NTRIP dialog strings -->
+    <string name="ntrip_config_title">NTRIP / CORS 配置</string>
+    <string name="ntrip_client_settings">NTRIP 客户端设置</string>
+    <string name="select_an_option">选择一个选项</string>
+    <string name="enter_ip_address">输入IP地址</string>
+    <string name="enter_port">输入端口</string>
+    <string name="enter_user">输入用户名</string>
+    <string name="enter_password">输入密码</string>
+    <string name="choose_mount_point">选择挂载点</string>
+    <string name="gga_settings">GGA 设置</string>
+    <string name="ntrip_label_ip">IP地址</string>
+    <string name="ntrip_label_port">端口</string>
+    <string name="ntrip_label_mount">挂载点</string>
+    <string name="ntrip_label_user">用户名</string>
+    <string name="ntrip_label_password">密码</string>
+    <string name="ntrip_label_latitude">纬度</string>
+    <string name="ntrip_label_longitude">经度</string>
+    <string name="ntrip_btn_connect">连接</string>
+    <string name="ntrip_btn_refresh">刷新</string>
+    <string name="ntrip_launch">服务</string>
+    <string name="ntrip_data_source">数据源</string>
+    <string name="ntrip_gga_title">GGA NMEA 设置</string>
+    <string name="ntrip_config_saved">配置已保存，正在连接…</string>
+    <string name="ntrip_switch_hint">开启/关闭连接</string>
+    <string name="ntrip_gga_source_db">从定位数据库获取</string>
+    <string name="ntrip_gga_source_manual">手动输入</string>
+    <string name="ntrip_gga_source_phone">手机GNSS定位</string>
+    <string name="ntrip_connect_success">已连接到NTRIP播发服务器</string>
+    <string name="ntrip_gga_from_phone">使用手机GNSS定位</string>
+    <string name="please_enter_a_number">请输入数字</string>
+    <string name="no_positioning_data_ntrip">没有定位数据，请先获取定位数据。</string>
+    <string name="pos_data_dialog_title">位置数据库</string>
+    <string name="view_pos_data">查看位置数据</string>
+    <string name="clear_all_data">清空数据库</string>
+    <string name="cn0_title">载噪比</string>
+    <string name="detail_status_title">卫星详细状态</string>
+    <string name="splash_tagline">精准导航</string>
+    <string name="university_name">东华理工大学</string>
+    <string name="dev_unit">开发单位：东华理工大学</string>
+    <string name="dev_team">开发团队：L-Team</string>
+    <string name="tech_support">技术支持：lglu@ecut.edu.cn</string>
+
+    <!-- Settings card labels -->
+    <string name="settings_ntrip_title">NTRIP / CORS</string>
+    <string name="settings_ntrip_desc">配置差分改正源</string>
+    <string name="settings_solution_desc">GNSS系统、模糊度固定策略、电离层模型</string>
+    <string name="settings_database_title">位置数据库</string>
+    <string name="settings_database_desc">查看或清除存储的位置数据</string>
+    <string name="settings_raw_files_title">原始观测文件</string>
+    <string name="settings_raw_files_desc">浏览和管理已记录的 RINEX/CSV 文件</string>
+    <string name="settings_language_desc">切换英语 / 中文</string>
+    <string name="settings_about">关于</string>
+    <string name="bds_label">BDS 北斗卫星导航系统（中国）</string>
+    <string name="gps_label">GPS 全球定位系统（美国）</string>
+    <string name="glonass_label">GLONASS 格洛纳斯导航系统（俄罗斯）</string>
+    <string name="galileo_label">Galileo 伽利略导航系统（欧盟）</string>
+    <string name="qzss_label">QZSS 准天顶卫星系统（日本）</string>
+    <string name="irnss_label">IRNSS 印度区域导航系统（印度）</string>
+
+    <!-- Location card labels -->
+    <string name="location_info">位置信息</string>
+    <string name="label_latitude">纬度：</string>
+    <string name="label_longitude">经度：</string>
+    <string name="label_altitude">高程：</string>
+    <string name="label_alt_msl">高程(MSL)：</string>
+    <string name="label_speed">速度：</string>
+    <string name="label_speed_acc">速度精度：</string>
+    <string name="label_pdop">PDOP：</string>
+    <string name="label_time">时间：</string>
+    <string name="label_ttff">TTFF：</string>
+    <string name="label_hv_acc">H/V精度：</string>
+    <string name="label_num_sats">卫星数量：</string>
+    <string name="label_bearing">方位：</string>
+    <string name="label_bearing_acc">方位精度：</string>
+    <string name="label_hv_dop">H/V DOP：</string>
+    <string name="dual_freq_sats">双频卫星</string>
+    <string name="no_carrier_phase_warning">设备不支持载波相位跟踪，定位将仅使用伪距。</string>
+
+    <!-- 解算详情页面通用字符串 -->
+    <string name="section_satellite_info">卫星信息</string>
+    <string name="section_position">位置</string>
+    <string name="section_solution_status">解算状态</string>
+    <string name="section_accuracy_m">精度 (m)</string>
+    <string name="section_raw_data">解算日志</string>
+    <string name="label_east">东</string>
+    <string name="label_north">北</string>
+    <string name="label_up">天</string>
+    <string name="label_ratio">比率</string>
+    <string name="label_solution_state">解算状态</string>
+    <string name="label_rtcm_sat">RTCM卫星：</string>
+
+    <!-- DGNSS page strings -->
+    <string name="dgnss_satellite_info">卫星信息</string>
+    <string name="dgnss_position">位置</string>
+    <string name="dgnss_accuracy_m">精度 (m)</string>
+    <string name="dgnss_east">东</string>
+    <string name="dgnss_north">北</string>
+    <string name="dgnss_up">天</string>
+    <string name="dgnss_raw_data">原始数据</string>
+    <string name="dgnss_rtcm_count">RTCM 数量</string>
+    <string name="btn_record">记录</string>
+    <string name="db_time">时间：</string>
+    <string name="db_longitude">经度：</string>
+    <string name="db_latitude">纬度：</string>
+    <string name="db_elevation">高程：</string>
+    <string name="db_variance">方差协方差(x,y,h)：</string>
+    <string name="db_status">状态(1:RTK固定 2:RTK浮点 4:DGNSS 5:SPP 0:失败)：</string>
+
+    <!-- Quality Fragment -->
+    <string name="snr_title">载噪比 C/N0 (dB-Hz)</string>
+    <string name="sat_count_title">卫星数量</string>
+    <string name="sat_stats_title">卫星统计</string>
+    <string name="sat_dist_title">卫星分布</string>
+    <string name="sat_total_visible">总可见卫星</string>
+    <string name="sat_valid_obs">有效观测卫星</string>
+    <string name="cmc_title">伪距减相位 CMC RMS (m)</string>
+    <string name="ion_rate_title">电离层延迟率 IOD (m/s)</string>
+    <string name="ion_help_title">关于电离层延迟率 IOD</string>
+    <string name="ion_help_message">IOD（Ionospheric Delay Rate，电离层延迟率）通过L1/L2双频载波相位历元差分计算，反映电离层总电子含量（TEC）的变化速率。\n\n• 利用无几何组合（GF）的历元间差分消除几何距离和接收机钟差\n• 单位为 m/s，即每秒电离层延迟变化量\n• 该值消除周跳后取RMS统计\n\n数值解读：\n  &lt; 0.03 m/s — 电离层稳定\n  0.03~0.1 m/s — 存在电离层活动\n  &gt; 0.1 m/s — 电离层活跃（太阳活动、磁暴等）\n\n电离层活跃会导致定位精度下降，尤其在单频定位中影响显著。</string>
+    <string name="elev_title">卫星高度角 (°)</string>
+    <string name="slip_stats_title">周跳统计</string>
+    <string name="slip_title">周跳探测 (TD-ADR)</string>
+    <string name="slip_ts_subtitle">累计周跳时序</string>
+    <string name="chip_all">全部</string>
+    <string name="slip_explain_gf">■ 历元差分 — 相邻历元几何检验，快速筛查</string>
+    <string name="slip_explain_mw">■ 双频 MW — 需 L1+L2，抗多径能力最强</string>
+    <string name="slip_explain_pf">■ 多项式拟合 — 单频弧段拟合，辅助检出</string>
+    <string name="slip_csr_hint">CSR = 总观测 ÷ 周跳总数，越高观测越稳定</string>
+    <string name="slip_help_title">关于周跳</string>
+    <string name="slip_help_body">周跳 (Cycle Slip) 是载波相位观测值的整周跳变，常见原因包括信号遮挡、多径效应和接收机失锁。
+
+三种检测方式互补：
+• 历元差分 — 比较相邻历元电离层残差变化率，适合单频
+• 双频 MW — Melbourne-Wübbena 宽带组合，精度最高
+• 多项式拟合 — 对 CMC 弧段做 2 阶多项式外推，敏感于缓变异常</string>
+    <string name="slip_gps_label">GPS 累计周跳</string>
+    <string name="slip_bds_label">BDS 累计周跳</string>
+    <string name="slip_note">注：需要双频(L1+L5/L2)观测数据</string>
+    <string name="completeness_title">数据完整度</string>
+    <string name="epoch_count_label">累计历元数</string>
+    <string name="dual_freq_label">双频观测比例</string>
+    <string name="csr_label">周跳比 (CSR /1000历元)</string>
+    <string name="mp_title">多路径 MP (m)</string>
+    <string name="mp_help_title">关于多路径 MP</string>
+    <string name="mp_help_message">MP（Multipath，多路径效应）是衡量卫星信号经反射物反射后到达接收机所产生的测距误差。\n\n• MP1：基于L1频点伪距与L1/L2载波相位的无电离层组合残差，反映L1频点的多路径+伪距噪声水平\n• MP5：基于L5频点（1176.45MHz）的同类组合，仅在使用L5信号的卫星上有效\n\n数值越小越好：\n  &lt; 0.3m — 良好，观测环境开阔\n  0.3~0.6m — 一般，存在轻度多路径\n  &gt; 0.6m — 较差，多路径影响明显\n\n多路径主要来源于周围建筑物、树木、水面等反射面，在城市峡谷、林荫道等环境下会显著增大。</string>
+    <string name="mp1_title">MP1</string>
+    <string name="mp5_title">MP5 (L5)</string>
+    <string name="gf_title">GF 历元差分 RMS (m)</string>
+    <string name="td_pr_title">三差伪距噪声 (m)</string>
+    <string name="td_cp_title">三差载波相位噪声 (周)</string>
+    <string name="td_noise_title">三差噪声 TD</string>
+    <string name="td_pr_label">伪距 PR (m)</string>
+    <string name="td_cp_label">载波 CP (cycles)</string>
+    <string name="td_help_title">关于三差噪声 TD</string>
+    <string name="td_help_message">TD（Triple-Difference，三差）噪声通过三次差分消除接收机钟差和几何距离，提取原始观测量的噪声水平。\n\nPR 伪距：\n• 三差伪距噪声，单位：米\n• 反映各星座伪距测量的原始精度\n\nCP 载波：\n• 三差载波相位噪声，单位：cycles\n• 需要有效的 ADR（载波相位）观测量\n• 虚线绘制区分载波与伪距\n\n数值越低说明 GNSS 观测量越干净。</string>
+    <string name="comp_title">数据完整率 (%)</string>
+    <string name="quality_waiting">正在等待GNSS测量数据…</string>
+    <string name="quality_no_data">等待数据中…</string>
+    <string name="quality_no_satellites">无卫星</string>
+    <string name="quality_no_slips">未检测到周跳</string>
+    <string name="quality_status">正常 | %1$d 历元 | %2$s | 卫星数: %3$d</string>
+    <string name="quality_dual">双频</string>
+    <string name="quality_single">单频</string>
+    <string name="quality_adr_required">需要载波相位</string>
+    <string name="quality_adr_unavailable"> | 载波相位不可用</string>
+
+    <!-- Data Collection - Recording modes -->
+    <string name="recording_manual">手动</string>
+    <string name="recording_timed">定时</string>
+    <string name="static_mode">静态</string>
+    <string name="dynamic_mode">动态</string>
+    <string name="label_recording_mode">类型</string>
+    <string name="label_sample_rate">采样</string>
+    <string name="rate_1hz">1 Hz</string>
+    <string name="duration_5min">5分</string>
+    <string name="duration_10min">10分</string>
+    <string name="duration_30min">30分</string>
+    <string name="duration_60min">60分</string>
+    <string name="timed_countdown">剩余 %02d:%02d</string>
+
+    <!-- Data Collection - Constellation filter -->
+    <string name="filter_gps">GPS</string>
+    <string name="filter_bds">BDS</string>
+    <string name="filter_glo">GLO</string>
+    <string name="filter_gal">GAL</string>
+
+    <!-- Data Collection - Live stats -->
+    <string name="stat_sats">卫星: %d</string>
+    <string name="stat_cn0">CN0: %.0f</string>
+    <string name="stat_epochs">历元: %d</string>
+    <string name="live_measurements">实时测量</string>
+    <string name="detail_col_sys">系统</string>
+    <string name="detail_col_svid">PRN</string>
+    <string name="detail_col_cn0">载噪比</string>
+    <string name="detail_col_elev">高度角</string>
+    <string name="detail_col_azim">方位</string>
+    <string name="detail_col_freq">频段</string>
+    <string name="detail_col_fix">参与</string>
+    <string name="label_systems">系统</string>
+
+    <!-- 定位页面信息面板 -->
+    <string name="section_solution">定位结果</string>
+    <string name="section_eph">星历文件</string>
+    <string name="section_cors">CORS 连接</string>
+    <string name="cors_connected">已连接</string>
+    <string name="cors_disconnected">未连接</string>
+    <string name="cors_unknown">未知</string>
+    <string name="ntrip">NTRIP</string>
+    <string name="eph_file">星历文件</string>
+    <string name="eph_loaded">已加载</string>
+    <string name="eph_not_loaded">未加载</string>
+    <string name="eph_loading">加载中…</string>
+    <string name="solution_state_5">SPP 固定解</string>
+    <string name="solution_state_4">DGNSS</string>
+    <string name="solution_state_2">RTK 浮点解</string>
+    <string name="solution_state_1">RTK 固定解</string>
+    <string name="solution_state_0">失败</string>
+    <string name="solution_state_6">PPP</string>
+    <string name="solution_state_unknown">未知</string>
+
+    <string name="label_solution_mode">解算模式</string>
+    <string name="mode_none">无</string>
+    <string name="toggle_info_panel">切换信息面板</string>
+    <string name="close_panel">关闭面板</string>
+    <string name="toggle_satellite">卫星地图</string>
+    <string name="section_signal_strength">信号强度</string>
+    <string name="section_live_sats">实时卫星</string>
+    <string name="section_recent_files">最近文件</string>
+    <string name="btn_start_recording">●  开始采集</string>
+    <string name="btn_stop_recording">■  停止采集</string>
+    <string name="recording_settings">采集设置</string>
+    <string name="keep_screen_on">常亮</string>
+    <string name="section_file_overview">文件概览</string>
+    <string name="unit_satellites">颗</string>
+    <string name="unit_epochs">历元</string>
+    <string name="label_carrier_phase">载波相位</string>
+    <string name="label_epoch_count">累计历元</string>
+    <string name="toggle_record">开始录制</string>
+    <string name="tap_to_view_details">点击查看详情</string>
+    <string name="mode_spp">SPP</string>
+    <string name="mode_rtk">RTK</string>
+    <string name="mode_dgnss">DGNSS</string>
+
+    <!-- 随机模型选择 -->
+    <string name="stochastic_model">随机模型</string>
+    <string-array name="stochastic_model_options">
+        <item>高度角</item>
+        <item>载噪比</item>
+    </string-array>
+
+    <string name="iono_free_lc">无电离层组合（需双频）</string>
+
+    <!-- Solragment spinner options (模型名称保留英文) -->
+    <string-array name="ionosphere_options">
+        <item>关闭</item>
+        <item>Klobuchar</item>
+        <item>Iono-Free LC</item>
+    </string-array>
+    <string-array name="troposphere_options">
+        <item>关闭</item>
+        <item>Saastamoinen</item>
+    </string-array>
+    <string-array name="ambres_options">
+        <item>关闭</item>
+        <item>Continuous</item>
+        <item>Instantaneous</item>
+        <item>Fix and Hold</item>
+    </string-array>
+    <string-array name="ambres_bds_options">
+        <item>关闭</item>
+        <item>开启</item>
+    </string-array>
+    <string-array name="ambres_glo_options">
+        <item>关闭</item>
+        <item>开启</item>
+        <item>自动校准</item>
+    </string-array>
+    <string-array name="freq_options">
+        <item>单频</item>
+        <item>双频</item>
+    </string-array>
+
+    <!-- 定位页面信息面板 -->
+    <string name="panel_title">信息</string>
+    <string name="section_rtcm">RTCM 数据流</string>
+    <string name="rtcm_bytes_label">累计字节</string>
+    <string name="rtcm_frames_label">观测帧/其他帧</string>
+    <string name="rtcm_base_label">基准站卫星/坐标</string>
+    <string name="rtcm_waiting">等待数据</string>
+    <string name="rtcm_receiving">正在接收</string>
+    <string name="rtcm_disconnected">未连接</string>
+    <string name="rtcm_connecting">等待连接</string>
+    <string name="label_yes">有</string>
+    <string name="label_no">无</string>
+    <string name="toggle_trajectory">显示/隐藏轨迹</string>
+    <string name="clear_trajectory">清除轨迹</string>
+    <string name="clear_trajectory_confirm">确认删除所有轨迹数据？</string>
+    <string name="trajectory_cleared">轨迹已清除</string>
+
+    <!-- 导出 -->
+    <string name="settings_export_title">导出定位数据</string>
+    <string name="settings_export_desc">将定位结果导出为 KML/GPX/CSV 文件</string>
+    <string name="export_dialog_title">选择导出格式</string>
+    <string name="export_generating">正在生成文件…</string>
+    <string name="export_no_data">没有可导出的定位数据</string>
+    <string name="export_failed">导出失败</string>
+
+    <!-- DOP Trend -->
+    <string name="dop_trend_title">DOP 趋势 (60秒)</string>
+
+    <!-- Guide -->
+    <string name="guide_welcome_title">欢迎使用 P-Nav</string>
+    <string name="guide_welcome_desc">高精度 GNSS 行人导航定位软件，支持 SPP、DGNSS、RTK 和 PPP 等多种定位模式。</string>
+    <string name="guide_system_title">选择 GNSS 系统</string>
+    <string name="guide_done_title">一切就绪!</string>
+    <string name="guide_done_desc">已保存 GNSS 系统偏好设置，您随时可以在「设置」中修改。</string>
+    <string name="guide_btn_skip">跳过</string>
+    <string name="guide_btn_next">下一步</string>
+    <string name="guide_btn_start">开始使用</string>
+    <string name="settings_eph_title">星历下载</string>
+    <string name="settings_eph_desc">下载广播星历或精密星历(SP3)文件</string>
+    <string name="dl_broadcast_eph">广播星历</string>
+    <string name="dl_precise_eph">精密 SP3</string>
+    <string name="dl_precise_clk">钟差 CLK</string>
+    <string name="dl_all_eph">全部下载</string>
+    <string name="eph_view_files">查看文件位置</string>
+    <string name="eph_delete_files">删除文件</string>
+    <string name="eph_delete_confirm">确认删除所有已下载的星历文件？</string>
+    <string name="eph_select_all">全选</string>
+    <string name="eph_deselect_all">取消全选</string>
+    <string name="eph_delete_selected">删除选中</string>
+    <string name="eph_deleted_count">已删除 %d 个文件</string>
+    <string name="eph_download_title">下载星历</string>
+    <string name="eph_existing">已下载文件：</string>
+    <string name="eph_no_files">（无）</string>
+    <string name="eph_deleted">星历文件已删除</string>
+
+    <!-- 解算日志 -->
+    <string name="log_export">导出日志</string>
+    <string name="log_clear">清空日志</string>
+    <string name="log_scroll_lock">⋮ 已锁定 · 点击恢复滚动 ⋮</string>
+    <string name="filter_all">全部</string>
+    <string name="filter_pos">定位</string>
+    <string name="filter_err">异常</string>
+    <string name="filter_eph">星历</string>
+    <string name="filter_sys">系统</string>
+
+    <!-- GNSS unsupported dialog -->
+    <string name="gnss_unsupported_title">设备不支持</string>
+    <string name="gnss_unsupported_msg">您的设备不支持 GNSS 原始测量数据输出，卫星数据页面将为空。这是硬件限制——大多数国产手机（华为/荣耀麒麟芯片、联发科等）不开放原始 GNSS 数据接口。仅部分设备（如 Google Pixel、小米 8/9、三星 Galaxy S/Note 等搭载博通或特定高通芯片的机型）向应用提供原始测量数据。</string>
+
+    <!-- 定位页指标/信息 -->
+    <string name="pos_eph">星历</string>
+    <string name="pos_zoom_in">放大</string>
+    <string name="pos_zoom_out">缩小</string>
+    <string name="pos_locate">定位</string>
+    <string name="pos_map_layer">地图图层</string>
+    <string name="pos_close">关闭</string>
+    <string name="pos_slide_up">▲ 上滑查看详情 ▲</string>
+    <string name="pos_collapse">▼ 收起详情 ▼</string>
+    <string name="metric_h">水平(m)</string>
+    <string name="metric_v">垂直(m)</string>
+    <string name="metric_speed">速度(km/h)</string>
+    <string name="metric_sats">卫星</string>
+    <string name="metric_mode">解算模式</string>
+
+    <!-- 数据采集页 -->
+    <string name="data_obs_files">观测文件 ›</string>
+    <string name="data_tap_to_start">点击下方按钮开始采集</string>
+    <string name="data_signal_strength">信号强度</string>
+    <string name="data_recording_info">采集信息</string>
+    <string name="data_carrier_na">载波 —</string>
+    <string name="data_file">文件</string>
+    <string name="data_path">路径</string>
+    <string name="data_size">大小</string>
+    <string name="data_duration">时长</string>
+
+
+    <string name="back">‹ 返回</string>
+    <string name="start">启动</string>
+    <string name="pos_from_db">从数据库获取最新位置</string>
+    <string name="pos_manual">手动输入经纬度</string>
+    <string name="pos_use_gnss">使用手机GNSS定位</string>
+
+
+    <!-- 定位页动态文本 -->
+    <string name="pos_map_load_fail">地图加载失败</string>
+    <string name="pos_lat_label">▲ 纬度 %.6f°</string>
+    <string name="pos_lon_label">经度 %.6f°</string>
+    <string name="pos_located">已定位</string>
+    <string name="pos_no_location">暂无位置</string>
+    <string name="pos_sat_view">卫星图</string>
+    <string name="pos_std_map">标准地图</string>
+    <string name="pos_eph_loaded">已加载</string>
+    <string name="pos_eph_updated">更新 %s</string>
+    <string name="pos_no_eph">无星历文件</string>
+    <string name="pos_broadcast_eph">广播星历文件</string>
+    <string name="pos_not_loaded">未加载</string>
+    <string name="pos_precise_eph">精密星历</string>
+    <string name="pos_next_check">下次自动检查: 约%d分钟后</string>
+    <string name="pos_ntrip_connected">已连接</string>
+    <string name="pos_ntrip_disconnected">未连接</string>
+    <string name="pos_server">服务器</string>
+    <string name="pos_mountpoint">挂载点</string>
+    <string name="pos_user">用户</string>
+    <string name="pos_decoded_eph">解码星历: GPS %1$d组 + GLO %2$d组</string>
+    <string name="pos_waiting_eph">解码星历: 等待中...</string>
+    <string name="pos_rtcm_receiving">接收中</string>
+    <string name="pos_rtcm_not_receiving">未接收</string>
+    <string name="pos_rtcm_total">总流量</string>
+    <string name="pos_rtcm_obs">观测值</string>
+    <string name="pos_rtcm_sta">测站</string>
+    <string name="pos_rtcm_other">其他</string>
+    <string name="pos_rtcm_obs_ratio">观测占比</string>
+
+
+    <string name="pos_ntrip_conn">NTRIP连接: %1$s</string>
+    <string name="pos_decoded_groups">解码星历: GPS %1$d组 + GLO %2$d组</string>
+    <string name="pos_rtcm_flow">RTCM数据流: %1$s</string>
+    <string name="pos_count_units">%1$d 条</string>
+
+
+    <string name="pos_ntrip_connected2">已连接</string>
+
+
+    <!-- 位置数据库 -->
+    <string name="db_summary">位置数据 %1$d 条 · 输出文件 %2$d 个</string>
+    <string name="db_group_pos">位置数据</string>
+    <string name="db_group_files">输出文件</string>
+    <string name="db_view_pos">查看位置数据</string>
+    <string name="db_export_track">导出轨迹 (KML/GPX/CSV)</string>
+    <string name="db_clear_pos">清空位置数据</string>
+    <string name="db_view_files">查看输出文件</string>
+    <string name="db_clear_files">清空文件记录</string>
+    <string name="db_header">时间           模式   纬度 / 经度               高程</string>
+    <string name="db_clear_confirm">确认删除所有定位数据？此操作不可恢复。</string>
+    <string name="db_deleted">已删除 %1$d 条记录</string>
+    <string name="db_unknown">未知</string>
+    <string name="db_view_content">查看内容</string>
+    <string name="db_share">分享/导出</string>
+    <string name="db_file_not_found">文件不存在: %1$s</string>
+    <string name="db_file_share">分享</string>
+    <string name="db_file_preview_limit">... (仅显示前 200 行)</string>
+    <string name="db_file_read_fail">读取文件失败: %1$s</string>
+
+
+    <!-- 下载/状态 Toast -->
+    <string name="dl_connecting">连接 FTP 服务器…</string>
+    <string name="dl_downloading">下载中：%1$s (%2$s)</string>
+    <string name="dl_brdc_ok">广播星历下载成功: %1$s</string>
+    <string name="dl_brdc_ok_plain">广播星历下载成功</string>
+    <string name="dl_prec_ok">精密星历下载成功</string>
+    <string name="dl_clk_ok">钟差文件下载成功</string>
+    <string name="dl_fail">下载失败</string>
+    <string name="dl_brdc_not_found">未找到广播星历文件</string>
+    <string name="dl_prec_not_found">未找到精密星历文件</string>
+    <string name="dl_clk_not_found">未找到钟差文件</string>
+    <string name="dl_nrt_fail">NRT SP3下载失败</string>
+    <string name="dl_nrt_unavailable">NRT超快速星历不可用</string>
+    <string name="traj_cleared">轨迹已清除</string>
+    <string name="raw_delete_confirm">确定删除全部 %1$d 个录制文件？</string>
+    <string name="db_files_deleted">已删除 %1$d 个文件</string>
+    <string name="eph_epochs_buffered">%1$d 历元(缓冲)</string>
+    <string name="carrier_ok">载波 ✓</string>
+    <string name="carrier_na2">载波 —</string>
+    <string name="ntrip_mount_fail">未获取到挂载点列表</string>
+    <string name="ntrip_no_gnss">手机尚未获得GNSS定位</string>
+    <string name="ntrip_set_pos">已设置: %.5f, %.5f</string>
+    <string name="eph_empty">星历为空</string>
+    <string name="eph_all_expired">全部过期!</string>
+    <string name="eph_toe_bad">文件日期异常(TOE偏离>24h)，请重新下载</string>
+    <string name="eph_mostly_expired">大部分过期 %1$d/%2$d</string>
+    <string name="eph_expired_count">(%1$d过期)</string>
+    <string name="eph_total_expired"> | 共%1$d过期</string>
+    <string name="eph_valid">有效</string>
+    <string name="eph_expired">过期</string>
+    <string name="eph_epochs">%1$d 历元</string>
+    <string name="eph_no_data">无星历数据</string>
+    <string name="eph_broadcast_title">广播星历</string>
+    <string name="eph_precise_title">精密星历</string>
+    <string name="eph_sum_broadcast">广播%1$d组</string>
+    <string name="eph_sum_precise">精密%1$d历元</string>
+
+    <!-- 与默认英文同步补齐 -->
+    <string name="delete_all_files">删除全部文件</string>
+    <string name="ppp_title">精密单点定位</string>
+    <string name="section_precision_trend">精度趋势</string>
+    <string name="tab_precision_trend">精度趋势</string>
+    <string name="cn0_elev_title">C/N0 与高度角</string>
+    <string name="cn0_elev_axis">X: 高度角 (°)  |  Y: C/N0 (dB-Hz)</string>
+    <string name="cn0_ts_axis">X: 历元  |  Y: C/N0 (dB-Hz)</string>
+    <string name="cmc_resid_title">CMC 残差时间序列 (FDE)</string>
+    <string name="ion_rate_axis">X: 历元  |  Y: 电离层延迟率 (m/s)</string>
+    <string name="slip_stats_axis">X: 历元  |  Y: 周跳数</string>
+    <string name="mp_axis">X: 历元  |  Y: 多路径 (m)</string>
+    <string name="td_pr_axis">X: 历元  |  Y: 伪距噪声 (m)</string>
+    <string name="td_cp_axis">X: 历元  |  Y: 载波噪声 (周)</string>
+    <string name="corr_title">多径-高度角-信噪比 Pearson 相关</string>
+    <string name="corr_waiting">等待足够历元…</string>
+    <string name="waiting_for_satellites">等待卫星信号…</string>
+    <string name="new_recording">新建录制</string>
+    <string name="history_files">历史文件</string>
+    <string name="eph_mode_label">星历模式</string>
+    <string name="eph_mode_auto">自动</string>
+    <string name="eph_mode_brdc">广播</string>
+    <string name="eph_mode_nrt">NRT 精密</string>
+    <string name="label_file_manager">文件</string>
+    <string name="mode_ppp">PPP</string>
+    <string name="tab_solution_result">解算结果</string>
+    <string name="tab_solution_log">日志</string>
+    <string name="tab_solution_config">配置</string>
+    <string name="section_config_summary">当前配置</string>
+    <string name="app_version">P-Nav v1.0</string>
+
+    <!-- 星历/连接状态 Toast（Fragment 侧按 token 映射） -->
+    <string name="eph_cors_updated">CORS星历已更新</string>
+    <string name="eph_path_null">输出路径未设置</string>
+    <string name="eph_brdc_ready">广播星历就绪</string>
+    <string name="eph_nrt_trying">正在请求NRT超快速星历…</string>
+    <string name="eph_nrt_ready">NRT超快速星历就绪</string>
+    <string name="eph_unavailable">星历不可用</string>
+    <string name="eph_update_failed">星历更新失败</string>
+    <string name="eph_mode_saved">星历模式已设置(下次刷新生效)</string>
+    <string name="eph_uptodate">星历已是最新</string>
+    <string name="eph_updated_ok">星历更新成功</string>
+    <string name="ntrip_fetching">正在获取RTCM数据</string>
+    <string name="ntrip_bad_pwd">密码错误，连接挂载点失败</string>
+
+    <!-- 箱线图轴标签 / 卫星详情空态（View 直绘） -->
+    <string name="box_min">最小</string>
+    <string name="box_median">中位</string>
+    <string name="box_max">最大</string>
+    <string name="sat_detail_empty">暂无卫星数据</string>
+
+</resources>

@@ -1,0 +1,79 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
+    android:orientation="vertical">
+
+    <!-- 顶栏 -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="16dp"
+        android:paddingVertical="12dp">
+
+        <TextView
+            android:id="@+id/btn_back"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:fontFamily="sans-serif"
+            android:padding="8dp"
+            android:text="@string/back"
+            android:textColor="?attr/colorPrimary"
+            android:textSize="15sp" />
+
+        <TextView
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:fontFamily="sans-serif-medium"
+            android:text="@string/settings_raw_files_title"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="18sp" />
+
+        <TextView
+            android:id="@+id/btn_delete_all"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:alpha="0.55"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:fontFamily="sans-serif"
+            android:padding="8dp"
+            android:text="@string/delete_all_files"
+            android:textColor="?attr/colorError"
+            android:textSize="13sp" />
+    </LinearLayout>
+
+    <!-- 文件列表 -->
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_files"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:clipToPadding="false"
+        android:paddingHorizontal="16dp"
+        tools:listitem="@layout/item_file" />
+
+    <!-- 无文件提示 -->
+    <TextView
+        android:id="@+id/tv_empty"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:gravity="center"
+        android:alpha="0.35"
+        android:text="@string/no_files_recorded"
+        android:textColor="?attr/colorOnSurfaceVariant"
+        android:textSize="14sp"
+        android:visibility="gone"
+        tools:visibility="visible" />
+
+</LinearLayout>

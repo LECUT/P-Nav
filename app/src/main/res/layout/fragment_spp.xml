@@ -1,0 +1,334 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/panel_bg"
+    android:orientation="vertical"
+    tools:context=".ui.Spp.SppFragment">
+
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/spp_tabs"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:background="@color/panel_bg"
+        app:tabIndicatorColor="@color/panel_gps"
+        app:tabIndicatorHeight="2dp"
+        app:tabSelectedTextColor="@color/panel_text"
+        app:tabTextColor="@color/panel_text_dim"
+        app:tabMode="fixed" />
+
+    <!-- 页面1：解算结果 -->
+    <ScrollView
+        android:id="@+id/page_result"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:padding="8dp">
+
+            <!-- 卫星信息卡片 -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/CardStyle"
+                app:cardBackgroundColor="@color/panel_bg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                app:contentPadding="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal"
+                    android:gravity="center_vertical">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/section_satellite_info"
+                        android:textColor="@color/panel_text_dim"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/sppsat"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="@string/sppsatcount"
+                        android:textColor="@color/panel_text_dim"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/sppsatcount"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="4dp"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="0"
+                        android:textColor="@color/panel_gps"
+                        android:textSize="14sp" />
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 定位结果卡片 -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/CardStyle"
+                app:cardBackgroundColor="@color/panel_bg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                app:contentPadding="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/SectionTitle"
+                        android:textColor="@color/panel_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="4dp"
+                        android:text="@string/section_position" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="3dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/latitude"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/latitude"
+                            android:textColor="@color/panel_text_dim"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/latitudeValue"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="monospace"
+                            android:gravity="end"
+                            android:text="--"
+                            android:textColor="@color/panel_text"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="3dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/longitude"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/longitude"
+                            android:textColor="@color/panel_text_dim"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/longitudeValue"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="monospace"
+                            android:gravity="end"
+                            android:text="--"
+                            android:textColor="@color/panel_text"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/elevation"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/height"
+                            android:textColor="@color/panel_text_dim"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/elevationValue"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="monospace"
+                            android:gravity="end"
+                            android:text="--"
+                            android:textColor="@color/panel_text"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- 精度卡片 -->
+            <com.google.android.material.card.MaterialCardView
+                style="@style/CardStyle"
+                app:cardBackgroundColor="@color/panel_bg"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="8dp"
+                app:contentPadding="12dp">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+                    <TextView
+                        style="@style/SectionTitle"
+                        android:textColor="@color/panel_text"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:paddingBottom="4dp"
+                        android:text="@string/section_accuracy_m" />
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="3dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/v_accuracy"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/label_east"
+                            android:textColor="@color/panel_text_dim"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/v_accuracy_value"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="monospace"
+                            android:gravity="end"
+                            android:text="--"
+                            android:textColor="@color/panel_text"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginBottom="3dp"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/n_accuracy"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/label_north"
+                            android:textColor="@color/panel_text_dim"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/n_accuracy_value"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="monospace"
+                            android:gravity="end"
+                            android:text="--"
+                            android:textColor="@color/panel_text"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:orientation="horizontal">
+
+                        <TextView
+                            android:id="@+id/u_accuracy"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:text="@string/label_up"
+                            android:textColor="@color/panel_text_dim"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:id="@+id/u_accuracy_value"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="monospace"
+                            android:gravity="end"
+                            android:text="--"
+                            android:textColor="@color/panel_text"
+                            android:textSize="13sp"
+                            android:textStyle="bold" />
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <!-- 页面2：解算日志 -->
+    <ScrollView
+        android:id="@+id/page_log"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1"
+        android:visibility="gone">
+
+        <com.google.android.material.card.MaterialCardView
+            style="@style/CardStyle"
+                app:cardBackgroundColor="@color/panel_bg"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_margin="12dp"
+            app:contentPadding="0dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/SectionTitle"
+                        android:textColor="@color/panel_text"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:paddingHorizontal="20dp"
+                    android:text="@string/section_raw_data" />
+
+                <androidx.recyclerview.widget.RecyclerView
+                    android:id="@+id/spp_log_list"
+                    android:layout_width="match_parent"
+                    android:layout_height="300dp"
+                    android:paddingVertical="8dp"
+                    android:clipToPadding="false" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+    </ScrollView>
+
+</LinearLayout>

@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- MD3 Dark color roles -->
+    <color name="primary">#FF8DB8FF</color>
+    <color name="onPrimary">#FF00315E</color>
+    <color name="primaryContainer">#FF004884</color>
+    <color name="onPrimaryContainer">#FFD4E3FF</color>
+
+    <color name="secondary">#FFC8C5FF</color>
+    <color name="onSecondary">#FF2C286B</color>
+    <color name="secondaryContainer">#FF434082</color>
+    <color name="onSecondaryContainer">#FFE4DFFF</color>
+
+    <color name="tertiary">#FF67DD8A</color>
+    <color name="onTertiary">#FF003915</color>
+    <color name="tertiaryContainer">#FF005321</color>
+    <color name="onTertiaryContainer">#FFA4F7A9</color>
+
+    <color name="error">#FFFFB4AB</color>
+    <color name="onError">#FF690005</color>
+    <color name="errorContainer">#FF93000A</color>
+    <color name="onErrorContainer">#FFFFDAD6</color>
+
+    <color name="surface">#FF131318</color>
+    <color name="onSurface">#FFE4E1E6</color>
+    <color name="surfaceVariant">#FF49454F</color>
+    <color name="onSurfaceVariant">#FFCAC4D0</color>
+    <color name="surfaceContainerLowest">#FF0E0E13</color>
+    <color name="surfaceContainerLow">#FF1B1B20</color>
+    <color name="surfaceContainer">#FF1F1F24</color>
+    <color name="surfaceContainerHigh">#FF29292F</color>
+    <color name="surfaceContainerHighest">#FF34343A</color>
+    <color name="inverseSurface">#FFE4E1E6</color>
+    <color name="inverseOnSurface">#FF313034</color>
+
+    <color name="background">#FF131318</color>
+    <color name="onBackground">#FFE4E1E6</color>
+
+    <color name="outline">#FF938F99</color>
+    <color name="outlineVariant">#FF49454F</color>
+
+    <!-- 定位页面专用 (暗色) -->
+    <color name="bg_dark_page">#FF121217</color>
+    <color name="bg_dark_card">#FF1E1E25</color>
+    <color name="chip_sat">#FF004884</color>
+    <color name="pos_separator">#33FFFFFF</color>
+    <color name="pos_hint">#66FFFFFF</color>
+    <color name="pos_sheet_label">#99FFFFFF</color>
+    <color name="pos_sheet_value">#FFFFFFFF</color>
+    <color name="pos_sheet_sub">#66FFFFFF</color>
+    <color name="pos_sheet_section">#FF8DB8FF</color>
+    <color name="pos_chip_text">#FFE4E1E6</color>
+    <color name="pos_fab_bg">#FF1E1E25</color>
+    <color name="pos_accuracy">#FFFFD43B</color>
+    <color name="pos_sat_text">#FF8DB8FF</color>
+    <color name="pos_chip_unchecked_bg">#1AFFFFFF</color>
+    <color name="pos_chip_unchecked_stroke">#44FFFFFF</color>
+
+    <!-- 周跳检测方式说明 — 较浅以适应暗色背景 -->
+    <color name="slip_gf">#FFAEAEB2</color>
+    <color name="slip_mw">#FF4090FF</color>
+    <color name="slip_pf">#FFFF6B60</color>
+
+    <!-- Legacy aliases -->
+    <color name="text_primary">#FFE4E1E6</color>
+    <color name="text_secondary">#FF98949E</color>
+    <color name="text_hint">#FF5C5862</color>
+    <color name="divider">#FF34343A</color>
+</resources>

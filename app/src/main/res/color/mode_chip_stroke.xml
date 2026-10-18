@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 模式 Chip 描边：选中无，未选中主题感知 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="#00000000" android:state_checked="true" />
+    <item android:color="@color/pos_chip_unchecked_stroke" />
+</selector>

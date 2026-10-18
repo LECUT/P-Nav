@@ -1,0 +1,718 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
+    android:clipToPadding="false">
+
+    <!-- ═══════════ HEADER ═══════════ -->
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingStart="20dp"
+        android:paddingTop="12dp"
+        android:paddingEnd="20dp"
+        android:paddingBottom="8dp"
+        app:layout_constraintTop_toTopOf="parent">
+
+        <ImageView
+            android:id="@+id/status_dot"
+            android:layout_width="8dp"
+            android:layout_height="8dp"
+            android:layout_marginEnd="8dp"
+            android:contentDescription="@string/recording_idle"
+            android:src="@drawable/status_dot" />
+
+        <TextView
+            android:id="@+id/recording_status"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="sans-serif-medium"
+            android:textColor="?attr/colorOnSurface"
+            android:textSize="16sp"
+            tools:text="数据采集" />
+
+        <View
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_weight="1" />
+
+        <TextView
+            android:id="@+id/btn_obs_files"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:focusable="true"
+            android:background="?attr/selectableItemBackgroundBorderless"
+            android:fontFamily="sans-serif-medium"
+            android:padding="6dp"
+            android:text="@string/data_obs_files"
+            android:textColor="?attr/colorPrimary"
+            android:textSize="15sp" />
+    </LinearLayout>
+
+    <!-- ═══════════ CONTENT SCROLL ═══════════ -->
+    <androidx.core.widget.NestedScrollView
+        android:id="@+id/content_scroll"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:clipToPadding="false"
+        android:paddingBottom="8dp"
+        app:layout_constraintBottom_toTopOf="@id/bottom_bar"
+        app:layout_constraintTop_toBottomOf="@id/header">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <!-- ═══ 计时器舱 ═══ -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/timer_capsule"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_marginHorizontal="20dp"
+                android:layout_marginTop="8dp"
+                app:cardBackgroundColor="@color/inverseSurface"
+                app:cardCornerRadius="14dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="0dp"
+                tools:visibility="visible">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:gravity="center"
+                    android:orientation="vertical">
+
+                    <!-- 空闲态：紧凑提示 -->
+                    <LinearLayout
+                        android:id="@+id/capsule_idle_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <View
+                            android:layout_width="8dp"
+                            android:layout_height="8dp"
+                            android:layout_marginEnd="8dp"
+                            android:background="@color/panel_text_dim" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:alpha="0.85"
+                            android:text="@string/data_tap_to_start"
+                            android:textColor="@android:color/white"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <!-- 录制态：大时间 -->
+                    <LinearLayout
+                        android:id="@+id/capsule_recording_content"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:visibility="gone">
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal">
+
+                            <View
+                                android:layout_width="8dp"
+                                android:layout_height="8dp"
+                                android:layout_marginEnd="10dp"
+                                android:background="@drawable/status_dot_active" />
+
+                            <TextView
+                                android:id="@+id/tv_recording_time"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="sans-serif-light"
+                                android:letterSpacing="0.04"
+                                android:textColor="@android:color/white"
+                                android:textSize="32sp"
+                                tools:text="00:05:23" />
+
+                            <View
+                                android:layout_width="8dp"
+                                android:layout_height="8dp"
+                                android:layout_marginStart="10dp"
+                                android:background="@drawable/status_dot_active" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginTop="6dp"
+                            android:gravity="center">
+
+                            <TextView
+                                android:id="@+id/tv_recording_size"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:alpha="0.55"
+                                android:textColor="@android:color/white"
+                                android:textSize="12sp"
+                                tools:text="1.2 MB" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ═══ 四大系统卫星颗数卡片 ═══ -->
+            <LinearLayout
+                android:id="@+id/sensor_tiles"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="12dp"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal">
+
+                <!-- GPS -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/tile_gps"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    app:cardBackgroundColor="@color/panel_bg"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/panel_border">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="8dp">
+
+                        <TextView
+                            android:id="@+id/tile_gps_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="G"
+                            android:textColor="@color/panel_gps"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/tile_gps_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="monospace"
+                            android:text="—"
+                            android:textColor="@color/panel_text"
+                            android:textSize="30sp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- BDS -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/tile_bds"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    app:cardBackgroundColor="@color/panel_bg"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/panel_border">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="8dp">
+
+                        <TextView
+                            android:id="@+id/tile_bds_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="C"
+                            android:textColor="@color/panel_bds"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/tile_bds_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="monospace"
+                            android:text="—"
+                            android:textColor="@color/panel_text"
+                            android:textSize="30sp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- GLO -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/tile_glo"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    app:cardBackgroundColor="@color/panel_bg"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/panel_border">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="8dp">
+
+                        <TextView
+                            android:id="@+id/tile_glo_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="R"
+                            android:textColor="@color/panel_glo"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/tile_glo_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="monospace"
+                            android:text="—"
+                            android:textColor="@color/panel_text"
+                            android:textSize="30sp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+
+                <!-- GAL -->
+                <com.google.android.material.card.MaterialCardView
+                    android:id="@+id/tile_gal"
+                    android:layout_width="0dp"
+                    android:layout_height="100dp"
+                    android:layout_margin="4dp"
+                    android:layout_weight="1"
+                    app:cardBackgroundColor="@color/panel_bg"
+                    app:cardCornerRadius="8dp"
+                    app:cardElevation="0dp"
+                    app:strokeWidth="1dp"
+                    app:strokeColor="@color/panel_border">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:gravity="center"
+                        android:orientation="vertical"
+                        android:padding="8dp">
+
+                        <TextView
+                            android:id="@+id/tile_gal_name"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="E"
+                            android:textColor="@color/panel_gal"
+                            android:textSize="18sp" />
+
+                        <TextView
+                            android:id="@+id/tile_gal_count"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="monospace"
+                            android:text="—"
+                            android:textColor="@color/panel_text"
+                            android:textSize="30sp" />
+                    </LinearLayout>
+                </com.google.android.material.card.MaterialCardView>
+            </LinearLayout>
+
+            <!-- ═══ 信号强度卡片 ═══ -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/signal_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="12dp"
+                app:cardBackgroundColor="@color/panel_bg"
+                app:cardCornerRadius="10dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/panel_border">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="10dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="6dp">
+
+                        <TextView
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="@string/data_signal_strength"
+                            android:textColor="@color/panel_text"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <!-- GPS -->
+                    <LinearLayout
+                        android:id="@+id/sig_group_gps"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="4dp"
+                        tools:visibility="visible">
+
+                        <TextView
+                            android:layout_width="16dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
+                            android:gravity="center"
+                            android:text="G"
+                            android:textColor="@color/panel_gps"
+                            android:textSize="13sp" />
+
+                        <LinearLayout
+                            android:id="@+id/sig_gps_rows"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:minHeight="28dp"
+                            android:orientation="vertical" />
+                    </LinearLayout>
+
+                    <!-- BDS -->
+                    <LinearLayout
+                        android:id="@+id/sig_group_bds"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="4dp"
+                        tools:visibility="visible">
+
+                        <TextView
+                            android:layout_width="16dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
+                            android:gravity="center"
+                            android:text="C"
+                            android:textColor="@color/panel_bds"
+                            android:textSize="13sp" />
+
+                        <LinearLayout
+                            android:id="@+id/sig_bds_rows"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:minHeight="45dp"
+                            android:orientation="vertical" />
+                    </LinearLayout>
+
+                    <!-- GLO -->
+                    <LinearLayout
+                        android:id="@+id/sig_group_glo"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="4dp"
+                        tools:visibility="visible">
+
+                        <TextView
+                            android:layout_width="16dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
+                            android:gravity="center"
+                            android:text="R"
+                            android:textColor="@color/panel_glo"
+                            android:textSize="13sp" />
+
+                        <LinearLayout
+                            android:id="@+id/sig_glo_rows"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:minHeight="20dp"
+                            android:orientation="vertical" />
+                    </LinearLayout>
+
+                    <!-- GAL -->
+                    <LinearLayout
+                        android:id="@+id/sig_group_gal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        tools:visibility="visible">
+
+                        <TextView
+                            android:layout_width="16dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
+                            android:gravity="center"
+                            android:text="E"
+                            android:textColor="@color/panel_gal"
+                            android:textSize="13sp" />
+
+                        <LinearLayout
+                            android:id="@+id/sig_gal_rows"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="8dp"
+                            android:layout_weight="1"
+                            android:minHeight="28dp"
+                            android:orientation="vertical" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+            <!-- ═══ 采集信息卡片 ═══ -->
+            <com.google.android.material.card.MaterialCardView
+                android:id="@+id/file_overview_card"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginHorizontal="16dp"
+                android:layout_marginTop="16dp"
+                app:cardBackgroundColor="@color/panel_bg"
+                app:cardCornerRadius="12dp"
+                app:cardElevation="0dp"
+                app:strokeWidth="1dp"
+                app:strokeColor="@color/panel_border">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="12dp">
+
+                    <!-- 标题行 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:layout_marginBottom="8dp">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="@string/data_recording_info"
+                            android:textColor="@color/panel_text"
+                            android:textSize="12sp" />
+
+                        <View
+                            android:layout_width="0dp"
+                            android:layout_height="0dp"
+                            android:layout_weight="1" />
+
+                        <!-- 载波相位状态标签 -->
+                        <LinearLayout
+                            android:id="@+id/ov_carrier_badge"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:gravity="center_vertical"
+                            android:orientation="horizontal"
+                            android:background="@color/panel_bg_deep"
+                            android:paddingHorizontal="8dp"
+                            android:paddingVertical="4dp">
+
+                            <View
+                                android:id="@+id/ov_carrier_dot"
+                                android:layout_width="6dp"
+                                android:layout_height="6dp"
+                                android:background="@drawable/status_dot"
+                                android:layout_marginEnd="5dp" />
+
+                            <TextView
+                                android:id="@+id/ov_carrier_status"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:text="@string/data_carrier_na"
+                                android:textColor="@color/panel_text_dim"
+                                android:textSize="11sp" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- 信息行：文件名 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingVertical="4dp">
+
+                        <TextView
+                            android:layout_width="42dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/data_file"
+                            android:textColor="@color/panel_text_dim"
+                            android:textSize="11sp"
+                            android:alpha="0.65" />
+
+                        <TextView
+                            android:id="@+id/ov_file_name"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ellipsize="middle"
+                            android:fontFamily="monospace"
+                            android:singleLine="true"
+                            android:text="—"
+                            android:textColor="@color/panel_text"
+                            android:textSize="12sp" />
+                    </LinearLayout>
+
+                    <!-- 信息行：目录 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingVertical="4dp">
+
+                        <TextView
+                            android:layout_width="42dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/data_path"
+                            android:textColor="@color/panel_text_dim"
+                            android:textSize="11sp"
+                            android:alpha="0.65" />
+
+                        <TextView
+                            android:id="@+id/ov_file_dir"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:ellipsize="start"
+                            android:fontFamily="monospace"
+                            android:singleLine="true"
+                            android:text="—"
+                            android:textColor="@color/panel_text"
+                            android:textSize="10sp"
+                            android:alpha="0.7" />
+                    </LinearLayout>
+
+                    <!-- 信息行：文件大小 + 录制时长 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingVertical="4dp">
+
+                        <TextView
+                            android:layout_width="42dp"
+                            android:layout_height="wrap_content"
+                            android:text="@string/data_size"
+                            android:textColor="@color/panel_text_dim"
+                            android:textSize="11sp"
+                            android:alpha="0.65" />
+
+                        <TextView
+                            android:id="@+id/ov_file_size"
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="—"
+                            android:textColor="@color/panel_text"
+                            android:textSize="12sp" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:text="@string/data_duration"
+                            android:textColor="@color/panel_text_dim"
+                            android:textSize="11sp"
+                            android:alpha="0.65"
+                            android:layout_marginStart="12dp" />
+
+                        <TextView
+                            android:id="@+id/ov_duration"
+                            android:layout_width="50dp"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
+                            android:gravity="end"
+                            android:text="—"
+                            android:textColor="@color/panel_text"
+                            android:textSize="12sp"
+                            android:layout_marginStart="6dp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </com.google.android.material.card.MaterialCardView>
+
+        </LinearLayout>
+    </androidx.core.widget.NestedScrollView>
+
+    <!-- ═══════════ BOTTOM BAR ═══════════ -->
+    <LinearLayout
+        android:id="@+id/bottom_bar"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="20dp"
+        android:layout_marginBottom="14dp"
+        android:orientation="horizontal"
+        app:layout_constraintBottom_toBottomOf="parent">
+
+        <!-- 开始/停止采集 -->
+        <TextView
+            android:id="@+id/tv_record_button"
+            android:layout_width="0dp"
+            android:layout_height="52dp"
+            android:layout_marginEnd="8dp"
+            android:layout_weight="1"
+            android:background="@drawable/bg_record_start"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:text="@string/btn_start_recording"
+            android:textColor="@android:color/white"
+            android:textSize="15sp" />
+
+        <!-- 保持常亮 -->
+        <TextView
+            android:id="@+id/btn_keep_screen_on"
+            android:layout_width="52dp"
+            android:layout_height="52dp"
+            android:background="@drawable/bg_keep_screen_off"
+            android:clickable="true"
+            android:focusable="true"
+            android:fontFamily="sans-serif-medium"
+            android:gravity="center"
+            android:text="@string/keep_screen_on"
+            android:textColor="@android:color/white"
+            android:textSize="11sp" />
+    </LinearLayout>
+
+</androidx.constraintlayout.widget.ConstraintLayout>

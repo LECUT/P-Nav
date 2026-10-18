@@ -1,0 +1,133 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <!-- ====== Lab Grey 配色 ====== -->
+
+    <!-- MD3 Primary — 沉稳蓝 -->
+    <color name="primary">#FF1A56DB</color>
+    <color name="onPrimary">#FFFFFFFF</color>
+    <color name="primaryContainer">#FFDBE4FF</color>
+    <color name="onPrimaryContainer">#FF001A41</color>
+
+    <!-- MD3 Secondary — 冷灰蓝 -->
+    <color name="secondary">#FF475569</color>
+    <color name="onSecondary">#FFFFFFFF</color>
+    <color name="secondaryContainer">#FFE2E8F0</color>
+    <color name="onSecondaryContainer">#FF0F172A</color>
+
+    <!-- MD3 Tertiary — 青蓝点缀 -->
+    <color name="tertiary">#FF0891B2</color>
+    <color name="onTertiary">#FFFFFFFF</color>
+    <color name="tertiaryContainer">#FFCCF3FA</color>
+    <color name="onTertiaryContainer">#FF001F26</color>
+
+    <!-- MD3 Error — 冷调红 -->
+    <color name="error">#FFDC2626</color>
+    <color name="onError">#FFFFFFFF</color>
+    <color name="errorContainer">#FFFEE2E2</color>
+    <color name="onErrorContainer">#FF450A0A</color>
+
+    <!-- MD3 Surface — 近白冷底 -->
+    <color name="surface">#FFFAFAFA</color>
+    <color name="onSurface">#FF171717</color>
+    <color name="surfaceVariant">#FFE8E8EC</color>
+    <color name="onSurfaceVariant">#FF484850</color>
+    <color name="surfaceContainerLowest">#FFFFFFFF</color>
+    <color name="surfaceContainerLow">#FFF5F5F7</color>
+    <color name="surfaceContainer">#FFF0F0F2</color>
+    <color name="surfaceContainerHigh">#FFEBEBED</color>
+    <color name="surfaceContainerHighest">#FFE5E5E8</color>
+    <color name="inverseSurface">#FF2D2D33</color>
+    <color name="inverseOnSurface">#FFF2F2F4</color>
+
+    <!-- MD3 Background -->
+    <color name="background">#FFFAFAFA</color>
+    <color name="onBackground">#FF171717</color>
+
+    <!-- MD3 Outline -->
+    <color name="outline">#FF737379</color>
+    <color name="outlineVariant">#FFC4C4CB</color>
+
+    <!-- 系统状态色 -->
+    <color name="status_fixed">#FF16A34A</color>
+    <color name="status_float">#FF1A56DB</color>
+    <color name="status_single">#FFD97706</color>
+    <color name="status_none">#FFDC2626</color>
+
+    <!-- 星座品牌色 -->
+    <color name="gps_color">#FF1A56DB</color>
+    <color name="bds_color">#FFDC2626</color>
+    <color name="glonass_color">#FF7C3AED</color>
+    <color name="galileo_color">#FF16A34A</color>
+    <color name="qzss_color">#FF0891B2</color>
+    <color name="irnss_color">#FFD97706</color>
+
+    <!-- 统计面板用色（深色变体） -->
+    <color name="gps_stats">#FF1D4ED8</color>
+    <color name="bds_stats">#FFCA2626</color>
+    <color name="glonass_stats">#FF6D28D9</color>
+    <color name="galileo_stats">#FF15803D</color>
+
+    <!-- 状态 chip 背景 -->
+    <color name="status_bg_fixed">#FFDCFCE7</color>
+    <color name="status_bg_float">#FFDBE4FF</color>
+    <color name="status_bg_single">#FFFEF3C7</color>
+    <color name="status_bg_none">#FFFEE2E2</color>
+
+    <!-- ====== 旧别名兼容 ====== -->
+    <color name="primary_container">@color/primaryContainer</color>
+    <color name="surface_variant">@color/surfaceVariant</color>
+    <color name="primary_dark">#FF1D4ED8</color>
+    <color name="primary_light">#FF60A5FA</color>
+    <color name="on_primary">#FFFFFFFF</color>
+    <color name="secondary_dark">#FF334155</color>
+    <color name="on_secondary">#FFFFFFFF</color>
+    <color name="text_primary">#FF171717</color>
+    <color name="text_secondary">#FF6B6B73</color>
+    <color name="text_hint">#FFB0B0B8</color>
+    <color name="text_on_primary">#FFFFFFFF</color>
+    <color name="divider">#FFE2E8F0</color>
+    <color name="card_shadow">#0A000000</color>
+
+    <!-- 周跳检测方式说明 -->
+    <color name="slip_gf">#FF8E8E93</color>
+    <color name="slip_mw">#FF007AFF</color>
+    <color name="slip_pf">#FFFF3B30</color>
+    <color name="ripple">#1A1A56DB</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="black">#FF000000</color>
+
+    <!-- 定位页面专用 -->
+    <color name="bg_dark_page">#FFF5F5F7</color>
+    <color name="bg_dark_card">#FFFFFFFF</color>
+    <color name="chip_sat">#FF1A56DB</color>
+    <color name="pos_separator">#33000000</color>
+    <color name="pos_hint">#66000000</color>
+    <color name="pos_sheet_label">#99484850</color>
+    <color name="pos_sheet_value">#FF000000</color>
+    <color name="pos_sheet_sub">#66484850</color>
+    <color name="pos_sheet_section">#FF1A56DB</color>
+    <color name="pos_chip_text">#FF171717</color>
+    <color name="pos_fab_bg">#FF171717</color>
+    <color name="pos_accuracy">#FFD97706</color>
+    <color name="pos_sat_text">#FF1D4ED8</color>
+    <color name="pos_chip_unchecked_bg">#FFF0F0F2</color>
+    <color name="pos_chip_unchecked_stroke">#FFC4C4CB</color>
+
+    <!-- 保持常亮按钮 -->
+    <color name="keep_screen_on_bg">#FF2D6A4F</color>
+    <color name="keep_screen_off_bg">#FFD8F3DC</color>
+    <color name="keep_screen_on_text">#FFFFFFFF</color>
+    <color name="keep_screen_off_text">#FF2D6A4F</color>
+
+    <!-- ====== 科研仪器深色面板 ====== -->
+    <color name="panel_bg">#FF16202E</color>
+    <color name="panel_bg_deep">#FF0E1620</color>
+    <color name="panel_text">#FFF2F5FA</color>
+    <color name="panel_text_dim">#FF9AA7B8</color>
+    <color name="panel_border">#FF2A3B52</color>
+    <!-- 深底上高亮星座色 -->
+    <color name="panel_gps">#FF4C8DFF</color>
+    <color name="panel_bds">#FFFF7A7A</color>
+    <color name="panel_glo">#FFB08CFF</color>
+    <color name="panel_gal">#FF4ADE80</color>
+</resources>

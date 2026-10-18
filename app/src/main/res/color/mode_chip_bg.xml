@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 模式 Chip 背景：选中蓝色，未选中浅灰 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="#FF007AFF" android:state_checked="true" />
+    <item android:color="@color/pos_chip_unchecked_bg" />
+</selector>

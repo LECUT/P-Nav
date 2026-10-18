@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 指标条目模板 — 数值 + 标签 + 单位 -->
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:orientation="vertical"
+    android:gravity="center"
+    android:paddingVertical="6dp"
+    android:paddingHorizontal="4dp">
+
+    <TextView
+        android:id="@+id/metric_value"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="-"
+        android:textColor="#FFFFFF"
+        android:textSize="18sp"
+        android:fontFamily="monospace" />
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal">
+
+        <TextView
+            android:id="@+id/metric_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#B3FFFFFF"
+            android:textSize="10sp" />
+
+        <TextView
+            android:id="@+id/metric_unit"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="#66FFFFFF"
+            android:textSize="10sp"
+            android:layout_marginStart="2dp" />
+
+    </LinearLayout>
+
+</LinearLayout>

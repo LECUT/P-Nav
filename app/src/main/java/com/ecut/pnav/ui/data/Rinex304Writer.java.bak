@@ -1,0 +1,372 @@
+package com.ecut.pnav.ui.data;
+
+import static com.ecut.pnav.ui.measure_util.resetobs;
+import static com.rtklib.readobsnav.satSys.sat_sys;
+import static com.rtklib.util.util1.time2epoch;
+
+import android.location.GnssClock;
+import android.location.GnssMeasurement;
+import android.location.GnssStatus;
+import android.os.Build;
+import android.util.Log;
+
+import com.ecut.pnav.ui.measure_util;
+import com.rtklib.bean.gtime_t;
+import com.rtklib.bean.obsd_t;
+
+import java.io.BufferedWriter;
+import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.Date;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Locale;
+import java.util.Map;
+
+/**
+ * RINEX 3.04 观测文件后处理写入器。
+ *
+ * 工作流程（参照 Calgary 大学 GNSSLOG2RINEX.cpp）：
+ *   录制中 — bufferEpoch() 暂存历元原始数据
+ *   停止后 — writeOutput() 一次性完成：信号发现 → 写头部 → 写全部历元
+ *
+ * 质量门限（RINEX 3.04）：
+ *   - checkSyncState（CODE_LOCK + TOW_DECODED + !MSEC_AMBIGUOUS）
+ *   - TOW 不确定度 ≤ 500 ns（Android 12+）
+ *   - 伪距率不确定度 ≤ 10 m/s（Android 12+）
+ */
+public class Rinex304Writer {
+
+    private static final String TAG = "Rinex304Writer";
+    private static final double MAX_TOW_UNC_NS = 500.0;
+    private static final double MAX_PRR_UNC_MPS = 10.0;
+
+    private static final char[] SYS_ORDER = {'G', 'R', 'E', 'J', 'C'};
+
+    /**
+     * 各星座所有可能频点的观测码（与 measure_util.readobs() 槽位顺序严格一致）
+     * GPS: slot0=L1(1C)  slot1=L2(2W)  slot2=L5(5Q)
+     * GLO: slot0=G1(1C)  slot1=G2(2C)
+     * GAL: slot0=E1(1C)  slot1=E5b(7Q) slot2=E5a(5Q)
+     * QZS: slot0=L1(1C)  slot1=L2(2X)  slot2=L5(5Q)
+     * BDS: slot0=B1I(2I) slot1=B1C(1P) slot2=B2b(7Z) slot3=B2a(5Q)
+     */
+    static final String[][] ALL_OBS_CODES = {
+        {"1C", "2W", "5Q"},
+        {"1C", "2C"},
+        {"1C", "7Q", "5Q"},
+        {"1C", "2X", "5Q"},
+        {"2I", "1P", "7Z", "5Q"}
+    };
+
+    private static int sysIndex(char sys) {
+        switch (sys) {
+            case 'G': return 0;
+            case 'R': return 1;
+            case 'E': return 2;
+            case 'J': return 3;
+            case 'C': return 4;
+            default:  return -1;
+        }
+    }
+
+    static char satToSys(int sat) {
+        if (sat >= 1   && sat <= 32)  return 'G';
+        if (sat >= 33  && sat <= 59)  return 'R';
+        if (sat >= 60  && sat <= 95)  return 'E';
+        if (sat >= 96  && sat <= 105) return 'J';
+        if (sat >= 106 && sat <= 168) return 'C';
+        return '?';
+    }
+
+    // === 实例字段 ===
+
+    private final obsd_t[] obs;
+    private final List<CachedEpoch> epochBuffer = new ArrayList<>();
+    private final Map<Character, boolean[]> activeSlots = new LinkedHashMap<>();
+    private boolean supportCP = false;
+
+    public Rinex304Writer(obsd_t[] obs) {
+        this.obs = obs;
+        for (char sys : SYS_ORDER) {
+            int idx = sysIndex(sys);
+            activeSlots.put(sys, new boolean[ALL_OBS_CODES[idx].length]);
+        }
+    }
+
+    // === 公共接口 ===
+
+    /** 录制期间：暂存一个历元的原始测量数据 */
+    public void bufferEpoch(List<GnssMeasurement> measurements, GnssClock clock) {
+        epochBuffer.add(new CachedEpoch(new ArrayList<>(measurements), clock));
+
+        if (!supportCP) {
+            for (GnssMeasurement m : measurements) {
+                if ((m.getAccumulatedDeltaRangeState()
+                        & GnssMeasurement.ADR_STATE_VALID) != 0) {
+                    supportCP = true;
+                    break;
+                }
+            }
+        }
+    }
+
+    public int getBufferedEpochCount() {
+        return epochBuffer.size();
+    }
+
+    /**
+     * 停止录制后调用：信号发现 → 写头部 → 写全部历元。
+     *
+     * @param bw           输出流
+     * @param deviceModel  设备型号
+     * @param filter       星座过滤 [GPS, BDS, GLO, GAL]，null=全部通过
+     * @param append       true=追加模式（头部已存在，仅追加历元数据）
+     */
+    public void writeOutput(BufferedWriter bw, String deviceModel,
+                            boolean[] filter, boolean append) throws IOException {
+        if (epochBuffer.isEmpty()) {
+            Log.w(TAG, "无缓存历元，跳过输出");
+            return;
+        }
+
+        if (!append) {
+            // ====== 第一遍：信号发现 ======
+            for (CachedEpoch ce : epochBuffer) {
+                processMeasurements(ce, filter);
+                scanActiveSlots();
+                resetobs(obs);
+            }
+            Log.d(TAG, "信号发现完成: " + getActiveSlotsSummary());
+            writeHeader(bw, deviceModel);
+        }
+
+        // ====== 第二遍：格式化输出 ======
+        int written = 0;
+        for (CachedEpoch ce : epochBuffer) {
+            processMeasurements(ce, filter);
+            String epochStr = formatEpoch();
+            if (!epochStr.isEmpty()) {
+                bw.write(epochStr);
+                written++;
+            }
+            resetobs(obs);
+        }
+        bw.flush();
+        Log.d(TAG, "后处理完成: " + written + "/" + epochBuffer.size() + " 个历元已写入");
+        epochBuffer.clear();
+    }
+
+    public boolean isSupportCP() {
+        return supportCP;
+    }
+
+    // === 头部输出 ===
+
+    private void writeHeader(BufferedWriter bw, String deviceModel) throws IOException {
+        Date now = new Date();
+        bw.write(String.format(Locale.US,
+                "     %3.2f           OBSERVATION DATA    M                   RINEX VERSION / TYPE", 3.04));
+        bw.newLine();
+        bw.write("G = GPS  R = GLONASS  E = GALILEO  J = QZSS  C = BDS        COMMENT             ");
+        bw.newLine();
+        bw.write("S = SBAS payload  M = Mixed                                 COMMENT             ");
+        bw.newLine();
+        bw.write(String.format(Locale.US, "%-20s%-20s%-20s",
+                "PNav Logger", deviceModel, now.getTime()) + "UTC PGM / RUN BY / DATE");
+        bw.newLine();
+        bw.write("                                                            MARKER NAME         ");
+        bw.newLine();
+        bw.write("                                                            MARKER NUMBER       ");
+        bw.newLine();
+        bw.write("                                                            OBSERVER / AGENCY   ");
+        bw.newLine();
+        bw.write("                                                            REC # / TYPE / VERS ");
+        bw.newLine();
+        bw.write("                                                            ANT # / TYPE        ");
+        bw.newLine();
+        bw.write(String.format(Locale.US,
+                "%14.4f%14.4f%14.4f                  ", 0.0, 0.0, 0.0) + "APPROX POSITION XYZ");
+        bw.newLine();
+        bw.write("        0.0000        0.0000        0.0000                  ANTENNA: DELTA H/E/N");
+        bw.newLine();
+        bw.write("     0                                                      RCV CLOCK OFFS APPL ");
+        bw.newLine();
+
+        for (char sys : SYS_ORDER) {
+            String[] codes = getActiveObsCodes(sys);
+            if (codes.length > 0) {
+                bw.write(measure_util.buildObsTypesLine(sys, codes, supportCP));
+                bw.newLine();
+            }
+        }
+
+        bw.write("                                                            END OF HEADER");
+        bw.newLine();
+        bw.flush();
+        Log.d(TAG, "RINEX 3.04 头部已写入");
+    }
+
+    // === 信号发现 ===
+
+    private String[] getActiveObsCodes(char sys) {
+        int idx = sysIndex(sys);
+        if (idx < 0) return new String[0];
+        boolean[] slots = activeSlots.get(sys);
+        if (slots == null) return new String[0];
+        List<String> active = new ArrayList<>();
+        for (int i = 0; i < slots.length; i++) {
+            if (slots[i]) active.add(ALL_OBS_CODES[idx][i]);
+        }
+        return active.toArray(new String[0]);
+    }
+
+    private void scanActiveSlots() {
+        for (obsd_t ob : obs) {
+            if (ob == null || ob.sat[0] == 0) continue;
+            char sys = satToSys(ob.sat[0]);
+            if (sys == '?') continue;
+            boolean[] slots = activeSlots.get(sys);
+            if (slots == null) continue;
+            for (int i = 0; i < slots.length && i < ob.code.length; i++) {
+                if (ob.code[i] != 0) slots[i] = true;
+            }
+        }
+    }
+
+    private String getActiveSlotsSummary() {
+        StringBuilder sb = new StringBuilder();
+        for (char sys : SYS_ORDER) {
+            String[] codes = getActiveObsCodes(sys);
+            if (codes.length > 0) sb.append(sys).append(":").append(Arrays.toString(codes)).append(" ");
+        }
+        return sb.toString();
+    }
+
+    // === 历元格式化 ===
+
+    private void processMeasurements(CachedEpoch ce, boolean[] filter) {
+        measure_util.prepareEpochLargestTows(ce.measurements);
+        for (GnssMeasurement m : ce.measurements) {
+            if (!passesQualityFilter(m)) continue;
+            if (!isConstellationEnabled(m.getConstellationType(), filter)) continue;
+            try {
+                measure_util.readobs(m, ce.clock, obs);
+            } catch (Exception e) {
+                Log.e(TAG, "readobs failed svid=" + m.getSvid(), e);
+            }
+        }
+    }
+
+    private String formatEpoch() {
+        int numSat = 0;
+        gtime_t firstObsTime = null;
+        for (obsd_t ob : obs) {
+            if (ob != null && ob.sat[0] != 0) {
+                numSat++;
+                if (firstObsTime == null) firstObsTime = ob.time;
+            }
+        }
+        if (firstObsTime == null || numSat == 0) return "";
+
+        StringBuilder sb = new StringBuilder();
+        double[] ep = new double[6];
+        time2epoch(firstObsTime, ep);
+        sb.append(String.format(Locale.US, "> %4d %2d %2d %2d %2d%11.7f  0 %2d\n",
+                (int) ep[0], (int) ep[1], (int) ep[2],
+                (int) ep[3], (int) ep[4], ep[5], numSat));
+
+        for (obsd_t ob : obs) {
+            if (ob == null || ob.sat[0] == 0) continue;
+            int sat = ob.sat[0];
+            int[] prn = new int[1];
+            try {
+                sat_sys(sat, prn);
+            } catch (Exception e) {
+                continue;
+            }
+            char sys = satToSys(sat);
+            StringBuilder line = new StringBuilder(
+                    String.format(Locale.US, "%c%02d", sys, prn[0]));
+            appendObsSlots(line, ob, sys);
+            line.append('\n');
+            sb.append(line);
+        }
+        return sb.toString();
+    }
+
+    private void appendObsSlots(StringBuilder line, obsd_t ob, char sys) {
+        boolean[] slots = activeSlots.get(sys);
+        if (slots == null) return;
+        for (int i = 0; i < slots.length; i++) {
+            if (!slots[i]) continue;
+            boolean valid = (i < ob.code.length && ob.code[i] != 0);
+            if (valid) {
+                line.append(fmtF14(ob.P[i]));
+                if (supportCP) {
+                    if (Math.abs(ob.L[i]) > 1e-9)
+                        line.append(fmtF14(ob.L[i]));
+                    else
+                        line.append("              ");
+                }
+                line.append(fmtF14(ob.D[i]));
+                line.append(fmtF14(ob.SNR[i]));
+            } else {
+                int fields = supportCP ? 4 : 3;
+                for (int f = 0; f < fields; f++) line.append("              ");
+            }
+        }
+    }
+
+    /** 严格 RINEX F14.3 格式化：值超出 14 字符时自动回绕模 10^10 */
+    private static String fmtF14(double val) {
+        String s = String.format(Locale.US, "%14.3f", val);
+        if (s.length() > 14) {
+            double frac = val - Math.floor(val);
+            long ip = (long) Math.floor(val);
+            long wrapped = ip % 10_000_000_000L;
+            if (wrapped < 0) wrapped += 10_000_000_000L;
+            s = String.format(Locale.US, "%14.3f", (double) wrapped + frac);
+        }
+        return s;
+    }
+
+    // === 质量过滤 ===
+
+    private boolean passesQualityFilter(GnssMeasurement m) {
+        if (!measure_util.checkSyncState(m, false)) return false;
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.S) {
+            double towUnc = m.getReceivedSvTimeUncertaintyNanos();
+            if (towUnc > 0 && towUnc > MAX_TOW_UNC_NS) return false;
+            double prrUnc = m.getPseudorangeRateUncertaintyMetersPerSecond();
+            if (prrUnc > 0 && prrUnc > MAX_PRR_UNC_MPS) return false;
+        }
+        return true;
+    }
+
+    private static boolean isConstellationEnabled(int constellationType, boolean[] filter) {
+        if (filter == null) return true;
+        int idx;
+        switch (constellationType) {
+            case GnssStatus.CONSTELLATION_GPS:      idx = 0; break;
+            case GnssStatus.CONSTELLATION_BEIDOU:    idx = 1; break;
+            case GnssStatus.CONSTELLATION_GLONASS:   idx = 2; break;
+            case GnssStatus.CONSTELLATION_GALILEO:   idx = 3; break;
+            default: return true;
+        }
+        return idx < filter.length && filter[idx];
+    }
+
+    // === 内部类 ===
+
+    private static class CachedEpoch {
+        final List<GnssMeasurement> measurements;
+        final GnssClock clock;
+
+        CachedEpoch(List<GnssMeasurement> measurements, GnssClock clock) {
+            this.measurements = measurements;
+            this.clock = clock;
+        }
+    }
+}

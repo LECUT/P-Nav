@@ -1,0 +1,78 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="#CC000000">
+
+    <com.google.android.material.card.MaterialCardView
+        android:layout_width="match_parent"
+        android:layout_height="420dp"
+        android:layout_gravity="center"
+        android:layout_margin="32dp"
+        app:cardCornerRadius="16dp"
+        app:cardElevation="12dp">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <androidx.viewpager2.widget.ViewPager2
+                android:id="@+id/guide_view_pager"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_above="@+id/guide_bottom_bar" />
+
+            <RelativeLayout
+                android:id="@+id/guide_bottom_bar"
+                android:layout_width="match_parent"
+                android:layout_height="56dp"
+                android:layout_alignParentBottom="true"
+                android:paddingHorizontal="20dp"
+                android:paddingVertical="12dp">
+
+                <LinearLayout
+                    android:id="@+id/guide_dots"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:orientation="horizontal">
+
+                    <View style="@style/GuideDot" android:id="@+id/dot0"
+                        android:background="@drawable/guide_dot_active" />
+                    <View style="@style/GuideDot" android:id="@+id/dot1"
+                        android:background="@drawable/guide_dot_inactive" />
+                    <View style="@style/GuideDot" android:id="@+id/dot2"
+                        android:background="@drawable/guide_dot_inactive" />
+                </LinearLayout>
+
+                <TextView
+                    android:id="@+id/guide_btn_skip"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_alignParentEnd="true"
+                    android:padding="8dp"
+                    android:text="@string/guide_btn_skip"
+                    android:textColor="?attr/colorPrimary"
+                    android:textSize="14sp" />
+
+                <TextView
+                    android:id="@+id/guide_btn_next"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_toStartOf="@id/guide_btn_skip"
+                    android:layout_marginEnd="12dp"
+                    android:background="?attr/colorPrimary"
+                    android:clickable="true"
+                    android:focusable="true"
+                    android:paddingHorizontal="20dp"
+                    android:paddingVertical="10dp"
+                    android:text="@string/guide_btn_next"
+                    android:textColor="?attr/colorOnPrimary"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+        </RelativeLayout>
+    </com.google.android.material.card.MaterialCardView>
+</FrameLayout>

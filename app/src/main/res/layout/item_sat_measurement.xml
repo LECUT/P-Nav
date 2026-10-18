@@ -1,0 +1,75 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:gravity="center_vertical"
+    android:orientation="horizontal"
+    android:paddingHorizontal="16dp"
+    android:paddingVertical="6dp">
+
+    <!-- PRN badge -->
+    <TextView
+        android:id="@+id/tv_prn"
+        android:layout_width="42dp"
+        android:layout_height="26dp"
+        android:gravity="center"
+        android:textColor="@android:color/white"
+        android:textSize="11sp"
+        android:fontFamily="sans-serif-medium"
+        android:background="@drawable/badge_prn"
+        tools:text="G05" />
+
+    <!-- CN0 value -->
+    <TextView
+        android:id="@+id/tv_cn0"
+        android:layout_width="40dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:fontFamily="sans-serif-medium"
+        android:textColor="?attr/colorOnSurface"
+        android:textSize="13sp"
+        tools:text="42" />
+
+    <!-- CN0 bar -->
+    <LinearLayout
+        android:layout_width="0dp"
+        android:layout_height="6dp"
+        android:layout_weight="1"
+        android:layout_marginHorizontal="10dp"
+        android:background="@drawable/cn0_bar_bg"
+        android:orientation="horizontal">
+
+        <View
+            android:id="@+id/cn0_bar"
+            android:layout_width="0dp"
+            android:layout_height="6dp"
+            android:background="@drawable/cn0_bar_fill" />
+    </LinearLayout>
+
+    <!-- Elevation angle -->
+    <TextView
+        android:id="@+id/tv_elevation"
+        android:layout_width="48dp"
+        android:layout_height="wrap_content"
+        android:gravity="end"
+        android:textColor="?attr/colorOnSurfaceVariant"
+        android:textSize="12sp"
+        android:fontFamily="sans-serif-medium"
+        tools:text="45°" />
+
+    <!-- Carrier phase indicator -->
+    <TextView
+        android:id="@+id/tv_carrier"
+        android:layout_width="24dp"
+        android:layout_height="24dp"
+        android:layout_marginStart="8dp"
+        android:gravity="center"
+        android:text="L"
+        android:textColor="?attr/colorPrimary"
+        android:textSize="12sp"
+        android:visibility="gone"
+        android:fontFamily="sans-serif-medium"
+        tools:visibility="visible" />
+
+</LinearLayout>

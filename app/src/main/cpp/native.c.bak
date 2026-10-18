@@ -1,0 +1,366 @@
+#include <jni.h>
+#include "rtklib.h"
+
+// 定义全局变量
+// 定义全局变量
+rtcm_t *RTCM;
+//rtcm_t *RTCM1;
+//rtcm_t *RTCM2;
+__attribute__((unused)) int sat1 = 0;
+int nn=0;
+int n1=0;
+int n2=0;
+int n3=0;
+int n4=0;
+int count1=0;
+int count2=0;
+int count3=0;
+
+
+
+JNIEXPORT jint JNICALL
+Java_com_example_myapplication_ui_Ntrip_NtripFragment_inputrtcm3(
+        JNIEnv *env,jobject thiz, jobject rtcm,
+        jbyte data, jobject obss, jobject obstime, jdoubleArray stapos) {
+    // 将 jbyte 转换为 uint8_t
+    uint8_t data_uint8 = (uint8_t)data;
+    jdouble time = 0;
+    jdouble sec = 0;
+    jint satValue = 0;
+    int result = input_rtcm3(RTCM, data_uint8);
+    if (result != 0) {
+        // 创建一个 Java double 数组
+        jdoubleArray posArray = (*env)->NewDoubleArray(env, 3);
+        if (posArray == NULL) {
+            return (jint) NULL; // 内存分配失败
+        }
+        // 将 C 数组复制到 Java 数组
+        (*env)->SetDoubleArrayRegion(env, posArray, 0, 3, RTCM->sta.pos);
+        // 将 posArray 的内容复制到 stapos
+        if (stapos != NULL) {
+            (*env)->SetDoubleArrayRegion(env, stapos, 0, 3, RTCM->sta.pos);
+        }
+//        stapos = posArray;
+                jclass obsClass = (*env)->GetObjectClass(env, (*env)->GetObjectArrayElement(env,obss,0));
+                jclass timeClass = (*env)->GetObjectClass(env, (*env)->GetObjectArrayElement(env,obstime,0));
+                for (int i = 0; i < RTCM->obs.n; i++) {
+                    jfieldID pField = (*env)->GetFieldID(env, obsClass, "P", "[D");
+                    jfieldID lField = (*env)->GetFieldID(env, obsClass, "L", "[D");
+                    jfieldID dField = (*env)->GetFieldID(env, obsClass, "D", "[F");
+                    jfieldID snrField = (*env)->GetFieldID(env, obsClass, "SNR", "[I");
+                    jfieldID satField = (*env)->GetFieldID(env, obsClass, "sat", "[I");
+                    jfieldID codeField = (*env)->GetFieldID(env, obsClass, "code", "[I");
+                    jfieldID timeField = (*env)->GetFieldID(env, timeClass, "time", "D");
+                    jfieldID secField = (*env)->GetFieldID(env, timeClass, "sec", "D");
+                    // 创建新的数组，并将C语言中的值复制过来
+                    jdoubleArray lArray = (*env)->NewDoubleArray(env, NFREQ + NEXOBS);
+                    jdoubleArray pArray = (*env)->NewDoubleArray(env, NFREQ + NEXOBS);
+                    jfloatArray dArray = (*env)->NewFloatArray(env, NFREQ + NEXOBS);
+                    jintArray snrArray = (*env)->NewIntArray(env, NFREQ + NEXOBS);
+                    jintArray satArray = (*env)->NewIntArray(env, 1);
+                    jintArray codeArray = (*env)->NewIntArray(env, NFREQ + NEXOBS);
+
+                    satValue = (jint) RTCM->obs.data[i].sat;
+                    time = RTCM->obs.data[i].time.time;
+                    sec = RTCM->obs.data[i].time.sec;
+
+
+                    (*env)->SetIntArrayRegion(env, satArray, 0, 1, &satValue);
+
+                    (*env)->SetDoubleArrayRegion(env, pArray, 0, NFREQ + NEXOBS,
+                                                 RTCM->obs.data[i].P);
+
+                    (*env)->SetDoubleArrayRegion(env, lArray, 0, NFREQ + NEXOBS,
+                                                 RTCM->obs.data[i].L);
+
+                    (*env)->SetFloatArrayRegion(env, dArray, 0, NFREQ + NEXOBS,
+                                                 RTCM->obs.data[i].D);
+                    jint snrValues[NFREQ + NEXOBS]; // 创建一个 jint 数组来存储处理后的值
+                    for (int j = 0; j < NFREQ + NEXOBS; j++) {
+                        snrValues[j] = RTCM->obs.data[i].SNR[j] / 1000; // 假设 SNR 是一个数组
+                    }
+                    (*env)->SetIntArrayRegion(env, snrArray, 0, NFREQ + NEXOBS,
+                                              (const jint *) snrValues);
+
+                    jint codeValues[NFREQ + NEXOBS];
+                    for (int j = 0; j < NFREQ + NEXOBS; j++) {
+                        codeValues[j] = (jint) RTCM->obs.data[i].code[j];
+                    }
+                    (*env)->SetIntArrayRegion(env, codeArray, 0, NFREQ + NEXOBS, codeValues);
+
+                    jobject obsd_t_java = (*env)->GetObjectArrayElement(env, obss, i + n1 + n2);
+                    jobject gtime_t_java = (*env)->GetObjectArrayElement(env, obstime, i + n1 + n2);
+                    // 将新的数组设置到Java对象的字段
+                    (*env)->SetObjectField(env, obsd_t_java, pField, pArray);
+                    (*env)->SetObjectField(env, obsd_t_java, lField, lArray);
+                    (*env)->SetObjectField(env, obsd_t_java, dField, dArray);
+                    (*env)->SetObjectField(env, obsd_t_java, snrField, snrArray);
+                    (*env)->SetObjectField(env, obsd_t_java, satField, satArray);
+                    (*env)->SetObjectField(env, obsd_t_java, codeField, codeArray);
+                    (*env)->SetDoubleField(env, gtime_t_java, timeField, time);
+                    (*env)->SetDoubleField(env, gtime_t_java, secField, sec);
+
+                    //释放本地引用
+                    (*env)->DeleteLocalRef(env, pArray);
+                    (*env)->DeleteLocalRef(env, lArray);
+                    (*env)->DeleteLocalRef(env, dArray);
+                    (*env)->DeleteLocalRef(env, snrArray);
+                    (*env)->DeleteLocalRef(env, satArray);
+                    (*env)->DeleteLocalRef(env, codeArray);
+                    (*env)->DeleteLocalRef(env, obsd_t_java);
+                }
+        return result;
+    }
+    return result;
+    }
+
+
+
+JNIEXPORT void JNICALL
+Java_com_example_myapplication_ui_Ntrip_NtripFragment_initrtcm(JNIEnv *env, jobject thiz) {
+RTCM = malloc(sizeof(rtcm_t));
+if (RTCM == NULL) {
+fprintf(stderr, "内存分配失败\n");
+exit(EXIT_FAILURE);
+}
+init_rtcm(RTCM);
+}
+
+/* ═══════════════════════════════════════════════════════════════════════
+ * GNSS Quality Analysis JNI bridge
+ * ═══════════════════════════════════════════════════════════════════════ */
+
+#include "gnss_quality.h"
+
+JNIEXPORT void JNICALL
+Java_com_example_myapplication_ui_quality_QualityFragment_qualityInit(
+        JNIEnv *env, jobject thiz) {
+    quality_init();
+}
+
+JNIEXPORT void JNICALL
+Java_com_example_myapplication_ui_quality_QualityFragment_qualityProcessEpoch(
+        JNIEnv *env, jobject thiz,
+        jintArray j_constellations,
+        jintArray j_svids,
+        jdoubleArray j_freqs,
+        jdoubleArray j_snrs,
+        jdoubleArray j_prs,
+        jdoubleArray j_adrs,
+        jintArray j_adr_states,
+        jfloatArray j_elevations,
+        jint n,
+        jlong j_recv_time_nanos) {
+
+    if (n <= 0) return;
+
+    jint *cons = (*env)->GetIntArrayElements(env, j_constellations, NULL);
+    jint *svids = (*env)->GetIntArrayElements(env, j_svids, NULL);
+    jdouble *freqs = (*env)->GetDoubleArrayElements(env, j_freqs, NULL);
+    jdouble *snrs = (*env)->GetDoubleArrayElements(env, j_snrs, NULL);
+    jdouble *prs = (*env)->GetDoubleArrayElements(env, j_prs, NULL);
+    jdouble *adrs = (*env)->GetDoubleArrayElements(env, j_adrs, NULL);
+    jint *adr_states = (*env)->GetIntArrayElements(env, j_adr_states, NULL);
+    jfloat *elevs = (*env)->GetFloatArrayElements(env, j_elevations, NULL);
+
+    if (cons && svids && freqs && snrs && prs && adrs && adr_states) {
+        /* Allocate temporary array on heap — safe for typical n <= 200 */
+        raw_meas_t *meas = (raw_meas_t *)malloc(n * sizeof(raw_meas_t));
+        if (meas) {
+            for (int i = 0; i < n; i++) {
+                meas[i].constellation    = cons[i];
+                meas[i].svid             = svids[i];
+                meas[i].carrier_freq_hz  = freqs[i];
+                meas[i].snr_db           = snrs[i];
+                meas[i].pr_m             = prs[i];
+                meas[i].adr_m            = adrs[i];
+                meas[i].adr_state        = adr_states[i];
+                meas[i].recv_time_nanos  = (int64_t)j_recv_time_nanos;
+                meas[i].elevation_deg    = elevs ? elevs[i] : NAN;
+            }
+            quality_process_epoch(meas, n);
+            free(meas);
+        }
+    }
+
+    /* Release array elements (JNI_ABORT = don't copy back) */
+    if (cons)       (*env)->ReleaseIntArrayElements(env, j_constellations, cons, JNI_ABORT);
+    if (svids)      (*env)->ReleaseIntArrayElements(env, j_svids, svids, JNI_ABORT);
+    if (freqs)      (*env)->ReleaseDoubleArrayElements(env, j_freqs, freqs, JNI_ABORT);
+    if (snrs)       (*env)->ReleaseDoubleArrayElements(env, j_snrs, snrs, JNI_ABORT);
+    if (prs)        (*env)->ReleaseDoubleArrayElements(env, j_prs, prs, JNI_ABORT);
+    if (adrs)       (*env)->ReleaseDoubleArrayElements(env, j_adrs, adrs, JNI_ABORT);
+    if (adr_states) (*env)->ReleaseIntArrayElements(env, j_adr_states, adr_states, JNI_ABORT);
+    if (elevs)      (*env)->ReleaseFloatArrayElements(env, j_elevations, elevs, JNI_ABORT);
+}
+
+JNIEXPORT jstring JNICALL
+Java_com_example_myapplication_ui_quality_QualityFragment_qualityGetReport(
+        JNIEnv *env, jobject thiz) {
+
+    quality_report_t report;
+    quality_get_report(&report);
+
+    /* Build JSON string */
+    char buf[32768];
+    int written = snprintf(buf, sizeof(buf),
+        "{"
+        "\"snr_mean\":[%.1f,%.1f,%.1f,%.1f,%.1f,%.1f,%.1f],"
+        "\"snr_bins_gps\":[%d,%d,%d,%d],"
+        "\"snr_bins_bds\":[%d,%d,%d,%d],"
+        "\"snr_bins_glo\":[%d,%d,%d,%d],"
+        "\"snr_bins_gal\":[%d,%d,%d,%d],"
+        "\"sat_total\":%d,"
+        "\"sat_gps\":%d,\"sat_bds\":%d,\"sat_glo\":%d,\"sat_gal\":%d,"
+        "\"sat_b1i\":%d,\"sat_b1c\":%d,"
+        "\"dual_freq_b1i\":%.3f,\"dual_freq_b1c\":%.3f,"
+        "\"cmc_rms\":[%.3f,%.3f,%.3f,%.3f],"
+        "\"gf_slips\":[%d,%d,%d,%d],"
+        "\"mw_slips\":[%d,%d,%d,%d],"
+        "\"gf_poly_slips\":[%d,%d,%d,%d],"
+        "\"slip_combined\":[%d,%d,%d,%d],"
+        "\"mp1_rms\":[%.3f,%.3f,%.3f,%.3f],"
+        "\"mp2_rms\":[%.3f,%.3f,%.3f,%.3f],"
+        "\"mp5_rms\":[%.3f,%.3f,%.3f,%.3f],"
+        "\"mp1_sw_rms\":[%.3f,%.3f,%.3f,%.3f],"
+        "\"mp2_sw_rms\":[%.3f,%.3f,%.3f,%.3f],"
+        "\"mp5_sw_rms\":[%.3f,%.3f,%.3f,%.3f],"
+        "\"pr_noise_rms\":[%.3f,%.3f,%.3f,%.3f],"
+        "\"cp_noise_rms\":[%.3f,%.3f,%.3f,%.3f],"
+        "\"td_pr_noise_rms\":[%.3f,%.3f,%.3f,%.3f],"
+        "\"td_cp_noise_rms\":[%.4f,%.4f,%.4f,%.4f],"
+        "\"ion_rate_mean\":[%.4f,%.4f,%.4f,%.4f],"
+        "\"ion_rate_k2_mean\":[%.4f,%.4f,%.4f,%.4f],"
+        "\"elev_bins_gps\":[%d,%d,%d,%d],"
+        "\"elev_bins_bds\":[%d,%d,%d,%d],"
+        "\"elev_bins_glo\":[%d,%d,%d,%d],"
+        "\"elev_bins_gal\":[%d,%d,%d,%d],"
+        "\"completeness\":[%.3f,%.3f,%.3f,%.3f],"
+        "\"avg_sats\":[%.1f,%.1f,%.1f,%.1f],"
+        "\"dual_freq_ratio\":[%.3f,%.3f,%.3f,%.3f],"
+        "\"csr\":[%.1f,%.1f,%.1f,%.1f],"
+        "\"epoch_count\":%d,"
+        "\"total_obs\":%d,"
+        "\"has_dual_freq\":%d,"
+        "\"has_adr\":%d"
+        "}",
+
+        /* SNR means — indices: 1=GPS, 3=GLO, 5=BDS, 6=GAL, others 0 */
+        report.snr_mean[1], report.snr_mean[5], report.snr_mean[3], report.snr_mean[6],
+        NAN, NAN, NAN,
+
+        /* SNR bins per system */
+        report.snr_bins[1][0], report.snr_bins[1][1], report.snr_bins[1][2], report.snr_bins[1][3],
+        report.snr_bins[5][0], report.snr_bins[5][1], report.snr_bins[5][2], report.snr_bins[5][3],
+        report.snr_bins[3][0], report.snr_bins[3][1], report.snr_bins[3][2], report.snr_bins[3][3],
+        report.snr_bins[6][0], report.snr_bins[6][1], report.snr_bins[6][2], report.snr_bins[6][3],
+
+        report.sat_total, report.sat_count[1], report.sat_count[5],
+        report.sat_count[3], report.sat_count[6],
+        report.sat_b1i, report.sat_b1c,
+        report.dual_freq_ratio_b1i, report.dual_freq_ratio_b1c,
+
+        /* CMC RMS */
+        report.cmc_rms[1], report.cmc_rms[5], report.cmc_rms[3], report.cmc_rms[6],
+
+        /* GF slips */
+        report.gf_slip_count[1], report.gf_slip_count[5],
+        report.gf_slip_count[3], report.gf_slip_count[6],
+
+        /* MW slips */
+        report.mw_slip_count[1], report.mw_slip_count[5],
+        report.mw_slip_count[3], report.mw_slip_count[6],
+
+        /* GF poly slips */
+        report.gf_poly_slip_count[1], report.gf_poly_slip_count[5],
+        report.gf_poly_slip_count[3], report.gf_poly_slip_count[6],
+
+        /* Combined slips */
+        report.slip_combined[1], report.slip_combined[5],
+        report.slip_combined[3], report.slip_combined[6],
+
+        /* MP1 RMS */
+        report.mp1_rms[1], report.mp1_rms[5], report.mp1_rms[3], report.mp1_rms[6],
+        /* MP2 RMS */
+        report.mp2_rms[1], report.mp2_rms[5], report.mp2_rms[3], report.mp2_rms[6],
+        /* MP5 RMS */
+        report.mp5_rms[1], report.mp5_rms[5], report.mp5_rms[3], report.mp5_rms[6],
+        /* MP1 SW RMS */
+        report.mp1_sw_rms[1], report.mp1_sw_rms[5], report.mp1_sw_rms[3], report.mp1_sw_rms[6],
+        /* MP2 SW RMS */
+        report.mp2_sw_rms[1], report.mp2_sw_rms[5], report.mp2_sw_rms[3], report.mp2_sw_rms[6],
+        /* MP5 SW RMS */
+        report.mp5_sw_rms[1], report.mp5_sw_rms[5], report.mp5_sw_rms[3], report.mp5_sw_rms[6],
+
+        /* PR noise RMS */
+        report.pr_noise_rms[1], report.pr_noise_rms[5],
+        report.pr_noise_rms[3], report.pr_noise_rms[6],
+
+        /* CP noise RMS */
+        report.cp_noise_rms[1], report.cp_noise_rms[5],
+        report.cp_noise_rms[3], report.cp_noise_rms[6],
+
+        /* TD PR noise RMS */
+        report.td_pr_noise_rms[1], report.td_pr_noise_rms[5],
+        report.td_pr_noise_rms[3], report.td_pr_noise_rms[6],
+
+        /* TD CP noise RMS (cycles) */
+        report.td_cp_noise_rms[1], report.td_cp_noise_rms[5],
+        report.td_cp_noise_rms[3], report.td_cp_noise_rms[6],
+
+        /* Ion rate mean */
+        report.ion_rate_mean[1], report.ion_rate_mean[5],
+        report.ion_rate_mean[3], report.ion_rate_mean[6],
+
+        /* Ion rate K2 mean */
+        report.ion_rate_k2_mean[1], report.ion_rate_k2_mean[5],
+        report.ion_rate_k2_mean[3], report.ion_rate_k2_mean[6],
+
+        /* Elevation bins */
+        report.elev_bins[1][0], report.elev_bins[1][1], report.elev_bins[1][2], report.elev_bins[1][3],
+        report.elev_bins[5][0], report.elev_bins[5][1], report.elev_bins[5][2], report.elev_bins[5][3],
+        report.elev_bins[3][0], report.elev_bins[3][1], report.elev_bins[3][2], report.elev_bins[3][3],
+        report.elev_bins[6][0], report.elev_bins[6][1], report.elev_bins[6][2], report.elev_bins[6][3],
+
+        /* Completeness */
+        report.completeness[1], report.completeness[5],
+        report.completeness[3], report.completeness[6],
+
+        /* Avg sats */
+        report.avg_sats_per_epoch[1], report.avg_sats_per_epoch[5],
+        report.avg_sats_per_epoch[3], report.avg_sats_per_epoch[6],
+
+        /* Dual-freq ratio */
+        report.dual_freq_ratio[1], report.dual_freq_ratio[5],
+        report.dual_freq_ratio[3], report.dual_freq_ratio[6],
+
+        /* CSR */
+        report.csr[1], report.csr[5], report.csr[3], report.csr[6],
+
+        report.epoch_count, report.total_obs, report.has_dual_freq, report.has_adr
+    );
+
+    if (written >= (int)sizeof(buf)) {
+        /* Truncation occurred — use a minimal fallback */
+        return (*env)->NewStringUTF(env, "{\"epoch_count\":0,\"has_dual_freq\":0}");
+    }
+
+    return (*env)->NewStringUTF(env, buf);
+}
+
+JNIEXPORT void JNICALL
+Java_com_example_myapplication_ui_quality_QualityFragment_qualityFree(
+        JNIEnv *env, jobject thiz) {
+    quality_free();
+}
+
+JNIEXPORT jstring JNICALL
+Java_com_example_myapplication_ui_quality_QualityFragment_qualityGetTimeSeries(
+        JNIEnv *env, jobject thiz) {
+    char buf[98304];
+    int n = quality_get_timeseries_json(buf, sizeof(buf));
+    if (n < 0) {
+        return (*env)->NewStringUTF(env, "{}");
+    }
+    return (*env)->NewStringUTF(env, buf);
+}

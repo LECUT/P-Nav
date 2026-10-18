@@ -1,0 +1,30 @@
+# --- Gradle / build ---
+.gradle/
+build/
+captures/
+.externalNativeBuild/
+.cxx/
+local.properties
+
+# --- IDE ---
+.idea/
+*.iml
+.DS_Store
+
+# --- Signing material (never commit) ---
+*.keystore
+*.jks
+app/release/
+release/
+
+# --- Build artifacts ---
+*.apk
+*.aab
+*.ap_
+*.dex
+*.class
+
+# --- Logs / scratch ---
+*.log
+backup/
+.claude/

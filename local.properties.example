@@ -1,0 +1,13 @@
+# Copy this file to `local.properties` and fill in your own values.
+# `local.properties` is ignored by Git and must never be committed.
+# On Windows, use forward slashes or escaped backslashes in paths.
+
+# --- Required: Android SDK location ---
+sdk.dir=/path/to/Android/Sdk
+
+# --- Optional: release signing ---
+# Leave blank to build unsigned release APKs, or omit the whole block.
+RELEASE_STORE_FILE=../release.keystore
+RELEASE_STORE_PASSWORD=
+RELEASE_KEY_ALIAS=
+RELEASE_KEY_PASSWORD=

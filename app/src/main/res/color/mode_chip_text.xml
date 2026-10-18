@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="utf-8"?>
+<!-- 模式 Chip 文字色：选中白色，未选中主题感知 -->
+<selector xmlns:android="http://schemas.android.com/apk/res/android">
+    <item android:color="#FFFFFFFF" android:state_checked="true" />
+    <item android:color="@color/pos_chip_text" />
+</selector>

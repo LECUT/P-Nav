@@ -1,0 +1,492 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
+    android:orientation="vertical">
+
+    <!-- ═══ 顶部状态栏（固定） ═══ -->
+    <LinearLayout
+        android:id="@+id/status_header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:gravity="center_vertical"
+        android:orientation="horizontal"
+        android:paddingHorizontal="12dp"
+        android:paddingVertical="10dp"
+        android:background="@drawable/bg_status_header">
+
+        <TextView
+            android:id="@+id/status_sats"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="-- / --"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            android:fontFamily="monospace"
+            android:textColor="?attr/colorOnSurface"
+            android:layout_marginEnd="6dp" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/unit_satellites"
+            android:textSize="11sp"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:layout_marginEnd="10dp" />
+
+        <View
+            android:layout_width="1dp"
+            android:layout_height="20dp"
+            android:background="?attr/colorOutlineVariant"
+            android:layout_marginEnd="10dp" />
+
+        <TextView
+            android:id="@+id/status_epoch"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:text="--"
+            android:textSize="13sp"
+            android:fontFamily="monospace"
+            android:textColor="?attr/colorOnSurfaceVariant" />
+
+        <!-- 系统计数 -->
+        <TextView android:id="@+id/status_gps" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="G--" android:textSize="12sp" android:fontFamily="monospace"
+            android:textColor="#FF007AFF" android:layout_marginStart="10dp" />
+        <TextView android:id="@+id/status_bds" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="C--" android:textSize="12sp" android:fontFamily="monospace"
+            android:textColor="#FFFF3B30" android:layout_marginStart="8dp" />
+        <TextView android:id="@+id/status_glo" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="R--" android:textSize="12sp" android:fontFamily="monospace"
+            android:textColor="#FF34C759" android:layout_marginStart="8dp" />
+        <TextView android:id="@+id/status_gal" android:layout_width="wrap_content" android:layout_height="wrap_content"
+            android:text="E--" android:textSize="12sp" android:fontFamily="monospace"
+            android:textColor="#FFFF9500" android:layout_marginStart="8dp" />
+    </LinearLayout>
+
+    <!-- ═══ 数据完整率（固定） ═══ -->
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:paddingHorizontal="14dp"
+        android:paddingTop="6dp"
+        android:paddingBottom="4dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="@string/comp_title"
+            android:textSize="11sp"
+            android:textColor="?attr/colorOnSurfaceVariant"
+            android:fontFamily="sans-serif-medium"
+            android:paddingBottom="3dp" />
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingBottom="1dp">
+            <TextView android:layout_width="14dp" android:layout_height="wrap_content" android:text="G" android:textStyle="bold" android:textColor="#007AFF" android:gravity="center" android:textSize="11sp" />
+            <FrameLayout android:layout_width="0dp" android:layout_height="8dp" android:layout_weight="1" android:background="@drawable/bg_comp_bar">
+                <View android:id="@+id/comp_fill_gps" android:layout_width="0dp" android:layout_height="match_parent" android:background="@drawable/comp_fill_round" />
+            </FrameLayout>
+            <TextView android:id="@+id/comp_pct_gps" android:layout_width="36dp" android:layout_height="wrap_content" android:text="-" android:textAppearance="?attr/textAppearanceBodySmall" android:gravity="end" android:textSize="10sp" />
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingBottom="1dp">
+            <TextView android:layout_width="14dp" android:layout_height="wrap_content" android:text="C" android:textStyle="bold" android:textColor="#FF3B30" android:gravity="center" android:textSize="11sp" />
+            <FrameLayout android:layout_width="0dp" android:layout_height="8dp" android:layout_weight="1" android:background="@drawable/bg_comp_bar">
+                <View android:id="@+id/comp_fill_bds" android:layout_width="0dp" android:layout_height="match_parent" android:background="@drawable/comp_fill_round" />
+            </FrameLayout>
+            <TextView android:id="@+id/comp_pct_bds" android:layout_width="36dp" android:layout_height="wrap_content" android:text="-" android:textAppearance="?attr/textAppearanceBodySmall" android:gravity="end" android:textSize="10sp" />
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical" android:paddingBottom="1dp">
+            <TextView android:layout_width="14dp" android:layout_height="wrap_content" android:text="R" android:textStyle="bold" android:textColor="#34C759" android:gravity="center" android:textSize="11sp" />
+            <FrameLayout android:layout_width="0dp" android:layout_height="8dp" android:layout_weight="1" android:background="@drawable/bg_comp_bar">
+                <View android:id="@+id/comp_fill_glo" android:layout_width="0dp" android:layout_height="match_parent" android:background="@drawable/comp_fill_round" />
+            </FrameLayout>
+            <TextView android:id="@+id/comp_pct_glo" android:layout_width="36dp" android:layout_height="wrap_content" android:text="-" android:textAppearance="?attr/textAppearanceBodySmall" android:gravity="end" android:textSize="10sp" />
+        </LinearLayout>
+
+        <LinearLayout android:layout_width="match_parent" android:layout_height="wrap_content" android:orientation="horizontal" android:gravity="center_vertical">
+            <TextView android:layout_width="14dp" android:layout_height="wrap_content" android:text="E" android:textStyle="bold" android:textColor="#FF9500" android:gravity="center" android:textSize="11sp" />
+            <FrameLayout android:layout_width="0dp" android:layout_height="8dp" android:layout_weight="1" android:background="@drawable/bg_comp_bar">
+                <View android:id="@+id/comp_fill_gal" android:layout_width="0dp" android:layout_height="match_parent" android:background="@drawable/comp_fill_round" />
+            </FrameLayout>
+            <TextView android:id="@+id/comp_pct_gal" android:layout_width="36dp" android:layout_height="wrap_content" android:text="-" android:textAppearance="?attr/textAppearanceBodySmall" android:gravity="end" android:textSize="10sp" />
+        </LinearLayout>
+    </LinearLayout>
+
+    <!-- ═══ 图表导航 Tab（水平滚动） ═══ -->
+    <com.google.android.material.tabs.TabLayout
+        android:id="@+id/quality_tabs"
+        android:layout_width="match_parent"
+        android:layout_height="36dp"
+        android:background="?attr/colorSurface"
+        app:tabIndicatorColor="?attr/colorPrimary"
+        app:tabIndicatorHeight="2dp"
+        app:tabSelectedTextColor="?attr/colorPrimary"
+        app:tabTextColor="?attr/colorOnSurfaceVariant"
+        app:tabMode="scrollable"
+        app:tabGravity="fill" />
+
+    <!-- ═══ 图表容器（ViewFlipper 按 Tab 切换） ═══ -->
+    <android.widget.ViewFlipper
+        android:id="@+id/quality_flipper"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <!-- 1. C/N0 时序 -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="1dp"
+            app:contentPadding="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cn0_ts_title"
+                    android:textAppearance="?attr/textAppearanceTitleSmall"
+                    android:paddingStart="4dp" android:paddingTop="4dp" android:paddingBottom="0dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cn0_ts_axis"
+                    android:textSize="10sp"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:paddingStart="4dp" android:paddingBottom="4dp" />
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/chart_cn0_ts"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_marginTop="2dp" />
+
+                <!-- 频段 + 星座筛选表格 -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:paddingTop="6dp" android:paddingBottom="4dp">
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="28dp"
+                        android:orientation="horizontal"
+                        android:gravity="center"
+                        android:paddingBottom="4dp">
+
+                        <TextView android:id="@+id/chip_band_l1"
+                            android:layout_width="0dp" android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="L1/E1/B1" android:textSize="11sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:textColor="?attr/colorOnSurfaceVariant"
+                            android:background="@drawable/bg_chip_selector"
+                            android:clickable="true" android:focusable="true"
+                            android:layout_marginHorizontal="3dp" />
+
+                        <TextView android:id="@+id/chip_band_l5"
+                            android:layout_width="0dp" android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:gravity="center"
+                            android:text="L5/E5" android:textSize="11sp"
+                            android:fontFamily="sans-serif-medium"
+                            android:textColor="?attr/colorOnSurfaceVariant"
+                            android:background="@drawable/bg_chip_selector"
+                            android:clickable="true" android:focusable="true"
+                            android:layout_marginHorizontal="3dp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="36dp"
+                        android:orientation="horizontal"
+                        android:gravity="center">
+
+                        <TextView android:id="@+id/chip_cn0_g"
+                            android:layout_width="0dp" android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="G" android:textSize="14sp" android:fontFamily="sans-serif-medium"
+                            android:textColor="#FF007AFF" android:gravity="center"
+                            android:background="@drawable/bg_chip_cn0"
+                            android:layout_marginHorizontal="3dp" />
+
+                        <TextView android:id="@+id/chip_cn0_r"
+                            android:layout_width="0dp" android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="R" android:textSize="14sp" android:fontFamily="sans-serif-medium"
+                            android:textColor="#FF34C759" android:gravity="center"
+                            android:background="@drawable/bg_chip_cn0"
+                            android:layout_marginHorizontal="3dp" />
+
+                        <TextView android:id="@+id/chip_cn0_c"
+                            android:layout_width="0dp" android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="C" android:textSize="14sp" android:fontFamily="sans-serif-medium"
+                            android:textColor="#FFFF3B30" android:gravity="center"
+                            android:background="@drawable/bg_chip_cn0"
+                            android:layout_marginHorizontal="3dp" />
+
+                        <TextView android:id="@+id/chip_cn0_e"
+                            android:layout_width="0dp" android:layout_height="match_parent"
+                            android:layout_weight="1"
+                            android:text="E" android:textSize="14sp" android:fontFamily="sans-serif-medium"
+                            android:textColor="#FFFF9500" android:gravity="center"
+                            android:background="@drawable/bg_chip_cn0"
+                            android:layout_marginHorizontal="3dp" />
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 2. C/N0-仰角散点 -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="1dp"
+            app:contentPadding="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cn0_elev_title"
+                    android:textAppearance="?attr/textAppearanceTitleSmall"
+                    android:paddingStart="4dp" android:paddingTop="4dp" android:paddingBottom="0dp" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/cn0_elev_axis"
+                    android:textSize="10sp"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:paddingStart="4dp" android:paddingBottom="4dp" />
+
+                <com.ecut.pnav.ui.quality.LabeledScatterChart
+                    android:id="@+id/chart_cn0_elev"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1"
+                    android:layout_margin="4dp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 3. 电离层延迟率 -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="1dp"
+            app:contentPadding="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ion_rate_title"
+                    android:textAppearance="?attr/textAppearanceTitleSmall"
+                    android:paddingStart="6dp" android:paddingEnd="6dp"
+                    android:paddingTop="4dp" android:paddingBottom="0dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/ion_rate_axis"
+                    android:textSize="10sp"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:paddingStart="6dp" android:paddingEnd="6dp"
+                    android:paddingBottom="4dp" />
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/chart_ion"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 4. 多路径组合 -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="1dp"
+            app:contentPadding="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mp_title"
+                    android:textAppearance="?attr/textAppearanceTitleSmall"
+                    android:paddingStart="6dp" android:paddingEnd="6dp"
+                    android:paddingTop="4dp" android:paddingBottom="0dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/mp_axis"
+                    android:textSize="10sp"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:paddingStart="6dp" android:paddingEnd="6dp"
+                    android:paddingBottom="4dp" />
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/chart_mp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 5. 三差伪距噪声 -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="1dp"
+            app:contentPadding="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/td_pr_title"
+                    android:textAppearance="?attr/textAppearanceTitleSmall"
+                    android:paddingStart="6dp" android:paddingEnd="6dp"
+                    android:paddingTop="4dp" android:paddingBottom="0dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/td_pr_axis"
+                    android:textSize="10sp"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:paddingStart="6dp" android:paddingEnd="6dp"
+                    android:paddingBottom="4dp" />
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/chart_td_pr"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 6. 三差载波噪声 -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="1dp"
+            app:contentPadding="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/td_cp_title"
+                    android:textAppearance="?attr/textAppearanceTitleSmall"
+                    android:paddingStart="6dp" android:paddingEnd="6dp"
+                    android:paddingTop="4dp" android:paddingBottom="0dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/td_cp_axis"
+                    android:textSize="10sp"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:paddingStart="6dp" android:paddingEnd="6dp"
+                    android:paddingBottom="4dp" />
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/chart_td_cp"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- 7. 周跳统计 -->
+        <com.google.android.material.card.MaterialCardView
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:layout_margin="8dp"
+            app:cardCornerRadius="12dp"
+            app:cardElevation="1dp"
+            app:contentPadding="8dp">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <TextView
+                    android:id="@+id/title_slips"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/slip_stats_title"
+                    android:textAppearance="?attr/textAppearanceTitleSmall"
+                    android:paddingStart="6dp" android:paddingEnd="6dp"
+                    android:paddingTop="4dp" android:paddingBottom="0dp" />
+
+                <TextView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/slip_stats_axis"
+                    android:textSize="10sp"
+                    android:textColor="?attr/colorOnSurfaceVariant"
+                    android:paddingStart="6dp" android:paddingEnd="6dp"
+                    android:paddingBottom="4dp" />
+
+                <com.github.mikephil.charting.charts.LineChart
+                    android:id="@+id/chart_slip_ts"
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_weight="1" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </android.widget.ViewFlipper>
+
+</LinearLayout>

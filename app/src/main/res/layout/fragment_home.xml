@@ -1,0 +1,873 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="?attr/colorSurface"
+    android:clipToPadding="false"
+    android:paddingBottom="24dp"
+    tools:context=".ui.status.HomeFragment">
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:padding="16dp">
+
+        <!-- Location Info Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/locationCard"
+            style="@style/CardStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="?attr/colorSurface"
+            app:cardCornerRadius="12dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="?attr/colorOutlineVariant">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/SectionTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/location_info"
+                    android:textColor="?attr/colorOnSurface" />
+
+                <!-- 双频检测状态指示条 -->
+                <LinearLayout
+                    android:id="@+id/dual_freq_indicator"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingHorizontal="12dp"
+                    android:paddingVertical="6dp"
+                    android:background="@drawable/dual_freq_bg"
+                    android:visibility="visible">
+
+                    <View
+                        android:id="@+id/dual_freq_dot"
+                        android:layout_width="10dp"
+                        android:layout_height="10dp"
+                        android:layout_marginEnd="8dp"
+                        android:background="@drawable/dual_freq_dot_shape" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:text="@string/dual_freq_sats"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        android:textSize="13sp" />
+
+                    <TextView
+                        android:id="@+id/dual_freq_value"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:fontFamily="sans-serif-medium"
+                        android:text="-"
+                        android:textColor="?attr/colorOnSurface"
+                        android:textSize="13sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical"
+                    android:padding="4dp">
+
+                    <!-- Row 1: 纬度 / 经度 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingVertical="5dp"
+                        android:paddingHorizontal="4dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="@string/label_latitude" android:textColor="?attr/colorOnSurfaceVariant"
+                                android:textSize="11sp" android:layout_marginEnd="4dp" />
+                            <TextView android:id="@+id/location_lat_value" android:layout_width="0dp"
+                                android:layout_height="wrap_content" android:layout_weight="1"
+                                android:textColor="?attr/colorOnSurface" android:textSize="12sp"
+                                android:fontFamily="sans-serif-medium" android:ellipsize="end"
+                                android:singleLine="true" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="@string/label_longitude" android:textColor="?attr/colorOnSurfaceVariant"
+                                android:textSize="11sp" android:layout_marginEnd="4dp" />
+                            <TextView android:id="@+id/location_lon_value" android:layout_width="0dp"
+                                android:layout_height="wrap_content" android:layout_weight="1"
+                                android:textColor="?attr/colorOnSurface" android:textSize="12sp"
+                                android:fontFamily="sans-serif-medium" android:ellipsize="end"
+                                android:singleLine="true" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Row 2: 高度 / MSL海拔 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingVertical="5dp"
+                        android:paddingHorizontal="4dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="@string/label_altitude" android:textColor="?attr/colorOnSurfaceVariant"
+                                android:textSize="11sp" android:layout_marginEnd="4dp" />
+                            <TextView android:id="@+id/location_alt_value" android:layout_width="0dp"
+                                android:layout_height="wrap_content" android:layout_weight="1"
+                                android:textColor="?attr/colorOnSurface" android:textSize="12sp"
+                                android:fontFamily="sans-serif-medium" android:ellipsize="end"
+                                android:singleLine="true" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Row 3: 速度 / 速度精度 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingVertical="5dp"
+                        android:paddingHorizontal="4dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="@string/label_speed" android:textColor="?attr/colorOnSurfaceVariant"
+                                android:textSize="11sp" android:layout_marginEnd="4dp" />
+                            <TextView android:id="@+id/location_speed_value" android:layout_width="0dp"
+                                android:layout_height="wrap_content" android:layout_weight="1"
+                                android:textColor="?attr/colorOnSurface" android:textSize="12sp"
+                                android:fontFamily="sans-serif-medium" android:ellipsize="end"
+                                android:singleLine="true" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="@string/label_speed_acc" android:textColor="?attr/colorOnSurfaceVariant"
+                                android:textSize="11sp" android:layout_marginEnd="4dp" />
+                            <TextView android:id="@+id/location_speed_acc_value" android:layout_width="0dp"
+                                android:layout_height="wrap_content" android:layout_weight="1"
+                                android:textColor="?attr/colorOnSurface" android:textSize="12sp"
+                                android:fontFamily="sans-serif-medium" android:ellipsize="end"
+                                android:singleLine="true" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Row 4: PDOP / HDOP+VDOP -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingVertical="5dp"
+                        android:paddingHorizontal="4dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="@string/label_pdop" android:textColor="?attr/colorOnSurfaceVariant"
+                                android:textSize="11sp" android:layout_marginEnd="4dp" />
+                            <TextView android:id="@+id/location_pdop_value" android:layout_width="0dp"
+                                android:layout_height="wrap_content" android:layout_weight="1"
+                                android:textColor="?attr/colorOnSurface" android:textSize="12sp"
+                                android:fontFamily="sans-serif-medium" android:ellipsize="end"
+                                android:singleLine="true" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="@string/label_hv_dop" android:textColor="?attr/colorOnSurfaceVariant"
+                                android:textSize="11sp" android:layout_marginEnd="4dp" />
+                            <TextView android:id="@+id/location_hv_dop_value" android:layout_width="0dp"
+                                android:layout_height="wrap_content" android:layout_weight="1"
+                                android:textColor="?attr/colorOnSurface" android:textSize="12sp"
+                                android:fontFamily="sans-serif-medium" android:ellipsize="end"
+                                android:singleLine="true" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Row 5: UTC / TTFF -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingVertical="5dp"
+                        android:paddingHorizontal="4dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="@string/label_time" android:textColor="?attr/colorOnSurfaceVariant"
+                                android:textSize="11sp" android:layout_marginEnd="4dp" />
+                            <TextView android:id="@+id/location_time_value" android:layout_width="0dp"
+                                android:layout_height="wrap_content" android:layout_weight="1"
+                                android:textColor="?attr/colorOnSurface" android:textSize="12sp"
+                                android:fontFamily="sans-serif-medium" android:ellipsize="end"
+                                android:singleLine="true" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="@string/label_ttff" android:textColor="?attr/colorOnSurfaceVariant"
+                                android:textSize="11sp" android:layout_marginEnd="4dp" />
+                            <TextView android:id="@+id/location_ttff_value" android:layout_width="0dp"
+                                android:layout_height="wrap_content" android:layout_weight="1"
+                                android:textColor="?attr/colorOnSurface" android:textSize="12sp"
+                                android:fontFamily="sans-serif-medium" android:ellipsize="end"
+                                android:singleLine="true" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Row 6: 水平+垂直精度 / 卫星数 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingVertical="5dp"
+                        android:paddingHorizontal="4dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="@string/label_hv_acc" android:textColor="?attr/colorOnSurfaceVariant"
+                                android:textSize="11sp" android:layout_marginEnd="4dp" />
+                            <TextView android:id="@+id/location_hv_acc_value" android:layout_width="0dp"
+                                android:layout_height="wrap_content" android:layout_weight="1"
+                                android:textColor="?attr/colorOnSurface" android:textSize="12sp"
+                                android:fontFamily="sans-serif-medium" android:ellipsize="end"
+                                android:singleLine="true" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="@string/label_num_sats" android:textColor="?attr/colorOnSurfaceVariant"
+                                android:textSize="11sp" android:layout_marginEnd="4dp" />
+                            <TextView android:id="@+id/location_num_sats_value" android:layout_width="0dp"
+                                android:layout_height="wrap_content" android:layout_weight="1"
+                                android:textColor="?attr/colorOnSurface" android:textSize="12sp"
+                                android:fontFamily="sans-serif-medium" android:ellipsize="end"
+                                android:singleLine="true" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <!-- Row 7: 方位角 / 方位精度 -->
+                    <LinearLayout
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal"
+                        android:paddingVertical="5dp"
+                        android:paddingHorizontal="4dp">
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_marginEnd="8dp"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="@string/label_bearing" android:textColor="?attr/colorOnSurfaceVariant"
+                                android:textSize="11sp" android:layout_marginEnd="4dp" />
+                            <TextView android:id="@+id/location_bearing_value" android:layout_width="0dp"
+                                android:layout_height="wrap_content" android:layout_weight="1"
+                                android:textColor="?attr/colorOnSurface" android:textSize="12sp"
+                                android:fontFamily="sans-serif-medium" android:ellipsize="end"
+                                android:singleLine="true" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="0dp"
+                            android:layout_height="wrap_content"
+                            android:layout_weight="1"
+                            android:orientation="horizontal">
+                            <TextView android:layout_width="wrap_content" android:layout_height="wrap_content"
+                                android:text="@string/label_bearing_acc" android:textColor="?attr/colorOnSurfaceVariant"
+                                android:textSize="11sp" android:layout_marginEnd="4dp" />
+                            <TextView android:id="@+id/location_bearing_acc_value" android:layout_width="0dp"
+                                android:layout_height="wrap_content" android:layout_weight="1"
+                                android:textColor="?attr/colorOnSurface" android:textSize="12sp"
+                                android:fontFamily="sans-serif-medium" android:ellipsize="end"
+                                android:singleLine="true" />
+                        </LinearLayout>
+                    </LinearLayout>
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Sky View Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/skyviewCard"
+            style="@style/CardStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="?attr/colorSurfaceVariant"
+            app:cardCornerRadius="12dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="?attr/colorOutlineVariant">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/SectionTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/sky_view"
+                    android:textColor="?attr/colorOnSurface" />
+
+                <com.ecut.pnav.ui.status.GnssSkyView
+                    android:id="@+id/gnssSkyView"
+                    android:layout_width="match_parent"
+                    android:layout_height="350dp"
+                    android:padding="4dp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+        <!-- Satellite Count Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/satelliteCard"
+            style="@style/CardStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="?attr/colorSurface"
+            app:cardCornerRadius="12dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="?attr/colorOutlineVariant">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/SectionTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/satellites_in_view"
+                    android:textColor="?attr/colorOnSurface" />
+
+                <!-- Header row -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="36dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp">
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2.5"
+                        android:fontFamily="sans-serif-medium"
+                        android:letterSpacing="0.04"
+                        android:text="@string/system_header"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="center"
+                        android:letterSpacing="0.04"
+                        android:text="@string/freq_header"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="end"
+                        android:letterSpacing="0.04"
+                        android:text="@string/count_header"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        android:textSize="11sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="?attr/colorOutlineVariant" />
+
+                <!-- BDS -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2.5"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="14dp"
+                            android:layout_marginEnd="10dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_flag_china" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:ellipsize="end"
+                            android:fontFamily="sans-serif-medium"
+                            android:maxLines="2"
+                            android:text="@string/bds_label"
+                            android:textColor="?attr/colorOnSurface"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/bds_band_detail"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:gravity="center"
+                        android:maxLines="2"
+                        android:text="-"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/bdssat_count"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="end"
+                        android:text="0"
+                        android:textColor="@color/bds_color"
+                        android:textSize="22sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="?attr/colorOutlineVariant" />
+
+                <!-- GPS -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2.5"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="14dp"
+                            android:layout_marginEnd="10dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_flag_usa" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
+                            android:maxLines="2"
+                            android:text="@string/gps_label"
+                            android:textColor="?attr/colorOnSurface"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/gps_band_detail"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:gravity="center"
+                        android:maxLines="2"
+                        android:text="-"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/gpssat_count"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="end"
+                        android:text="0"
+                        android:textColor="@color/gps_color"
+                        android:textSize="22sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="?attr/colorOutlineVariant" />
+
+                <!-- GLONASS -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2.5"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="14dp"
+                            android:layout_marginEnd="10dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_flag_russia" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
+                            android:maxLines="2"
+                            android:text="@string/glonass_label"
+                            android:textColor="?attr/colorOnSurface"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/glonass_band_detail"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:gravity="center"
+                        android:maxLines="2"
+                        android:text="-"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/glonasssat_count"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="end"
+                        android:text="0"
+                        android:textColor="@color/glonass_color"
+                        android:textSize="22sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="?attr/colorOutlineVariant" />
+
+                <!-- Galileo -->
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="60dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2.5"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="14dp"
+                            android:layout_marginEnd="10dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_flag_european_union" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
+                            android:maxLines="2"
+                            android:text="@string/galileo_label"
+                            android:textColor="?attr/colorOnSurface"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/galileo_band_detail"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1.5"
+                        android:gravity="center"
+                        android:maxLines="2"
+                        android:text="-"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        android:textSize="12sp" />
+
+                    <TextView
+                        android:id="@+id/galileosat_count"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="end"
+                        android:text="0"
+                        android:textColor="@color/galileo_color"
+                        android:textSize="22sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="?attr/colorOutlineVariant"
+                    android:visibility="gone" />
+
+                <!-- QZSS -->
+                <LinearLayout
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="14dp"
+                            android:layout_marginEnd="10dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_flag_japan" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="@string/qzss_label"
+                            android:textColor="?attr/colorOnSurface"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/qzss_band_detail"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="-"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/qzsssat_count"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="end"
+                        android:text="0"
+                        android:textColor="@color/qzss_color"
+                        android:textSize="20sp" />
+                </LinearLayout>
+
+                <View
+                    android:layout_width="match_parent"
+                    android:layout_height="0.5dp"
+                    android:layout_marginStart="4dp"
+                    android:layout_marginEnd="4dp"
+                    android:background="?attr/colorOutlineVariant"
+                    android:visibility="gone" />
+
+                <!-- IRNSS -->
+                <LinearLayout
+                    android:visibility="gone"
+                    android:layout_width="match_parent"
+                    android:layout_height="52dp"
+                    android:gravity="center_vertical"
+                    android:orientation="horizontal"
+                    android:paddingStart="4dp"
+                    android:paddingEnd="4dp">
+
+                    <LinearLayout
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center_vertical"
+                        android:orientation="horizontal">
+
+                        <ImageView
+                            android:layout_width="22dp"
+                            android:layout_height="14dp"
+                            android:layout_marginEnd="10dp"
+                            android:scaleType="fitCenter"
+                            android:src="@drawable/ic_flag_india" />
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="sans-serif-medium"
+                            android:text="@string/irnss_label"
+                            android:textColor="?attr/colorOnSurface"
+                            android:textSize="14sp" />
+                    </LinearLayout>
+
+                    <TextView
+                        android:id="@+id/irnss_band_detail"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="2"
+                        android:gravity="center"
+                        android:text="-"
+                        android:textColor="?attr/colorOnSurfaceVariant"
+                        android:textSize="11sp" />
+
+                    <TextView
+                        android:id="@+id/irnsssat_count"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:fontFamily="sans-serif-medium"
+                        android:gravity="end"
+                        android:text="0"
+                        android:textColor="@color/irnss_color"
+                        android:textSize="20sp" />
+                </LinearLayout>
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+<!-- Satellite Detail Card -->
+        <com.google.android.material.card.MaterialCardView
+            android:id="@+id/detailStatusCard"
+            style="@style/CardStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="16dp"
+            app:cardBackgroundColor="?attr/colorSurface"
+            app:cardCornerRadius="12dp"
+            app:strokeWidth="1dp"
+            app:strokeColor="?attr/colorOutlineVariant">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <TextView
+                    style="@style/SectionTitle"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="@string/detail_status_title"
+                    android:textColor="?attr/colorOnSurface" />
+
+                <com.ecut.pnav.ui.status.GnssSatelliteDetailView
+                    android:id="@+id/gnssSatelliteDetailView"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:minHeight="100dp"
+                    android:padding="4dp" />
+            </LinearLayout>
+        </com.google.android.material.card.MaterialCardView>
+
+    </LinearLayout>
+</ScrollView>

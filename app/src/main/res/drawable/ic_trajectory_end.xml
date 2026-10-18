@@ -1,0 +1,13 @@
+<vector xmlns:android="http://schemas.android.com/apk/res/android"
+    android:width="16dp"
+    android:height="16dp"
+    android:viewportWidth="16"
+    android:viewportHeight="16">
+    <!-- 轨迹终点：红色实心圆 + 外圈 -->
+    <path
+        android:fillColor="#FFFFFFFF"
+        android:pathData="M8,8m-6,0a6,6 0,1 1,12 0a6,6 0,1 1,-12 0" />
+    <path
+        android:fillColor="#FFFF3B30"
+        android:pathData="M8,8m-4,0a4,4 0,1 1,8 0a4,4 0,1 1,-8 0" />
+</vector>

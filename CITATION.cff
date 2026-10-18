@@ -1,0 +1,30 @@
+cff-version: 1.2.0
+message: "If you use P-Nav in academic work, please cite the accompanying paper and/or this repository."
+title: "P-Nav: A Multi-Mode Real-Time Positioning and Quality-Monitoring Platform for Android Smartphones"
+abstract: "P-Nav is an open-source Android platform for smartphone GNSS data acquisition, multi-mode real-time positioning (SPP, DGNSS, RTK), and on-device observation quality monitoring."
+type: software
+license: BSD-2-Clause
+repository-code: "https://github.com/TODO/P-Nav"
+keywords:
+  - GNSS
+  - Android
+  - raw measurements
+  - real-time kinematic
+  - RTK
+  - quality monitoring
+  - RINEX
+  - smartphone positioning
+authors:
+  - family-names: "TODO"
+    given-names: "TODO"
+# TODO before release:
+#  - replace repository-code with the final GitHub URL
+#  - fill in the author list (family-names / given-names / affiliation / orcid)
+#  - bump version and set date-released on each release
+version: "1.0.0"
+date-released: "2026-10-18"
+# preferred-citation:
+#   type: article
+#   title: "P-Nav: A Multi-Mode Real-Time Positioning and Quality-Monitoring Platform for Android Smartphones"
+#   journal: "Journal of Surveying Engineering"
+#   year: 2026

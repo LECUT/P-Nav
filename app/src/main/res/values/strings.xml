@@ -1,0 +1,696 @@
+<resources>
+    <string name="app_name">P-Nav</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">P-Nav</string>
+    <string name="nav_header_subtitle">Pedestrian Positioning and Navigation Software</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+
+    <string name="menu_home">Satellite Status</string>
+    <string name="menu_gallery">DGNSS</string>
+    <string name="menu_slideshow">Spp</string>
+    <string name="menu_Ntrip">Ntrip</string>
+    <string name="positioning_title">Positioning</string>
+
+    <string name="measurement_info">Measurement info</string>
+    <string name="navi_info">Navigation info</string>
+    <string name="Spp">Real-time Pseudorange Single Point Positioning</string>
+    <string name="Ppp">Precise Point Positioning</string>
+    <string name="Dgps">Real-time Pseudorange Differential</string>
+    <string name="post_compute">Post-processing</string>
+    <string name="sat_state">Satellite State</string>
+    <string name="result">Result Files</string>
+    <string name="gnsssys">Satellite System Selection</string>
+    <string name="exit">Exit</string>
+    <string name="settings">CN0 Threshold Settings</string>
+    <string name="clear_data">Clear Database</string>
+    <string name="check_data">View Database</string>
+    <string name="clear_files">Clean Eph Files</string>
+    <string name="update_eph">Update Broadcast Eph</string>
+    <string name="sppsatcount">Valid Satellite：</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="latitude">Latitude:</string>
+    <string name="longitude">Longitude:</string>
+    <string name="height">Elevation:</string>
+    <string name="rtcm">RTCM Satellite:</string>
+    <string name="map">Map</string>
+    <string name="data_collection">Data Collection</string>
+    <string name="data_recording">Data Recording</string>
+    <string name="file_count">Files</string>
+    <string name="recording_idle">Ready</string>
+    <string name="recorded_files">Recorded Files</string>
+    <string name="no_files_recorded">No recorded files</string>
+    <string name="delete_all_files">Delete All Files</string>
+    <string name="label_no_files">No files</string>
+    <string name="no_files_hint">Tap "Record Data" to start collecting GNSS observations</string>
+    <string name="file_delete_confirm">Delete this file?</string>
+    <string name="file_deleted">File deleted</string>
+    <string name="update_mixed">Update Mixed Eph</string>
+    <string name="solution">Settings</string>
+    <string name="quality_title">Quality</string>
+    <string name="ion_model">Ionosphere Model</string>
+    <string name="checkposdata">Check Pos Data</string>
+    <string name="tropo">Troposphere Model</string>
+    <string name="azel">Cut-off Angle</string>
+    <string name="clean_posdata">Clean Pos Data</string>
+    <string name="check_file_records">Check File Records</string>
+    <string name="clean_file_records">Clean File Records</string>
+    <string name="file_records_title">Output Files</string>
+    <string name="no_file_records">No file records found</string>
+    <string name="clean_file_records_confirm">Delete all file records? This will not delete the actual files.</string>
+    <string name="file_records_cleared">File records cleared</string>
+    <string name="Integer_abiguity_Res">Integer Ambiguity Res</string>
+    <string name="record_pos_format">Solution Format</string>
+    <string name="record_settings">Record raw data during positioning (only for differential positioning)</string>
+    <string name="ECEF_xyz">XYZ</string>
+    <string name="blh">BLH</string>
+    <string name="please_enter_a_value">Please enter a value</string>
+    <string name="min_ratio_to_fix_ambiguity">Min Ratio to Fix Ambiguity</string>
+    <string name="integer_ambiguity_res_glo">Integer Ambiguity Res(GLO)</string>
+    <string name="name_value">1111</string>
+
+    <!-- Language Selection -->
+    <string name="lang_en">English</string>
+    <string name="lang_zh">中文</string>
+    <string name="language">Language</string>
+    <string name="lang_choose_title">Choose Language</string>
+
+    <!-- Activity Titles -->
+    <string name="spp_title">Single Point Positioning</string>
+    <string name="dgnss_title">Real-time DGNSS</string>
+    <string name="rtk_title">Real-time Kinematic</string>
+    <string name="ppp_title">Precise Point Positioning</string>
+    <string name="map_title">Map</string>
+
+    <!-- Settings page strings -->
+    <string name="cn0_threshold">C/N0 Threshold</string>
+    <string name="frequency">Frequency</string>
+    <string name="gnss_system">GNSS System</string>
+    <string name="record_mode">Record Mode</string>
+    <string name="record_automatic">Automatic</string>
+    <string name="record_manual">Manual</string>
+    <string name="ambiguity_res_bds">Integer Ambiguity Res (BDS)</string>
+    <string name="save_settings">SAVE SETTINGS</string>
+    <string name="solution_setting">SOLUTION SETTING</string>
+    <string name="output_setting">OUTPUT SETTING</string>
+    <string name="ar_strategy">AR STRATEGY</string>
+    <string name="card_sat_signal">Satellite &amp; Signal</string>
+    <string name="card_atmos_model">Atmosphere &amp; Model</string>
+    <string name="card_ar">Ambiguity Resolution</string>
+    <string name="card_output">Output &amp; Recording</string>
+
+    <!-- HomeFragment layout -->
+    <string name="satellites_in_view">Satellites in View</string>
+    <string name="system_header">System</string>
+    <string name="freq_header">Freq</string>
+    <string name="count_header">Count</string>
+    <string name="sky_view">Sky View</string>
+    <string name="start_log">Record Data</string>
+    <string name="stop_log">Stop</string>
+
+    <!-- Dialog strings -->
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="confirm">Confirm</string>
+    <string name="cancel">Cancel</string>
+    <string name="ok">OK</string>
+    <string name="select_gnss_system">Select GNSS System</string>
+    <string name="cors_status">CORS Status</string>
+    <string name="cors_not_enabled">CORS is not enabled</string>
+    <string name="unset">UNSET</string>
+    <string name="please_set_up">Please set up first</string>
+    <string name="select_option">Select an option</string>
+    <string name="enable_location">Enable Location Service</string>
+    <string name="location_required">The app requires the location service to function properly. Would you like to go to the settings now to enable it?</string>
+    <string name="update_ephemeris">Is it necessary to update the ephemeris?</string>
+    <string name="updating_ephemeris">Updating the ephemeris...</string>
+    <string name="update_successful">Update successful</string>
+    <string name="update_failed">Update failed</string>
+    <string name="clear_ephemeris">Should the ephemeris files be cleared?</string>
+    <string name="cleanup_successful">Cleanup successful</string>
+    <string name="cleanup_failed">Cleanup failed</string>
+    <string name="recording">recording…</string>
+    <string name="record_successfully">record successfully</string>
+    <string name="saved">saved</string>
+    <string name="failed_register_gnss">Failed to register GNSS measurement callback listener</string>
+    <string name="select_file_manager">Select File Manager</string>
+    <string name="file_manager_not_found">File manager not found, please install a file manager application.</string>
+    <string name="action_open_files">Open files</string>
+    <string name="folder_not_exist">The folder does not exist</string>
+    <string name="delete_all_data">Confirm deletion of all database data?</string>
+    <string name="countdown_title">COUNTDOWN</string>
+    <string name="countdown_sec">countdown: %d sec</string>
+    <string name="record">Record</string>
+    <string name="connected_cors">Successfully connected to the CORS</string>
+    <string name="cors_connection_failed">Incorrect password, failed to connect to the CORS</string>
+    <string name="no_data_found">No data found</string>
+    <!-- NTRIP dialog strings -->
+    <string name="ntrip_config_title">NTRIP / CORS Configuration</string>
+    <string name="ntrip_client_settings">NTRIP Client Settings</string>
+    <string name="select_an_option">Select an Option</string>
+    <string name="enter_ip_address">Enter IP Address</string>
+    <string name="enter_port">Enter Port</string>
+    <string name="enter_user">Enter User</string>
+    <string name="enter_password">Enter Password</string>
+    <string name="choose_mount_point">Choose Mount Point</string>
+    <string name="gga_settings">GGA Settings</string>
+    <string name="ntrip_label_ip">IP Address</string>
+    <string name="ntrip_label_port">Port</string>
+    <string name="ntrip_label_mount">Mount Point</string>
+    <string name="ntrip_label_user">Username</string>
+    <string name="ntrip_label_password">Password</string>
+    <string name="ntrip_label_latitude">Latitude</string>
+    <string name="ntrip_label_longitude">Longitude</string>
+    <string name="ntrip_btn_connect">Connect</string>
+    <string name="ntrip_btn_refresh">Refresh</string>
+    <string name="ntrip_launch">Service</string>
+    <string name="ntrip_data_source">Data Source</string>
+    <string name="ntrip_gga_title">GGA NMEA Settings</string>
+    <string name="ntrip_config_saved">Configuration saved. Connecting…</string>
+    <string name="ntrip_switch_hint">Toggle to connect / disconnect</string>
+    <string name="ntrip_gga_source_db">From positioning database</string>
+    <string name="ntrip_gga_source_manual">Manual input</string>
+    <string name="ntrip_gga_source_phone">Phone GNSS location</string>
+    <string name="ntrip_connect_success">Connected to NTRIP caster</string>
+    <string name="ntrip_gga_from_phone">Using phone GNSS position</string>
+    <string name="please_enter_a_number">Please enter a number</string>
+    <string name="no_positioning_data_ntrip">There is no positioning data, please obtain positioning data first.</string>
+    <string name="pos_data_dialog_title">Position Database</string>
+    <string name="view_pos_data">View Position Data</string>
+    <string name="clear_all_data">Clear All Data</string>
+    <string name="cn0_title">C/N0</string>
+    <string name="detail_status_title">Satellite Details</string>
+    <string name="splash_tagline">Precision Navigation</string>
+    <string name="university_name">East China University of Technology</string>
+    <string name="dev_unit">Development Unit: East China University of Technology</string>
+    <string name="dev_team">Development Team: L-Team</string>
+    <string name="tech_support">Technical Support: lglu@ecut.edu.cn</string>
+
+    <!-- Settings card labels -->
+    <string name="settings_ntrip_title">NTRIP / CORS</string>
+    <string name="settings_ntrip_desc">Configure differential correction source</string>
+    <string name="settings_solution_desc">GNSS systems, AR strategy, ionosphere model</string>
+    <string name="settings_eph_title">Ephemeris Download</string>
+    <string name="settings_eph_desc">Download broadcast or precise (SP3) ephemeris files</string>
+    <string name="settings_database_title">Position Database</string>
+    <string name="settings_database_desc">View or clear stored position data</string>
+    <string name="settings_language_desc">Switch between English / Chinese</string>
+    <string name="settings_about">About</string>
+    <string name="bds_label">BDS (China)</string>
+    <string name="gps_label">GPS (USA)</string>
+    <string name="glonass_label">GLONASS (Russia)</string>
+    <string name="galileo_label">Galileo (EU)</string>
+    <string name="qzss_label">QZSS (Japan)</string>
+    <string name="irnss_label">IRNSS (India)</string>
+
+    <!-- Location card labels -->
+    <string name="location_info">Location Info</string>
+    <string name="label_latitude">Lat:</string>
+    <string name="label_longitude">Long:</string>
+    <string name="label_altitude">Alt:</string>
+    <string name="label_alt_msl">Alt MSL:</string>
+    <string name="label_speed">Speed:</string>
+    <string name="label_speed_acc">Speed Acc:</string>
+    <string name="label_pdop">PDOP:</string>
+    <string name="label_time">Time:</string>
+    <string name="label_ttff">TTFF:</string>
+    <string name="label_hv_acc">H/V Acc:</string>
+    <string name="label_num_sats"># Sats:</string>
+    <string name="label_bearing">Bearing:</string>
+    <string name="label_bearing_acc">Bearing Acc:</string>
+    <string name="label_hv_dop">H/V DOP:</string>
+    <string name="dual_freq_sats">Dual-Freq Sats</string>
+    <string name="no_carrier_phase_warning">Carrier phase not supported. Positioning will use pseudorange only.</string>
+
+    <!-- 解算详情页面通用字符串 -->
+    <string name="section_satellite_info">Satellite Info</string>
+    <string name="section_position">Position</string>
+    <string name="section_solution_status">Solution Status</string>
+    <string name="section_accuracy_m">Accuracy (m)</string>
+    <string name="section_raw_data">Solution Log</string>
+    <string name="label_east">East</string>
+    <string name="label_north">North</string>
+    <string name="label_up">Up</string>
+    <string name="label_ratio">Ratio</string>
+    <string name="label_solution_state">Solution State</string>
+    <string name="label_rtcm_sat">RTCM Sat:</string>
+    <string name="label_epoch_count">Epochs</string>
+    <string name="section_precision_trend">Precision Trend</string>
+    <string name="tab_precision_trend">Precision Trend</string>
+
+    <!-- DGNSS page strings -->
+    <string name="dgnss_satellite_info">Satellite Info</string>
+    <string name="dgnss_position">Position</string>
+    <string name="dgnss_accuracy_m">Accuracy (m)</string>
+    <string name="dgnss_east">East</string>
+    <string name="dgnss_north">North</string>
+    <string name="dgnss_up">Up</string>
+    <string name="dgnss_raw_data">Raw Data</string>
+    <string name="dgnss_rtcm_count">RTCM Count</string>
+    <string name="btn_record">Record</string>
+    <string name="db_time">Time:</string>
+    <string name="db_longitude">Longitude:</string>
+    <string name="db_latitude">Latitude:</string>
+    <string name="db_elevation">Elevation:</string>
+    <string name="db_variance">Variance and covariance(x,y,h):</string>
+    <string name="db_status">Status(1:RTK Fix 2:RTK Float 4:DGNSS 5:SPP 0:Fail):</string>
+
+    <!-- Quality Fragment -->
+    <string name="sat_overview_title">Satellite Overview</string>
+    <string name="sky_plot_title">Satellite Trajectory</string>
+    <string name="cn0_elev_title">C/N0 vs Elevation</string>
+    <string name="cn0_elev_axis">X: Elevation (°)  |  Y: C/N0 (dB-Hz)</string>
+    <string name="cn0_ts_title">C/N0 Timeline</string>
+    <string name="cn0_ts_axis">X: Epoch  |  Y: C/N0 (dB-Hz)</string>
+    <string name="signal_box_title">Signal Distribution</string>
+    <string name="signal_box_hint">Box: Q1–Q3, line: median, whiskers: min–max, dots: outliers · dashed: 30 dB-Hz</string>
+    <string name="quality_overview_title">Basic Metrics</string>
+    <string name="error_tab_title">Error &amp; Anomaly</string>
+    <string name="tab_ion_mp">Iono+MP</string>
+    <string name="tab_corr">Corr</string>
+    <string name="tab_fde">CMC</string>
+    <string name="tap_to_expand">Tap to expand ▼</string>
+    <string name="tap_to_collapse">Tap to collapse ▲</string>
+    <string name="cn0_avg_fmt" formatted="false">Avg %.0f/%.0f dB</string>
+    <string name="snr_title">C/N0 (dB-Hz)</string>
+    <string name="sat_count_title">Satellite Count</string>
+    <string name="sat_stats_title">Satellite Stats</string>
+    <string name="sat_dist_title">Satellite Distribution</string>
+    <string name="sat_total_visible">Total Visible</string>
+    <string name="sat_valid_obs">Valid Observations</string>
+    <string name="cmc_title">CMC Code-Minus-Carrier RMS (m)</string>
+    <string name="cmc_resid_title">CMC Residual Time Series (FDE)</string>
+    <string name="ion_rate_title">Ionospheric Delay Rate (m/s)</string>
+    <string name="ion_rate_axis">X: Epoch  |  Y: Ion Delay Rate (m/s)</string>
+    <string name="ion_help_title">About Ionospheric Delay Rate</string>
+    <string name="ion_help_message">IOD (Ionospheric Delay Rate) is computed from L1/L2 dual-frequency carrier-phase epoch differences, reflecting the rate of change of Total Electron Content (TEC).\n\n• Uses geometry-free (GF) combination epoch-difference to eliminate geometric range and receiver clock bias\n• Unit: m/s — ionospheric delay change per second\n• Cycle slips are detected and excluded; RMS is computed per-system\n\nInterpretation:\n  &lt; 0.03 m/s — Stable ionosphere\n  0.03~0.1 m/s — Moderate ionospheric activity\n  &gt; 0.1 m/s — Active ionosphere (solar activity, geomagnetic storm)\n\nActive ionosphere degrades positioning accuracy, especially for single-frequency users.</string>
+    <string name="elev_title">Satellite Elevation (°)</string>
+    <string name="slip_stats_title">Cycle Slip Statistics</string>
+    <string name="slip_stats_axis">X: Epoch  |  Y: Slips</string>
+    <string name="slip_title">Cycle Slip Detection (TD-ADR)</string>
+    <string name="slip_ts_subtitle">Cumulative over time</string>
+    <string name="chip_all">All</string>
+    <string name="slip_explain_gf">■ Epoch-diff — Inter-epoch GF check, fast screening</string>
+    <string name="slip_explain_mw">■ Dual-freq MW — Needs L1+L2, most reliable</string>
+    <string name="slip_explain_pf">■ Poly-fit — Single-freq arc fit, supplementary</string>
+    <string name="slip_csr_hint">CSR = Total obs ÷ total slips, higher is better</string>
+    <string name="slip_help_title">About Cycle Slips</string>
+    <string name="slip_help_body">A cycle slip is an integer jump in carrier-phase observations, caused by signal blockage, multipath, or receiver loss-of-lock.
+
+Three complementary detection methods:
+• Epoch-diff — Compares ionospheric residual change between epochs, single-freq capable
+• Dual-freq MW — Melbourne-Wübbena wide-lane combination, highest precision
+• Poly-fit — 2nd-order polynomial extrapolation on CMC arcs, sensitive to slow drift</string>
+    <string name="slip_gps_label">GPS Total Slips</string>
+    <string name="slip_bds_label">BDS Total Slips</string>
+    <string name="slip_note">Note: Requires dual-frequency (L1+L5/L2) data</string>
+    <string name="completeness_title">Data Completeness</string>
+    <string name="epoch_count_label">Total Epochs</string>
+    <string name="dual_freq_label">Dual-Freq Ratio</string>
+    <string name="csr_label">CSR (/1000 epochs)</string>
+    <string name="mp_title">Multipath MP (m)</string>
+    <string name="mp_axis">X: Epoch  |  Y: Multipath (m)</string>
+    <string name="td_pr_title">TD Pseudorange Noise (m)</string>
+    <string name="td_pr_axis">X: Epoch  |  Y: PR Noise (m)</string>
+    <string name="td_cp_title">TD Carrier Phase Noise (cycle)</string>
+    <string name="td_cp_axis">X: Epoch  |  Y: CP Noise (cycle)</string>
+    <string name="mp_help_title">About Multipath (MP)</string>
+    <string name="mp_help_message">MP (Multipath) measures the ranging error caused by satellite signals reflecting off surfaces before reaching the receiver.\n\n• MP1: Ionosphere-free combination of L1 pseudorange with L1/L2 carrier phase — reflects multipath + pseudorange noise on L1\n• MP5: Same combination using L5 frequency (1176.45MHz) — only valid for satellites transmitting L5\n\nInterpretation:\n  &lt; 0.3m — Good, open-sky environment\n  0.3~0.6m — Fair, mild multipath present\n  &gt; 0.6m — Poor, significant multipath\n\nMultipath is primarily caused by buildings, trees, water surfaces, and other reflective objects — especially severe in urban canyons and tree-lined roads.</string>
+    <string name="mp1_title">MP1</string>
+    <string name="mp5_title">MP5 (L5)</string>
+    <string name="gf_title">GF Epoch-Diff RMS (m)</string>
+    <string name="td_noise_title">TD Noise (Triple-Difference)</string>
+    <string name="td_pr_label">PR Pseudorange (m)</string>
+    <string name="td_cp_label">CP Carrier (cycles)</string>
+    <string name="td_help_title">About TD Noise</string>
+    <string name="td_help_message">TD (Triple-Difference) noise is computed from triple-differenced pseudorange and carrier-phase measurements, eliminating receiver clock error and geometric range to isolate measurement noise.\n\nPR (Pseudorange):\n• Triple-differenced code noise, unit: meters\n• Reflects raw pseudorange precision per constellation\n\nCP (Carrier Phase):\n• Triple-differenced carrier noise, unit: cycles\n• Requires valid ADR (carrier phase) measurements\n• Dashed lines distinguish CP from PR\n\nLower values indicate cleaner GNSS measurements.</string>
+    <string name="comp_title">Data Completeness (%)</string>
+    <string name="quality_waiting">Waiting for GNSS measurements…</string>
+    <string name="quality_no_data">Waiting for data…</string>
+    <string name="quality_no_satellites">No satellites</string>
+    <string name="quality_no_slips">No slips detected</string>
+    <string name="quality_status">OK | %1$d epochs | %2$s | sats: %3$d</string>
+    <string name="quality_dual">Dual</string>
+    <string name="quality_single">Single</string>
+    <string name="quality_adr_required">Carrier phase required</string>
+    <string name="quality_adr_unavailable"> | Carrier phase unavailable</string>
+    <string name="corr_title">Multipath-Elevation-C/N0 Pearson Correlation</string>
+    <string name="corr_waiting">Waiting for enough epochs…</string>
+
+    <!-- Data Collection - Recording modes -->
+    <string name="recording_manual">Manual</string>
+    <string name="recording_timed">Timed</string>
+    <string name="static_mode">Static</string>
+    <string name="dynamic_mode">Dynamic</string>
+    <string name="label_recording_mode">Type</string>
+    <string name="label_sample_rate">Rate</string>
+    <string name="rate_1hz">1 Hz</string>
+    <string name="waiting_for_satellites">Waiting for satellite signals…</string>
+    <string name="new_recording">New Recording</string>
+    <string name="history_files">History Files</string>
+    <string name="duration_5min">5m</string>
+    <string name="duration_10min">10m</string>
+    <string name="duration_30min">30m</string>
+    <string name="duration_60min">60m</string>
+    <string name="timed_countdown">Remaining %02d:%02d</string>
+
+    <!-- Data Collection - Constellation filter -->
+    <string name="filter_gps">GPS</string>
+    <string name="filter_bds">BDS</string>
+    <string name="filter_glo">GLO</string>
+    <string name="filter_gal">GAL</string>
+
+    <!-- Data Collection - Live stats -->
+    <string name="stat_sats">Sats: %d</string>
+    <string name="stat_cn0">CN0: %.0f</string>
+    <string name="stat_epochs">Epochs: %d</string>
+    <string name="live_measurements">Live measurements</string>
+    <string name="detail_col_sys">System</string>
+    <string name="detail_col_svid">PRN</string>
+    <string name="detail_col_cn0">C/N0</string>
+    <string name="detail_col_elev">Elev</string>
+    <string name="detail_col_azim">Azim</string>
+    <string name="detail_col_freq">Band</string>
+    <string name="detail_col_fix">Used</string>
+    <string name="label_systems">Systems</string>
+
+    <!-- GNSS 硬件不支持提示 -->
+    <string name="gnss_unsupported_title">Device Not Supported</string>
+    <string name="gnss_unsupported_msg">Your device does not support GNSS raw measurements. Satellite data pages will be empty. This is a hardware limitation — Huawei/Honor Kirin, MediaTek, and most Chinese-brand phones do not expose raw GNSS data. Only select devices (e.g. Google Pixel, Xiaomi Mi 8/9, Samsung Galaxy S/Note with Broadcom or certain Qualcomm chips) provide raw measurements to apps.</string>
+
+    <!-- 定位页面信息面板 -->
+    <string name="section_solution">Solution</string>
+    <string name="section_eph">Ephemeris</string>
+    <string name="section_cors">CORS</string>
+    <string name="cors_connected">Connected</string>
+    <string name="cors_disconnected">Disconnected</string>
+    <string name="cors_unknown">Unknown</string>
+    <string name="ntrip">NTRIP</string>
+    <string name="eph_file">Ephemeris File</string>
+    <string name="eph_loaded">Loaded</string>
+    <string name="eph_not_loaded">Not loaded</string>
+    <string name="eph_loading">Loading…</string>
+    <string name="eph_mode_label">Ephemeris Mode</string>
+    <string name="eph_mode_auto">Auto</string>
+    <string name="eph_mode_brdc">Broadcast</string>
+    <string name="eph_mode_nrt">NRT Precise</string>
+    <string name="solution_state_5">SPP</string>
+    <string name="solution_state_4">DGNSS</string>
+    <string name="solution_state_2">RTK float</string>
+    <string name="solution_state_1">RTK fixed</string>
+    <string name="solution_state_0">Failed</string>
+    <string name="solution_state_6">PPP</string>
+    <string name="solution_state_unknown">Unknown</string>
+
+    <string name="label_solution_mode">Mode</string>
+    <string name="mode_none">None</string>
+
+    <!-- 星历下载对话框选项 -->
+    <string name="dl_broadcast_eph">Broadcast Ephemeris</string>
+    <string name="dl_precise_eph">Precise SP3</string>
+    <string name="dl_precise_clk">Clock CLK</string>
+    <string name="dl_all_eph">All</string>
+    <string name="eph_view_files">View Files</string>
+    <string name="eph_delete_files">Delete Files</string>
+    <string name="eph_delete_confirm">Delete all downloaded ephemeris files?</string>
+    <string name="eph_select_all">Select all</string>
+    <string name="eph_deselect_all">Deselect all</string>
+    <string name="eph_delete_selected">Delete selected</string>
+    <string name="eph_deleted_count">Deleted %d file(s)</string>
+    <string name="eph_download_title">Download</string>
+    <string name="eph_existing">Existing files:</string>
+    <string name="eph_no_files">(none)</string>
+    <string name="eph_deleted">Ephemeris files deleted</string>
+    <string name="toggle_info_panel">Toggle info panel</string>
+    <string name="close_panel">Close panel</string>
+    <string name="toggle_satellite">Satellite view</string>
+    <string name="section_signal_strength">Signal Strength</string>
+    <string name="section_live_sats">Live Satellites</string>
+    <string name="section_recent_files">Recent Files</string>
+    <string name="btn_start_recording">●  Start Collecting</string>
+    <string name="btn_stop_recording">■  Stop Collecting</string>
+    <string name="recording_settings">Recording Settings</string>
+    <string name="keep_screen_on">Awake</string>
+    <string name="section_file_overview">File Overview</string>
+    <string name="label_file_manager">Files</string>
+    <string name="settings_raw_files_title">Raw Observation Files</string>
+    <string name="settings_raw_files_desc">Browse and manage recorded RINEX/CSV files</string>
+    <string name="unit_satellites">sats</string>
+    <string name="unit_epochs">epochs</string>
+    <string name="label_carrier_phase">Carrier Phase</string>
+    <string name="toggle_record">Start recording</string>
+    <string name="tap_to_view_details">Tap to view details</string>
+    <string name="mode_spp">SPP</string>
+    <string name="mode_rtk">RTK</string>
+    <string name="mode_dgnss">DGNSS</string>
+    <string name="mode_ppp">PPP</string>
+
+    <!-- Stochastic model selection -->
+    <string name="stochastic_model">Stochastic Model</string>
+    <string-array name="stochastic_model_options">
+        <item>Height-Angle</item>
+        <item>SNR</item>
+    </string-array>
+
+    <string name="iono_free_lc">Iono-Free LC (requires dual-freq)</string>
+
+    <!-- Solragment spinner options -->
+    <string-array name="ionosphere_options">
+        <item>OFF</item>
+        <item>Klobuchar</item>
+        <item>Iono-Free LC</item>
+    </string-array>
+    <string-array name="troposphere_options">
+        <item>OFF</item>
+        <item>Saastamoinen</item>
+    </string-array>
+    <string-array name="ambres_options">
+        <item>OFF</item>
+        <item>Continuous</item>
+        <item>Instantaneous</item>
+        <item>Fix and Hold</item>
+    </string-array>
+    <string-array name="ambres_bds_options">
+        <item>OFF</item>
+        <item>On</item>
+    </string-array>
+    <string-array name="ambres_glo_options">
+        <item>OFF</item>
+        <item>On</item>
+        <item>Auto Cal</item>
+    </string-array>
+    <string-array name="freq_options">
+        <item>Single Freq</item>
+        <item>Dual Freq</item>
+    </string-array>
+
+    <!-- 解算详情 Tab 标签 -->
+    <string name="tab_solution_result">Solution</string>
+    <string name="tab_solution_log">Log</string>
+    <string name="tab_solution_config">Config</string>
+
+    <!-- 日志工具栏 -->
+    <string name="log_export">Export log</string>
+    <string name="log_clear">Clear log</string>
+    <string name="log_scroll_lock">⋮ Locked · Tap to resume ⋮</string>
+    <string name="filter_all">All</string>
+    <string name="filter_pos">Positioning</string>
+    <string name="filter_err">Errors</string>
+    <string name="filter_eph">Ephemeris</string>
+    <string name="filter_sys">System</string>
+
+    <!-- 解算配置 -->
+    <string name="section_config_summary">Current Config</string>
+    <string name="panel_title">Info</string>
+    <string name="section_rtcm">RTCM Stream</string>
+    <string name="rtcm_bytes_label">Bytes received</string>
+    <string name="rtcm_frames_label">Obs/Other frames</string>
+    <string name="rtcm_base_label">Ref station sats/pos</string>
+    <string name="rtcm_waiting">Waiting for data</string>
+    <string name="rtcm_receiving">Receiving</string>
+    <string name="rtcm_disconnected">Disconnected</string>
+    <string name="rtcm_connecting">Connecting…</string>
+    <string name="label_yes">Yes</string>
+    <string name="label_no">No</string>
+    <string name="toggle_trajectory">Toggle trajectory</string>
+    <string name="clear_trajectory">Clear trajectory</string>
+    <string name="clear_trajectory_confirm">Delete all trajectory data?</string>
+    <string name="trajectory_cleared">Trajectory cleared</string>
+    <!-- Export -->
+    <string name="settings_export_title">Export Position Data</string>
+    <string name="settings_export_desc">Export positioning results as KML/GPX/CSV</string>
+    <string name="export_dialog_title">Select Export Format</string>
+    <string name="export_generating">Generating file…</string>
+    <string name="export_no_data">No positioning data to export</string>
+    <string name="export_failed">Export failed</string>
+
+    <!-- DOP Trend -->
+    <string name="dop_trend_title">DOP Trend (60s)</string>
+
+    <!-- Guide -->
+    <string name="guide_welcome_title">Welcome to P-Nav</string>
+    <string name="guide_welcome_desc">Precise GNSS positioning application for pedestrian navigation, supporting SPP, DGNSS, RTK and PPP modes.</string>
+    <string name="guide_system_title">Select GNSS Systems</string>
+    <string name="guide_done_title">You\'re All Set!</string>
+    <string name="guide_done_desc">GNSS system preferences have been saved. You can change them anytime in Settings.</string>
+    <string name="guide_btn_skip">Skip</string>
+    <string name="guide_btn_next">Next</string>
+    <string name="guide_btn_start">Get Started</string>
+
+    <string name="app_version">P-Nav v1.0</string>
+
+    <!-- 定位页指标/信息 -->
+    <string name="pos_eph">Eph</string>
+    <string name="pos_zoom_in">Zoom in</string>
+    <string name="pos_zoom_out">Zoom out</string>
+    <string name="pos_locate">Locate</string>
+    <string name="pos_map_layer">Map layer</string>
+    <string name="pos_close">Close</string>
+    <string name="pos_slide_up">▲ Slide up for details ▲</string>
+    <string name="pos_collapse">▼ Collapse details ▼</string>
+    <string name="metric_h">Horizontal (m)</string>
+    <string name="metric_v">Vertical (m)</string>
+    <string name="metric_speed">Speed (km/h)</string>
+    <string name="metric_sats">Sats</string>
+    <string name="metric_mode">Mode</string>
+
+    <!-- 数据采集页 -->
+    <string name="data_obs_files">Files ›</string>
+    <string name="data_tap_to_start">Tap the button below to start recording</string>
+    <string name="data_signal_strength">Signal Strength</string>
+    <string name="data_recording_info">Recording Info</string>
+    <string name="data_carrier_na">Carrier —</string>
+    <string name="data_file">File</string>
+    <string name="data_path">Path</string>
+    <string name="data_size">Size</string>
+    <string name="data_duration">Duration</string>
+
+
+    <string name="back">‹ Back</string>
+    <string name="start">Start</string>
+    <string name="pos_from_db">Get latest position from database</string>
+    <string name="pos_manual">Enter coordinates manually</string>
+    <string name="pos_use_gnss">Use phone GNSS positioning</string>
+
+
+    <!-- 定位页动态文本 -->
+    <string name="pos_map_load_fail">Map load failed</string>
+    <string name="pos_lat_label">▲ Lat %.6f°</string>
+    <string name="pos_lon_label">Lon %.6f°</string>
+    <string name="pos_located">Located</string>
+    <string name="pos_no_location">No location yet</string>
+    <string name="pos_sat_view">Satellite view</string>
+    <string name="pos_std_map">Standard map</string>
+    <string name="pos_eph_loaded">Loaded</string>
+    <string name="pos_eph_updated">Updated %s</string>
+    <string name="pos_no_eph">No ephemeris file</string>
+    <string name="pos_broadcast_eph">Broadcast ephemeris</string>
+    <string name="pos_not_loaded">not loaded</string>
+    <string name="pos_precise_eph">Precise ephemeris</string>
+    <string name="pos_next_check">Next auto check: ~%d min</string>
+    <string name="pos_ntrip_connected">NTRIP connected</string>
+    <string name="pos_ntrip_disconnected">NTRIP disconnected</string>
+    <string name="pos_server">Server</string>
+    <string name="pos_mountpoint">Mount point</string>
+    <string name="pos_user">User</string>
+    <string name="pos_decoded_eph">Decoded eph: GPS %1$d + GLO %2$d</string>
+    <string name="pos_waiting_eph">Decoded eph: waiting...</string>
+    <string name="pos_rtcm_receiving">Receiving</string>
+    <string name="pos_rtcm_not_receiving">Not receiving</string>
+    <string name="pos_rtcm_total">Total traffic</string>
+    <string name="pos_rtcm_obs">Obs</string>
+    <string name="pos_rtcm_sta">Stations</string>
+    <string name="pos_rtcm_other">Other</string>
+    <string name="pos_rtcm_obs_ratio">Obs ratio</string>
+
+
+    <string name="pos_ntrip_conn">NTRIP: %1$s</string>
+    <string name="pos_decoded_groups">Decoded eph: GPS %1$d + GLO %2$d</string>
+    <string name="pos_rtcm_flow">RTCM: %1$s</string>
+    <string name="pos_count_units">%1$d</string>
+
+
+    <string name="pos_ntrip_connected2">Connected</string>
+
+
+    <!-- 位置数据库 -->
+    <string name="db_summary">Pos %1$d records · Files %2$d</string>
+    <string name="db_group_pos">Position Data</string>
+    <string name="db_group_files">Output Files</string>
+    <string name="db_view_pos">View Position Data</string>
+    <string name="db_export_track">Export Track (KML/GPX/CSV)</string>
+    <string name="db_clear_pos">Clear Position Data</string>
+    <string name="db_view_files">View Output Files</string>
+    <string name="db_clear_files">Clear File Records</string>
+    <string name="db_header">Time          Mode   Lat / Lon            Height</string>
+    <string name="db_clear_confirm">Delete all position data? This cannot be undone.</string>
+    <string name="db_deleted">Deleted %1$d records</string>
+    <string name="db_unknown">Unknown</string>
+    <string name="db_view_content">View Content</string>
+    <string name="db_share">Share/Export</string>
+    <string name="db_file_not_found">File not found: %1$s</string>
+    <string name="db_file_share">Share</string>
+    <string name="db_file_preview_limit">... (first 200 lines only)</string>
+    <string name="db_file_read_fail">Read failed: %1$s</string>
+
+
+    <!-- 下载/状态 Toast -->
+    <string name="dl_connecting">Connecting to FTP server...</string>
+    <string name="dl_downloading">Downloading: %1$s (%2$s)</string>
+    <string name="dl_brdc_ok">Broadcast ephemeris downloaded: %1$s</string>
+    <string name="dl_brdc_ok_plain">Broadcast ephemeris downloaded</string>
+    <string name="dl_prec_ok">Precise ephemeris downloaded</string>
+    <string name="dl_clk_ok">Clock file downloaded</string>
+    <string name="dl_fail">Download failed</string>
+    <string name="dl_brdc_not_found">Broadcast ephemeris not found</string>
+    <string name="dl_prec_not_found">Precise ephemeris not found</string>
+    <string name="dl_clk_not_found">Clock file not found</string>
+    <string name="dl_nrt_fail">NRT SP3 download failed</string>
+    <string name="dl_nrt_unavailable">NRT ultra-rapid ephemeris unavailable</string>
+    <string name="traj_cleared">Trajectory cleared</string>
+    <string name="raw_delete_confirm">Delete all %1$d recorded files?</string>
+    <string name="db_files_deleted">Deleted %1$d files</string>
+    <string name="eph_epochs_buffered">%1$d epochs (buffered)</string>
+    <string name="carrier_ok">Carrier ✓</string>
+    <string name="carrier_na2">Carrier —</string>
+    <string name="ntrip_mount_fail">Failed to get mount point list</string>
+    <string name="ntrip_no_gnss">Phone has not obtained GNSS fix</string>
+    <string name="ntrip_set_pos">Set: %.5f, %.5f</string>
+    <string name="eph_empty">Ephemeris empty</string>
+    <string name="eph_all_expired">All expired!</string>
+    <string name="eph_toe_bad">File date abnormal (TOE deviates >24h), please re-download</string>
+    <string name="eph_mostly_expired">Mostly expired %1$d/%2$d</string>
+    <string name="eph_expired_count">(%1$d expired)</string>
+    <string name="eph_total_expired"> | %1$d expired total</string>
+    <string name="eph_valid">Valid</string>
+    <string name="eph_expired">Expired</string>
+    <string name="eph_epochs">%1$d epochs</string>
+    <string name="eph_no_data">No ephemeris data</string>
+    <string name="eph_broadcast_title">Broadcast Ephemeris</string>
+    <string name="eph_precise_title">Precise Ephemeris</string>
+    <string name="eph_sum_broadcast">Broadcast %1$d</string>
+    <string name="eph_sum_precise">Precise %1$d epochs</string>
+
+    <!-- 星历/连接状态 Toast（Fragment 侧按 token 映射） -->
+    <string name="eph_cors_updated">CORS ephemeris updated</string>
+    <string name="eph_path_null">Output path is not set</string>
+    <string name="eph_brdc_ready">Broadcast ephemeris ready</string>
+    <string name="eph_nrt_trying">Requesting NRT ultra-rapid ephemeris…</string>
+    <string name="eph_nrt_ready">NRT ultra-rapid ephemeris ready</string>
+    <string name="eph_unavailable">Ephemeris unavailable</string>
+    <string name="eph_update_failed">Failed to update ephemeris</string>
+    <string name="eph_mode_saved">Ephemeris mode set (applies on next refresh)</string>
+    <string name="eph_uptodate">Ephemeris is up to date</string>
+    <string name="eph_updated_ok">Successfully updated ephemeris</string>
+    <string name="ntrip_fetching">Fetching RTCM data…</string>
+    <string name="ntrip_bad_pwd">Incorrect password, failed to connect to the mount point.</string>
+
+    <!-- 箱线图轴标签 / 卫星详情空态（View 直绘） -->
+    <string name="box_min">Min</string>
+    <string name="box_median">Median</string>
+    <string name="box_max">Max</string>
+    <string name="sat_detail_empty">No satellite data</string>
+
+</resources>
