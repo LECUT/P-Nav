@@ -123,8 +123,23 @@ Recorded observations and solutions can be exported as RINEX 3.04 and CSV for po
 
 ---
 
-## RINEX output notes
+## Test data
 
+The observations, RTKLIB solutions and plotting scripts behind the validation
+results are included under [`results/`](results/README.md):
+
+```
+results/
+├── common/      base-station observation + broadcast ephemeris
+├── static/      rover observation, solutions, figure scripts
+└── kinematic/   rover observation, IE PPK reference, solutions, figure scripts
+```
+
+Both sessions were recorded on 2026-09-23 with a Google Pixel 7 and a CHCNAV i87
+base station (≈130 m baseline, 1 Hz). See [`results/README.md`](results/README.md)
+for processing settings and reproduction steps.
+
+## RINEX output notes
 P-Nav writes RINEX 3.04 observation files. Two points are worth noting when comparing against other tools:
 
 - **BDS B2a** uses tracking code `5P`. The valid codes for B2a are `5D`, `5P`, and `5X`; `5Q` belongs to GPS L5 and Galileo E5a and is **not** valid for BDS B2a. Several publicly available GnssLogger→RINEX converters use `5Q` for B2a, which causes downstream software to silently skip those observations.
