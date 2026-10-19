@@ -18,8 +18,6 @@ P-Nav builds on the open-source [myGNSS](https://github.com/z1Yang-1/myGNSS) app
 | **Quality monitoring** | Native engine: MP1/MP5 multipath, three-criterion cycle-slip detection, pseudorange & carrier-phase noise, C/N0 distribution, ionospheric delay rate |
 | **Data export** | RINEX 3.04 observation files, GnssLogger-compatible CSV, SQLite records |
 
-> **Note on PPP.** A PPP processing path exists in the code base but has not yet reached stable operation under smartphone observation conditions. It is therefore **not** covered by the current release's feature claims or validation.
-
 ---
 
 ## Screenshots
@@ -156,9 +154,9 @@ base station (≈130 m baseline, 1 Hz). See [`results/README.md`](results/README
 for processing settings and file formats.
 
 ## RINEX output notes
-P-Nav writes RINEX 3.04 observation files. Two points are worth noting when comparing against other tools:
+P-Nav writes RINEX 3.04 observation files. When comparing against other tools, note that:
 
-- **BDS B2a** uses tracking code `5P`. The valid codes for B2a are `5D`, `5P`, and `5X`; `5Q` belongs to GPS L5 and Galileo E5a and is **not** valid for BDS B2a. Several publicly available GnssLogger→RINEX converters use `5Q` for B2a, which causes downstream software to silently skip those observations.
+- **BDS B2a** is written with tracking code `5P` (the valid codes for B2a are `5D`, `5P` and `5X`).
 - **BDS B1I** is recorded in RINEX frequency band **2**, not band 153 as a naive `round(f / 10.23 MHz)` conversion would suggest.
 
 ---

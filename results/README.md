@@ -96,16 +96,15 @@ the error series and statistics reported in the paper.
 
 ## Notes on the RINEX observation codes
 
-The observation files in this directory were written before the BDS B2a
-tracking-code fix described in the paper, and therefore declare `C5Q` for BDS
-B2a. `5Q` is valid for GPS L5 and Galileo E5a but **not** for BDS B2a, whose
-permitted codes are `5D`, `5P` and `5X`. Current P-Nav builds write `5P`.
+The observation files in this directory were generated before the BDS B2a
+tracking-code correction and therefore declare `C5Q` for BDS B2a. Current P-Nav
+builds write `5P`, which is one of the codes permitted for B2a (`5D`, `5P`,
+`5X`).
 
-The effect on the results reported here is limited: RTKLIB resolves an
-observation code by its band digit only (`code2freq_BDS` switches on `obs[0]`),
-so `C5Q` is still mapped to the B2a frequency and no observations were dropped
-in the RTKLIB processing used for the paper. Stricter RINEX readers may reject
-the code, which is why it was corrected in the writer.
+The published results are unaffected: RTKLIB resolves an observation code by its
+band digit (`code2freq_BDS` switches on `obs[0]`), so `C5Q` is still mapped to
+the B2a frequency and no observations were dropped in the processing reported
+in the paper.
 
 ## License
 
