@@ -167,24 +167,6 @@ See [`THIRD-PARTY-NOTICES.md`](THIRD-PARTY-NOTICES.md) for licenses and attribut
 
 ---
 
-## Citation
-
-If you use P-Nav in academic work, please cite the accompanying paper:
-
-```bibtex
-@article{pnav2026,
-  title   = {P-Nav: A Multi-Mode Real-Time Positioning and Quality-Monitoring Platform for Android Smartphones},
-  author  = {{L-TEAM}},
-  journal = {Journal of Surveying Engineering},
-  year    = {2026},
-  note    = {Manuscript in preparation}
-}
-```
-
-Machine-readable metadata is provided in [`CITATION.cff`](CITATION.cff).
-
----
-
 ## Contact
 
 Developed and maintained by **L-TEAM**, East China University of Technology.
@@ -196,8 +178,6 @@ Technical support: <lglu@ecut.edu.cn>
 ## License
 
 P-Nav is released under the **BSD 2-Clause License**. See [`LICENSE`](LICENSE).
-
-This project incorporates code derived from RTKLIB (BSD 2-Clause, © T. Takasu) and myGNSS (BSD 2-Clause). See [`LICENSE-RTKLIB`](LICENSE-RTKLIB) and [`THIRD-PARTY-NOTICES.md`](THIRD-PARTY-NOTICES.md).
 
 ---
 
