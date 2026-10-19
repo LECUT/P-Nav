@@ -22,11 +22,14 @@ P-Nav builds on the open-source [myGNSS](https://github.com/z1Yang-1/myGNSS) app
 
 ## Screenshots
 
-| Data collection | Satellite status | Quality analysis | Positioning |
-|---|---|---|---|
-| ![Data collection](docs/screenshots/1-collect.png) | ![Satellite status](docs/screenshots/2-skyview.png) | ![Quality analysis](docs/screenshots/3-quality.png) | ![Positioning](docs/screenshots/4-positioning.png) |
-
-> Screenshot files are expected under `docs/screenshots/`. See [`docs/screenshots/README.md`](docs/screenshots/README.md) for the required filenames and cropping notes.
+<table>
+  <tr>
+    <td align="center"><img src="docs/screenshots/1-collect.png" width="220"><br><sub>Data collection</sub></td>
+    <td align="center"><img src="docs/screenshots/2-skyview.png" width="220"><br><sub>Satellite status</sub></td>
+    <td align="center"><img src="docs/screenshots/3-quality.png" width="220"><br><sub>Quality analysis</sub></td>
+    <td align="center"><img src="docs/screenshots/4-positioning.png" width="220"><br><sub>Positioning</sub></td>
+  </tr>
+</table>
 
 ---
 
