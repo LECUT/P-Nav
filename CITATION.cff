@@ -20,8 +20,6 @@ authors:
 contact:
   - email: "lglu@ecut.edu.cn"
   - name: "L-TEAM technical support"
-# TODO before release:
-#  - replace repository-code with the final GitHub URL
-#  - optionally expand the author list with individual names / ORCIDs
+# Individual author names / ORCIDs can be added here later if desired.
 version: "1.0.0"
 date-released: "2026-10-18"

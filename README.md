@@ -138,6 +138,8 @@ app/build/outputs/apk/debug/app-debug.apk
 
 Recorded observations and solutions can be exported as RINEX 3.04 and CSV for post-processing.
 
+A detailed user manual (Chinese) covers installation, every interface page, NTRIP configuration, solving parameters, ephemeris download and the quality metrics with their formulas: [`docs/MANUAL_zh.md`](docs/MANUAL_zh.md).
+
 ---
 
 ## Test data
