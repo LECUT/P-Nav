@@ -140,7 +140,7 @@ Recorded observations and solutions can be exported as RINEX 3.04 and CSV for po
 
 A detailed user manual is available in two forms:
 
-- **English (PDF, 26 pages)**: [`docs/MANUAL_en.pdf`](docs/MANUAL_en.pdf)
+- **English (PDF, 26 pages)**: [`P-Nav_User_Manual.pdf`](P-Nav_User_Manual.pdf)
 - **Chinese (Markdown)**: [`docs/MANUAL_zh.md`](docs/MANUAL_zh.md)
 
 Both cover installation, every interface page, NTRIP configuration, solving parameters, ephemeris download, data export and the quality metrics with their formulas.
